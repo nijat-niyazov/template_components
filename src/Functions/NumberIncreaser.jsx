@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const HomePage = () => {
+const NummberIncreaser = () => {
   const [number, setNumber] = useState(200);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const HomePage = () => {
     };
   }, [number]);
 
-  return <div>{number >= 400 ? 400 : number}</div>;
+  return <div>{number >= 400 ? 400 : number}%</div>;
 };
 
-export default HomePage;
+export default NummberIncreaser;

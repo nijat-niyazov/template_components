@@ -1,5 +1,3 @@
-import chakraTheme from '@chakra-ui/theme';
-import { useCallback, useMemo, useState } from 'react';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -8,14 +6,14 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
-import HomePage from './Header';
-import UIStories from './UIStories';
+import UIStories from './Components/GetStoriesAxios/UIStories';
+import NummberIncreaser from './Functions/NumberIncreaser';
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
-        <Route index element={<HomePage />} />
+        <Route index element={<NummberIncreaser />} />
         <Route path="/:type" element={<UIStories />} />
       </Route>
     )

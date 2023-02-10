@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_API_URL } from '../utils/api';
+import { BASE_API_URL } from './api';
 
 const getOneStory = async id => {
   try {
@@ -18,6 +18,7 @@ export const getALlStories = async type => {
     const allStories = await Promise.all(
       storyIds.slice(0, 30).map(getOneStory)
     );
+    // Getting only 30 from all of them
     return allStories;
   } catch (err) {
     console.log(err.message);
