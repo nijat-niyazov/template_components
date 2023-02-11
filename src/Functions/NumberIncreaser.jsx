@@ -11,10 +11,13 @@ const NummberIncreaser = () => {
     if (number >= 400) {
       clearInterval(intervalId);
     }
+    // clear when numbers reached 400
 
     return () => {
       clearInterval(intervalId);
     };
+
+    // clean previous interval and start new one
   }, [number]);
 
   return <div>{number >= 400 ? 400 : number}%</div>;

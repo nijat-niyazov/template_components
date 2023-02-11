@@ -7,6 +7,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import UIStories from './Components/GetStoriesAxios/UIStories';
+import CopiesArrays_Objects from './Functions/CopiesArrays&Objects';
 import NummberIncreaser from './Functions/NumberIncreaser';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Route path="/" element={<Root />}>
         <Route index element={<NummberIncreaser />} />
         <Route path="/:type" element={<UIStories />} />
+        <Route path="/copies" element={<CopiesArrays_Objects />} />
       </Route>
     )
   );
@@ -36,6 +38,7 @@ const Root = () => {
         <Link to="/top">Top Stories</Link>
         <Link to="/new">Latest Stories</Link>
         <Link to="/best">Best Stories</Link>
+        <Link to="/copies">Copies</Link>
       </div>
       <div>
         <Outlet />

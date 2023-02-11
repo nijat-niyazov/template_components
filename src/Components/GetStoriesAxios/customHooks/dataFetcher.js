@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { getALlStories } from '../apiFunctions';
 
-const useFetchData = type => {
+const useFetchData = (type, limit) => {
   const [stories, setStories] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
-    getALlStories(type)
+    getALlStories(type, limit)
       .then(response => {
         setStories(response);
         setIsLoading(false);

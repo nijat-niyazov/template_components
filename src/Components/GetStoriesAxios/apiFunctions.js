@@ -10,13 +10,13 @@ const getOneStory = async id => {
   }
 };
 
-export const getALlStories = async type => {
+export const getALlStories = async (type, limit) => {
   try {
     const { data: storyIds } = await axios.get(
       `${BASE_API_URL}/${type}stories.json`
     );
     const allStories = await Promise.all(
-      storyIds.slice(0, 30).map(getOneStory)
+      storyIds.slice(0, limit).map(getOneStory)
     );
     // Getting only 30 from all of them
     return allStories;
