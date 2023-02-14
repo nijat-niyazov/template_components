@@ -1,61 +1,51 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useFetchData from './customHooks/dataFetcher';
 import Story from './Story';
-
 import styles from '../LayoutLoader.module.css';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const UIStories = () => {
   const { type } = useParams();
   const [displayLimit, setDisplayLimit] = useState(10);
+  const [hasMore, setHasMore] = useState(true);
   const { stories, isLoading } = useFetchData(type, displayLimit);
-  const [maxHeight, setMaxHeight] = useState(0);
-  const [sum, setSum] = useState(0);
 
-  // console.log(document.documentElement.offsetHeight);
-  // // // height of website ⤴
+  console.log(stories.length);
 
-  const handleScroll = () => {
-    const another = [window.innerHeight, window.scrollY];
-    console.log(
-      window,
-      window.innerHeight,
-      window.scrollY,
-      document.documentElement.offsetHeight
-    );
-    setSum(another.reduce((a, b) => a + b, 0));
-    if (sum > maxHeight) {
-      setMaxHeight(sum);
+  const getMore = () => {
+    if (displayLimit < 200) {
+      setDisplayLimit(c => c + 20);
     } else {
-      return sum;
+      setHasMore(false);
     }
   };
 
-  useEffect(() => {
-    setDisplayLimit(c => c + 5);
-  }, [maxHeight]);
-
-  // console.log(maxHeight);
-
-  useEffect(() => {
-    // console.log('executed');
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [window.scrollY]);
+  const loading = (
+    <div className={styles.overlay}>
+      <p className={styles.loading}>Loading...</p>
+    </div>
+  );
 
   return (
     <>
-      {isLoading ? (
+      {/* {isLoading ? (
         <div className={styles.overlay}>
           <p className={styles.loading}>Loading...</p>
         </div>
-      ) : (
-        <React.Fragment>
-          {stories.map(({ data: story }) => (
-            <Story key={story.id} story={story} />
-          ))}
-        </React.Fragment>
-      )}
+      ) : ( */}
+      <InfiniteScroll
+        dataLength={stories.length}
+        next={getMore}
+        loading={loading}
+        hasMore={hasMore}
+        endMessage={<p>That's all we have</p>}
+      >
+        {stories.map(({ data: story }) => (
+          <Story key={story.id} story={story} />
+        ))}
+      </InfiniteScroll>
+      {/* )} */}
     </>
   );
 };

@@ -10,7 +10,12 @@ const Story = ({ story: { id, by, title, kids, time, url } }) => {
   return (
     <div
       className="story"
-      style={{ display: 'block', margin: '20px', width: '500px' }}
+      style={{
+        display: 'block',
+        margin: '20px',
+        width: '500px',
+        border: '1px solid black',
+      }}
     >
       <div className="story-title">
         <Link url={url} title={title} />

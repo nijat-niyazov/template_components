@@ -9,11 +9,11 @@ const useFetchData = (type, limit) => {
     setIsLoading(true);
     getALlStories(type, limit)
       .then(response => {
-        setStories(response);
+        setStories(prev => [...prev, ...response]);
         setIsLoading(false);
       })
       .catch(() => setIsLoading(false));
-  }, [type]);
+  }, [type, limit]);
   return { stories, isLoading };
 };
 

@@ -6,7 +6,9 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
+import Example from './Components/Dave_Gray/api/Example';
 import UIStories from './Components/GetStoriesAxios/UIStories';
+import Indian from './Components/indian/Indian';
 import CopiesArrays_Objects from './Functions/CopiesArrays&Objects';
 import NummberIncreaser from './Functions/NumberIncreaser';
 
@@ -14,7 +16,7 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
-        <Route index element={<NummberIncreaser />} />
+        <Route index element={<Indian />} />
         <Route path="/:type" element={<UIStories />} />
         <Route path="/copies" element={<CopiesArrays_Objects />} />
       </Route>
