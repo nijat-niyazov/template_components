@@ -6,9 +6,9 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
-import Example from './Components/Dave_Gray/api/Example';
-import UIStories from './Components/GetStoriesAxios/UIStories';
+// import UIStories from './Components/GetStoriesAxios/UIStories';
 import Indian from './Components/indian/Indian';
+import ShowStories from './Components/test/Show';
 import CopiesArrays_Objects from './Functions/CopiesArrays&Objects';
 import NummberIncreaser from './Functions/NumberIncreaser';
 
@@ -17,7 +17,8 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<Root />}>
         <Route index element={<Indian />} />
-        <Route path="/:type" element={<UIStories />} />
+        <Route path="/:type" element={<ShowStories />} />
+        {/* <Route path="/:type" element={<UIStories />} /> */}
         <Route path="/copies" element={<CopiesArrays_Objects />} />
       </Route>
     )
