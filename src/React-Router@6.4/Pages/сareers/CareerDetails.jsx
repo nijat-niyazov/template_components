@@ -3,16 +3,16 @@ import { useLoaderData, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const CareerDetails = () => {
-  const { careerNum } = useParams();
+  // const { careerNum } = useParams();
 
-  const caree5 = useLoaderData();
-  console.log(caree5);
+  const testCareer = useLoaderData();
+  console.log(testCareer);
 
   return (
     <div className="career-details">
-      {/* <h2>Details for {career.id}</h2>
-      <p>Career Title: {career.title}</p>
-      <p>Career Starting Salary: {career.salary}</p>
+      <h2>Details for {testCareer.id}</h2>
+      <p>TestCareer Title: {testCareer.title}</p>
+      <p>TestCareer Starting Salary: {testCareer.salary}</p>
       <div className="details">
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
@@ -24,7 +24,7 @@ const CareerDetails = () => {
           voluptates est, nihil, sequi rem? Iste quam recusandae illo
           perferendis debitis!
         </p>
-      </div> */}
+      </div>
     </div>
   );
 };
@@ -34,13 +34,12 @@ export default CareerDetails;
 // Loader component
 
 export const careerDetailLoader = async ({ params }) => {
+  // useParams version in Loader component ⤴
   const { careerNum } = params;
-  console.log(careerNum);
 
   const { data } = await axios.get(
     'http://localhost:4000/careers/' + careerNum
   );
-  console.log(data);
 
   return data;
 };

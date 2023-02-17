@@ -29,7 +29,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="*" element={<NotFound />} />
       {/* home page is index */}
-      <Route path="/about" element={<About />} />
+      <Route path="about" element={<About />} />
 
       <Route path="help" element={<HelpLayout />}>
         <Route path="faq" element={<Faq />} />
@@ -41,7 +41,7 @@ const router = createBrowserRouter(
         <Route
           path=":careerNum"
           loader={careerDetailLoader}
-          element={CareerDetails}
+          element={<CareerDetails />}
         />
       </Route>
     </Route>

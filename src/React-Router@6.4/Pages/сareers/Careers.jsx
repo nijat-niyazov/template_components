@@ -5,6 +5,8 @@ export default function Careers() {
   const careers = useLoaderData();
   // this is name is as you wish
 
+  console.log(careers);
+
   return (
     <div className="careers">
       {careers?.map(career => {
@@ -23,7 +25,7 @@ export default function Careers() {
 // Loader function
 export const careersLoader = async () => {
   const { data } = await axios.get('http://localhost:4000/careers');
-  // console.log(data);
+
   return data;
 };
 // it must be exported because it will be imported in router as loader and we don't need useeffect in first render call this function
