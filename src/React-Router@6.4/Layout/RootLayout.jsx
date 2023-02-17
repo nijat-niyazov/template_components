@@ -10,6 +10,7 @@ const RootLayout = () => {
           <NavLink to="/">Home ➡</NavLink>
           <NavLink to="about">About ➡ </NavLink>
           <NavLink to="help">Help ➡ </NavLink>
+          <NavLink to="careers">Careers ➡ </NavLink>
           {/* navLink add class when it's clicked it gets active class */}
         </nav>
       </header>
