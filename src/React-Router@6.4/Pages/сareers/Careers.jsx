@@ -24,8 +24,11 @@ export default function Careers() {
 
 // Loader function
 export const careersLoader = async () => {
-  const { data } = await axios.get('http://localhost:4000/careers');
-
-  return data;
+  try {
+    const { data } = await axios.get('http://localhost:4000/careers');
+    return data;
+  } catch (err) {
+    throw Error("Couldn't fetch careers data");
+  }
 };
 // it must be exported because it will be imported in router as loader and we don't need useeffect in first render call this function

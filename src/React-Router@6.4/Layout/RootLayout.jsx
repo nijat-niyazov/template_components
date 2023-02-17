@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import Breadcrumbs from '../Components/Breadcrums';
 
 const RootLayout = () => {
   return (
@@ -13,6 +14,7 @@ const RootLayout = () => {
           <NavLink to="careers">Careers ➡ </NavLink>
           {/* navLink add class when it's clicked it gets active class */}
         </nav>
+        <Breadcrumbs />
       </header>
 
       <main>

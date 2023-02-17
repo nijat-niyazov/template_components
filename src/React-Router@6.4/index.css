@@ -135,6 +135,7 @@ form label span {
 .breadcrumbs {
   max-width: 1200px;
   margin: 20px auto;
+  font-style: italic;
 }
 .breadcrumbs > * {
   display: inline-block;
@@ -149,4 +150,9 @@ form label span {
 }
 .breadcrumbs .crumb a {
   color: #ddd;
+}
+
+.breadcrumbs .crumb:last-child > a {
+  text-decoration: none;
+  font-style: normal;
 }

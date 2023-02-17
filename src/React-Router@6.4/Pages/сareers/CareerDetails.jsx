@@ -36,10 +36,22 @@ export default CareerDetails;
 export const careerDetailLoader = async ({ params }) => {
   // useParams version in Loader component ⤴
   const { careerNum } = params;
+  try {
+    const { data } = await axios.get(
+      'http://localhost:4000/careers/' + careerNum
+    );
+    return data;
+  } catch (err) {
+    throw Error("Couldn't find career with this id ");
+  }
 
-  const { data } = await axios.get(
-    'http://localhost:4000/careers/' + careerNum
-  );
+  // const res = await fetch('http://localhost:4000/careers/' + careerNum);
 
-  return data;
+  // console.log(res);
+
+  // if (!res.ok) {
+  //   throw new Error("Sorry this page doesn't exsist");
+  // }
+
+  // return res.json();
 };
