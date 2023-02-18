@@ -1,13 +1,18 @@
-import React from 'react';
-import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Navigate, useLoaderData } from 'react-router-dom';
+import useTitleSetter from '../utils/titleSetter';
 
 const About = () => {
   const [user, setUser] = useState('maria');
+  useTitleSetter('About');
 
   if (!user) {
     return <Navigate to="/" replace={true} />;
   }
+
+  // useEffect(() => {
+  //   console.log('he is loogged out');
+  // }, [user]);
 
   return (
     <div>
@@ -36,3 +41,7 @@ const About = () => {
 };
 
 export default About;
+
+// export const testLoader = () => {
+//   return (document.title = 'About');
+// };

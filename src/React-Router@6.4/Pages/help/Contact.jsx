@@ -1,8 +1,11 @@
 import React from 'react';
 import { Form, redirect, useActionData } from 'react-router-dom';
+import useTitleSetter from '../../utils/titleSetter';
 
 const Contact = () => {
   const data = useActionData();
+
+  useTitleSetter('Contact');
 
   return (
     <div className="contact">

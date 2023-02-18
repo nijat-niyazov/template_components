@@ -19,7 +19,6 @@ function App() {
         <Route index element={<Indian />} />
         <Route path="/:type" element={<ShowStories />} />
         {/* <Route path="/:type" element={<UIStories />} /> */}
-        <Route path="/copies" element={<CopiesArrays_Objects />} />
       </Route>
     )
   );

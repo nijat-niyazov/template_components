@@ -7,6 +7,8 @@ const CareerDetails = () => {
 
   const testCareer = useLoaderData();
 
+  console.log(testCareer);
+
   return (
     <div className="career-details">
       <h2>Details for {testCareer.id}</h2>
@@ -36,10 +38,15 @@ export const careerDetailLoader = async ({ params }) => {
   // useParams version in Loader component ⤴
   const { careerNum } = params;
   try {
-    const { data } = await axios.get(
-      'http://localhost:4000/careers/' + careerNum
-    );
-    return data;
+    // const { data } = await axios.get(
+    //   'http://localhost:4000/careers/' + careerNum
+    // );
+    const {
+      data: { careers },
+    } = await axios.get('data/data.json');
+
+    const karyera = careers.find(career => career.id === parseInt(careerNum));
+    return karyera;
   } catch (err) {
     throw Error("Couldn't find career with this id ");
   }

@@ -1,6 +1,9 @@
 import React from 'react';
+import useTitleSetter from '../utils/titleSetter';
 
 const Home = () => {
+  useTitleSetter('Home');
+
   return (
     <div>
       <h2 style={{ marginBottom: '20px' }}>Home Page</h2>

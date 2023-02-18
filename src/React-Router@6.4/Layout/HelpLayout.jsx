@@ -1,7 +1,10 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import useTitleSetter from '../utils/titleSetter';
 
 const HelpLayout = () => {
+  useTitleSetter('Help');
+
   return (
     <div className="help-layout">
       <h2>Website Help</h2>

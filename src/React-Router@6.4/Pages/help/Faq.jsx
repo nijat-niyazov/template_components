@@ -1,6 +1,10 @@
 import React from 'react';
+import useTitleSetter from '../../utils/titleSetter';
 
 const Faq = () => {
+ useTitleSetter('Faq');
+
+
   return (
     <div className="faq">
       <h3>Frequently Asked Questions</h3>

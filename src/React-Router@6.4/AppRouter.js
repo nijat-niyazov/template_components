@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom';
 
 import Home from './Pages/Home';
-import About from './Pages/About';
+import About, { testLoader } from './Pages/About';
 import './index.css';
 import RootLayout from './Layout/RootLayout';
 import HelpLayout from './Layout/HelpLayout';
@@ -30,7 +30,9 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="*" element={<NotFound />} />
       {/* home page is index */}
-      <Route path="about" element={<About />} />
+      <Route path="about" element={<About />} 
+      // loader={testLoader}
+       />
 
       <Route path="help" element={<HelpLayout />}>
         <Route path="faq" element={<Faq />} />
@@ -53,8 +55,8 @@ const router = createBrowserRouter(
   )
 );
 
-const App = () => {
+const AppRouter = () => {
   return <RouterProvider router={router} />;
 };
 
-export default App;
+export default AppRouter;

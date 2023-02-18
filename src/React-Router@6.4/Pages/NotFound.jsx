@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useTitleSetter from '../utils/titleSetter';
 
 const NotFound = () => {
+  useTitleSetter('Non existed');
+
   return (
     <div>
       <h2> Page NotFound!</h2>
