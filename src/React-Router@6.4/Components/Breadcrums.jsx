@@ -12,9 +12,7 @@ const Breadcrumbs = () => {
     .split('/')
     .filter(crumb => crumb !== '')
     .map(crumb => {
-      console.log(crumb);
-      currentLink = currentLink + `/${crumb}`;
-      console.log(currentLink);
+      currentLink += `/${crumb}`;
 
       return (
         <div className="crumb" key={crumb}>
@@ -24,8 +22,6 @@ const Breadcrumbs = () => {
         </div>
       );
     });
-
-  console.log(crumbs);
 
   return <div className="breadcrumbs">{crumbs}</div>;
 };

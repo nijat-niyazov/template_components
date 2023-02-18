@@ -15,7 +15,7 @@ import './index.css';
 import RootLayout from './Layout/RootLayout';
 import HelpLayout from './Layout/HelpLayout';
 import Faq from './Pages/help/Faq';
-import Contact from './Pages/help/Contact';
+import Contact, { contactAction } from './Pages/help/Contact';
 import NotFound from './Pages/NotFound';
 import CareersLayout from './Pages/сareers/CareersLayout';
 import Careers, { careersLoader } from './Pages/сareers/Careers';
@@ -34,7 +34,7 @@ const router = createBrowserRouter(
 
       <Route path="help" element={<HelpLayout />}>
         <Route path="faq" element={<Faq />} />
-        <Route path="contact" element={<Contact />} />
+        <Route path="contact" element={<Contact />} action={contactAction} />
       </Route>
 
       <Route

@@ -6,7 +6,6 @@ const CareerDetails = () => {
   // const { careerNum } = useParams();
 
   const testCareer = useLoaderData();
-  console.log(testCareer);
 
   return (
     <div className="career-details">
@@ -44,14 +43,4 @@ export const careerDetailLoader = async ({ params }) => {
   } catch (err) {
     throw Error("Couldn't find career with this id ");
   }
-
-  // const res = await fetch('http://localhost:4000/careers/' + careerNum);
-
-  // console.log(res);
-
-  // if (!res.ok) {
-  //   throw new Error("Sorry this page doesn't exsist");
-  // }
-
-  // return res.json();
 };
