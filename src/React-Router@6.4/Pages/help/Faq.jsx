@@ -2,8 +2,7 @@ import React from 'react';
 import useTitleSetter from '../../utils/titleSetter';
 
 const Faq = () => {
- useTitleSetter('Faq');
-
+  useTitleSetter('Faq');
 
   return (
     <div className="faq">
