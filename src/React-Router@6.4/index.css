@@ -4,6 +4,7 @@
   --primary: #bc4123;
   --secondary: #2b3452;
 }
+
 body {
   margin: 0;
   padding: 20px;
@@ -17,7 +18,8 @@ body {
 p {
   margin: 20px 0;
 }
-button {
+
+.button {
   border: 0;
   padding: 8px;
   border-radius: 4px;
