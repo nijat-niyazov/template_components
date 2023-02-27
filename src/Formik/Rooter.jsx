@@ -9,6 +9,7 @@ const Rooter = () => {
         <Link to="/about">About</Link>
         <Link to="/contact">Contact</Link>
         <Link to="/login">Profile</Link>
+        <Link to="/tutorial">Tutorial</Link>
       </ul>
       <Outlet />
     </nav>

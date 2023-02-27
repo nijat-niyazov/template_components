@@ -5,20 +5,16 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
-import Contact from './comps/Contact';
-import FormikLogin from './comps/FormikLogin';
-import Login from './comps/useFormikLogin';
-import Home, { loaderStart } from './pages/Home';
 import Rooter from './Rooter';
+import Home from './pages/home/Home';
+import Profile from './pages/profile/Profile';
 
 const AppFormik = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Rooter />}>
         <Route index element={<Home />} />
-        {/* <Route path="login" element={<Login />} /> */}
-        <Route path="login" element={<FormikLogin />} />
-        <Route path="contact" element={<Contact />} />
+        <Route path="login" element={<Profile />} />
       </Route>
     )
   );
