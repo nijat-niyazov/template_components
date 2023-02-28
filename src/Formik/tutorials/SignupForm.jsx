@@ -1,12 +1,9 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-import MytextInput from './MytextInput';
-import MySelect from './MySelect';
-import MyCheckbox from './commons/MyCheckbox';
 import { Button } from '@mui/material';
 import { initialVals } from './utils/initalVal';
 import { testSchema } from './utils/validation';
+import { MytextInput, MyCheckbox, MySelect } from './commons/exporter';
 
 <Button type="submit" variant="contained">
   Submit

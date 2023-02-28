@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import { Field, Form, Formik, useFormik } from 'formik';
 import React from 'react';
 import { useState } from 'react';
@@ -52,51 +53,16 @@ const FormikLogin = () => {
       >
         {({ values, handleChange, handleSubmit }) => (
           <Form>
+            <label htmlFor="">Name</label>
             <Field name="username" /> <br />
-            <Field name="password" />
+            <label htmlFor="">Password</label>
+            <Field name="password" type="password" />
+            <Button type="submit" variant="contained">
+              Submit
+            </Button>
           </Form>
         )}
       </Formik>
-
-      {/* {!login ? (
-        <form
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '20px',
-            alignItems: 'center',
-            border: '2px solid black',
-          }}
-          onSubmit={handleSubmit}
-        >
-          <label htmlFor="username">
-            User Name
-            <input
-              id="username"
-              name="username"
-              type="text"
-              value={values.username}
-              onChange={handleChange}
-            />
-          </label>
-          <label htmlFor="password">
-            Password
-            <input
-              id="password"
-              name="password"
-              type="password"
-              value={values.password}
-              onChange={handleChange}
-            />
-          </label>
-          <button type="submit">Submit</button>
-        </form>
-      ) : (
-        <div>
-          <p>Welcome {login.username}</p>
-          <button onClick={logOut}>log out</button>
-        </div>
-      )} */}
     </div>
   );
 };
