@@ -153,11 +153,19 @@ const postsSlice = createSlice({
     // },
     reactionToPost: (state, { payload }) => {
       const { idPost, reaction } = payload;
-      // const findedPost = state.posts.find(post => post.id === idPost);
-      const findedPost = state.entities[idPost];
+      // const foundPost = state.posts.find(post => post.id === idPost);
+      const foundPost = state.entities[idPost];
       // entities is object which is our initialState and  and we find with idPost
 
-      findedPost ? findedPost.reactions[reaction]++ : null;
+      console.log(
+        idPost,
+        reaction,
+        state,
+        state.entities,
+        state.entities[idPost].reactions[reaction]
+      );
+
+      foundPost ? foundPost.reactions[reaction]++ : null;
     },
     increaseCount: (state, action) => {
       state.count++;
