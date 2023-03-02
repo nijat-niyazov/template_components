@@ -8,31 +8,14 @@ import AppSass from './Learning-SASS/AppSass';
 import AppAxios from './Axios/AppAxios';
 import AppFormik from './Formik/AppFormik';
 import AppFunctions from './Functions/AppFunctions';
+import AppMap from './Leaflet/AppMap';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
-    <AppFunctions />
+    <AppMap />
   </>
 );
 {
   /* <React.StrictMode> */
-}
-{
-  /* <App /> */
-}
-{
-  /* <AppAxios /> */
-}
-{
-  /* <AppRouter /> */
-}
-{
-  /* <AppNav /> */
-}
-{
-  /* <AppSass /> */
-}
-{
-  /* </React.StrictMode> */
 }
