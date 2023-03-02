@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Marker, Popup, useMapEvents } from 'react-leaflet';
 
-const FindMe = ({icon}) => {
+const FindMe = ({ icon, log }) => {
   const [position, setPosition] = useState(null);
+
+  console.log('rendered', log);
 
   const map = useMapEvents({
     click() {
@@ -15,9 +17,11 @@ const FindMe = ({icon}) => {
   });
 
   return position === null ? null : (
-    <Marker position={position} icon={icon}>
-      <Popup>You are here</Popup>
-    </Marker>
+    <div>
+      <Marker position={position} icon={icon}>
+        <Popup>You are here</Popup>
+      </Marker>
+    </div>
   );
 };
 
