@@ -5,7 +5,7 @@ import Breadcrumbs from '../Components/Breadcrums';
 const RootLayout = () => {
   return (
     <div className="root-layout">
-      <header>
+      <header className="header">
         <nav>
           <h1>React Router</h1>
           <NavLink to="/">Home ➡</NavLink>

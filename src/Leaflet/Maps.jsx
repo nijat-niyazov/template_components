@@ -1,7 +1,6 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import './map.scss';
 import { divIcon, Icon, point } from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 import FindMe from './FindMe';

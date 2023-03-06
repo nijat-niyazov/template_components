@@ -4,8 +4,6 @@ import { Link, useLocation } from 'react-router-dom';
 const Breadcrumbs = () => {
   const location = useLocation();
 
-  // console.log(location);
-
   let currentLink = '';
 
   const crumbs = location.pathname

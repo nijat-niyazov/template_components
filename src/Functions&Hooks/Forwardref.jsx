@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useState } from 'react';
+import React, { forwardRef, useRef } from 'react';
 
 const OuterInput = forwardRef((props, ref) => {
   return (

@@ -4,12 +4,5 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: 'Kantumruy Pro', sans-serif;
-  background-color: #b9b9b9;
-  color: #3b3939;
-  padding-bottom: 8rem;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }

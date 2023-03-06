@@ -1,28 +1,25 @@
-import React from 'react';
+// import './main.css';
 import {
   createBrowserRouter,
   createRoutesFromElements,
-  Link,
-  NavLink,
   Route,
   RouterProvider,
-  Routes,
 } from 'react-router-dom';
-
-import Home from './Pages/Home';
-import About, { testLoader } from './Pages/About';
-import './index.css';
-import RootLayout from './Layout/RootLayout';
-import HelpLayout from './Layout/HelpLayout';
-import Faq from './Pages/help/Faq';
-import Contact, { contactAction } from './Pages/help/Contact';
-import NotFound from './Pages/NotFound';
-import CareersLayout from './Pages/сareers/CareersLayout';
-import Careers, { careersLoader } from './Pages/сareers/Careers';
-import CareerDetails, {
+import {
+  Home,
+  About,
+  Faq,
+  Contact,
+  NotFound,
+  CareersLayout,
+  Careers,
+  CareerDetails,
+  CareerNotFound,
+  contactAction,
+  careersLoader,
   careerDetailLoader,
-} from './Pages/сareers/CareerDetails';
-import CareerNotFound from './Pages/сareers/CareerNotFound';
+} from './Pages/exporter';
+import { RootLayout, HelpLayout } from './Layout/exporter';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,9 +27,11 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="*" element={<NotFound />} />
       {/* home page is index */}
-      <Route path="about" element={<About />} 
-      // loader={testLoader}
-       />
+      <Route
+        path="about"
+        element={<About />}
+        // loader={testLoader}
+      />
 
       <Route path="help" element={<HelpLayout />}>
         <Route path="faq" element={<Faq />} />

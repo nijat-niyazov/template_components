@@ -1,5 +1,6 @@
 import React from 'react';
 import LeafletMap from './Maps';
+// import './map.scss';
 
 const AppMap = () => {
   return (
