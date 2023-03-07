@@ -6,9 +6,11 @@ const Breadcrumbs = () => {
 
   let currentLink = '';
 
+  console.log(location.pathname.split('/'));
+
   const crumbs = location.pathname
-    .split('/')
-    .filter(crumb => crumb !== '')
+    .split('/')  // ["", contact, ""]
+    .filter(crumb => crumb !== '') // [help, faq]
     .map(crumb => {
       currentLink += `/${crumb}`;
 

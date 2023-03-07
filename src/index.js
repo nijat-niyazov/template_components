@@ -7,12 +7,12 @@ import AppAxios from './Axios/AppAxios';
 import AppFormik from './Formik/AppFormik';
 import AppFunctions from './Functions&Hooks/AppFunctions';
 import AppMap from './Leaflet/AppMap';
-import AppMemo from './Functions&Hooks/UseMemo-Callback/AppMemo';
+import AppMemo from './Functions&Hooks/UseMemo-UseCallback/AppMemo';
 // import AppImperative from './Functions&Hooks/ImperativeHandle/AppImperative';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
-    <AppMemo />
+    <AppRouter />
   </>
 );

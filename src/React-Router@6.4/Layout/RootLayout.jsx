@@ -1,8 +1,12 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import Breadcrumbs from '../Components/Breadcrums';
+import useTitleSetter from '../utils/titleSetter';
 
 const RootLayout = () => {
+
+  useTitleSetter('React Router')
+
   return (
     <div className="root-layout">
       <header className="header">

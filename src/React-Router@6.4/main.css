@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 :root {
-  --primary: #bc4123;
-  --secondary: #2b3452;
+  --primary: #075492;
+  --secondary: #57053d;
 }
 
 body {
@@ -19,7 +19,7 @@ p {
   margin: 20px 0;
 }
 
-.button {
+button {
   border: 0;
   padding: 8px;
   border-radius: 4px;
@@ -138,6 +138,11 @@ form label span {
   max-width: 1200px;
   margin: 20px auto;
   font-style: italic;
+  background-color: rgb(56, 56, 5);
+  display: inline-block;
+  margin-left: 100px;
+  padding: 10px;
+  border-radius: 5px;
 }
 .breadcrumbs > * {
   display: inline-block;
@@ -154,7 +159,7 @@ form label span {
   color: #ddd;
 }
 
-.breadcrumbs .crumb:last-child > a {
+.breadcrumbs .crumb:nth-child(2) > a {
   text-decoration: none;
   font-style: normal;
 }

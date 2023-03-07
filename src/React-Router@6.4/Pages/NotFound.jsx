@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import useTitleSetter from '../utils/titleSetter';
 
 const NotFound = () => {
-  useTitleSetter('Non existed');
+  // useTitleSetter('Non existed');
 
   return (
     <div>

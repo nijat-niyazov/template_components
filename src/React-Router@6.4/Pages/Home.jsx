@@ -2,7 +2,7 @@ import React from 'react';
 import useTitleSetter from '../utils/titleSetter';
 
 const Home = () => {
-  useTitleSetter('Home');
+  // useTitleSetter('Home');
 
   return (
     <div>
