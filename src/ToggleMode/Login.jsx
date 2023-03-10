@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './style.scss';
+// import './style.scss';
 
 const Login = () => {
   const [light, setLight] = useState(true);
