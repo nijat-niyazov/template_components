@@ -16,27 +16,29 @@ const srcChanger = target => {
   target.src = dataSrc; // change src to data-src
 };
 
-const lazyLoading = allImgEls => {
-  let observer = new IntersectionObserver((entries, self) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) {
-        return; //if no intersecting to nothing
-      } else {
-        srcChanger(entry.target); // change source
-        self.unobserve(entry.target); // then unobserve 
-      }
-    });
-  }, options);
-
-  allImgEls?.forEach(imgEl => observer.observe(imgEl)); // each element observer takes as property
-};
+// const lazyLoading = allImgEls => {
+let observer = new IntersectionObserver((entries, self) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) {
+      return; //if no intersecting to nothing
+    } else {
+      srcChanger(entry.target); // change source
+      self.unobserve(entry.target); // then unobserve
+    }
+  });
+}, options);
 
 const LazyLoader = () => {
   useEffect(() => {
     const elements = document.querySelectorAll('[data-src]');
-    if (elements.length !== 0) {
-      lazyLoading(elements);
-    }
+
+    elements?.forEach(imgEl => observer.observe(imgEl));
+    // each element observer takes as property
+
+    return () => {
+      elements?.forEach(imgEl => observer.unobserve(imgEl));
+    };
+    // unmount component
   }, []);
 };
 
