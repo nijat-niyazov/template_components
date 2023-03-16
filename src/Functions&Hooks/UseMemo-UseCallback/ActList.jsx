@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import Item from './Item';
 
 const ActList = ({ acts }) => {
-  console.log('list rendered');
+  console.log('acts rendered');
 
   return (
     <ul>

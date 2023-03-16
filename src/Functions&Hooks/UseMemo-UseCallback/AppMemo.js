@@ -15,10 +15,6 @@ const AppMemo = () => {
     setTodo(e.target.value);
   }, []);
 
-  const searchHandle = e => {
-    setSearch(e.target.value);
-  };
-
   const addAct = useCallback(
     e => {
       e.preventDefault();
@@ -40,7 +36,11 @@ const AppMemo = () => {
       <button onClick={() => setCount(p => p + 1)}>aritr</button>
       <h1>ToDo APp</h1>
       <hr />
-      <input value={search} type="text" onChange={searchHandle} />
+      <input
+        value={search}
+        type="text"
+        onChange={e => setSearch(e.target.value)}
+      />
       <AddTodo onChange={onChange} addAct={addAct} todo={todo} />
       <ActList acts={filteredTodos} />
     </div>
