@@ -2,7 +2,7 @@ import React from 'react';
 import Card from './com/Card';
 // import './com/style.scss'
 
-const AppSoa = () => {
+const AppScroll = () => {
   return (
     <div>
       <Card />
@@ -10,4 +10,4 @@ const AppSoa = () => {
   );
 };
 
-export default AppSoa;
+export default AppScroll;
