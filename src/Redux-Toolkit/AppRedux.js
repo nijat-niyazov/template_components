@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
-import Home from './Home';
-import { store } from './redux/store';
+import Home from './e-commerce/Home';
+import { store } from './e-commerce/redux/store';
 import './style.css';
 
 const AppRedux = () => {

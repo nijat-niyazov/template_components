@@ -8,6 +8,7 @@ const initialState = {
   amountOfItems: 4,
   totalPrice: 0,
   isLoading: true,
+  error: { exist: false, message: '' },
 };
 
 // #1 Promise Way
@@ -18,13 +19,10 @@ const initialState = {
 // });
 
 // #2 Asyncyronus
-
 export const getCartItems = createAsyncThunk(
   'test/gettingCartItems',
   async (name, thunkAPI) => {
     try {
-      console.log(name);
-
       // console.log(thunkAPI.getState());
       // it returns all state that has been used in app of store.js
 
@@ -32,7 +30,7 @@ export const getCartItems = createAsyncThunk(
       // with dispatch method we can get action of even slice that is not current because thunkAPI lets us to access all slices
 
       const { data } = await axios(url);
-      console.log(data);
+      // console.log(data);
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue('something went wrong');
@@ -81,26 +79,61 @@ export const cartSlice = createSlice({
   },
 
   // for async thunk reducers ⤵
-  extraReducers: {
-    [getCartItems.pending]: state => {
-      // while loads
-      state.isLoading = true;
-    },
-    [getCartItems.fulfilled]: (state, action) => {
-      // if we have fullfilled promise
-      // console.log(action);
-      // type is the name of action and method for example here is fullfilled, payload will be fetched data
-      state.isLoading = false;
-      state.items = action.payload;
-    },
-    [getCartItems.rejected]: (state, action) => {
-      // console.log(action.payload);
-      //it will be eqaul to in catch (e) return thunkAPI.rejectValue(value)
-
-      // if promise is rejected
-      state.isLoading = false;
-    },
+  extraReducers: builder => {
+    builder
+      .addCase(getCartItems.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(getCartItems.fulfilled, (state, { payload, type }) => {
+        state.isLoading = false;
+        state.items = payload;
+      })
+      .addCase(getCartItems.rejected, (state, action) => {
+        console.log(action);
+        state.error.exist = true;
+        state.error.message = action.payload;
+      });
   },
+
+  // // #2 way of extraReducers
+  // {
+  //   [getCartItems.pending]: state => {
+  //     // while loads
+  //     state.isLoading = true;
+  //   },
+  //   [getCartItems.fulfilled]: (state, action) => {
+  //     // if we have fullfilled promise
+  //     // console.log(action);
+  //     // type is the name of action and method for example here is fullfilled, payload will be fetched data
+  //     state.isLoading = false;
+  //     state.items = action.payload;
+  //   },
+  //   [getCartItems.rejected]: (state, action) => {
+  //     // console.log(action.payload);
+  //     //it will be eqaul to in catch (e) return thunkAPI.rejectValue(value)
+
+  //     // if promise is rejected
+  //     state.isLoading = false;
+  //   },
+  //   [getCartItems.pending]: state => {
+  //     // while loads
+  //     state.isLoading = true;
+  //   },
+  //   [getCartItems.fulfilled]: (state, action) => {
+  //     // if we have fullfilled promise
+  //     // console.log(action);
+  //     // type is the name of action and method for example here is fullfilled, payload will be fetched data
+  //     state.isLoading = false;
+  //     state.items = action.payload;
+  //   },
+  //   [getCartItems.rejected]: (state, action) => {
+  //     // console.log(action.payload);
+  //     //it will be eqaul to in catch (e) return thunkAPI.rejectValue(value)
+
+  //     // if promise is rejected
+  //     state.isLoading = false;
+  //   },
+  // },
 });
 
 // console.log(cartSlice);

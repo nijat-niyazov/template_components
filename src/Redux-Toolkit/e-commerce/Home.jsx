@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Cards from './component/Cards';
-import Modal from './component/Modal';
-import Navbar from './component/Navbar';
+import Cards from './components/Cards';
+import Modal from './components/Modal';
+import Navbar from './components/Navbar';
 import { allTotalStuffs, getCartItems } from './redux/slices/cartSlice';
 
 const Home = () => {
-  const { items, isLoading } = useSelector(store => store.cart);
+  const { items, isLoading, error } = useSelector(store => store.cart);
   const { isOpen } = useSelector(store => store.modal);
   const dispatch = useDispatch();
 
@@ -17,6 +17,14 @@ const Home = () => {
   useEffect(() => {
     dispatch(getCartItems('random'));
   }, []);
+
+  if (error.exist) {
+    return (
+      <div className="loading">
+        <h1>{error.message}</h1>
+      </div>
+    );
+  }
 
   if (isLoading) {
     return (

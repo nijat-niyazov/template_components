@@ -10,7 +10,6 @@ const Card = ({ id, title, price, img, amount }) => {
   };
 
   const toggleAmountOfItem = e => {
-    
     if (amount < 2 && e.currentTarget.name === 'decrease') {
       dispatch(removeItem(id));
     }
