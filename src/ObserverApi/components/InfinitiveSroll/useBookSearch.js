@@ -12,6 +12,10 @@ const useBookSearch = (pageNum, query, startIndex) => {
   }, [query]);
 
   useEffect(() => {
+    console.log('query or pagenum changed');
+  }, [query, pageNum]);
+
+  useEffect(() => {
     setIsLoading(true);
     setError(e => ({ ...e, exist: true }));
     setHasNextPage(false);
@@ -40,18 +44,21 @@ const useBookSearch = (pageNum, query, startIndex) => {
         }
 
         setBooks(prev => {
-          if (startIndex === 40) {
+          console.log('yuxarda', books.length, startIndex);
+          if (books.length === 40) {
             console.log('it rendered');
             return res?.data.docs.map(b => b.title);
           }
-          
-          return [
-            // ...new Set([
+          if (books.length !== 40) {
+            console.log('prevs rendered');
+            return [
+              // ...new Set([
 
-            ...prev,
-            ...res?.data.docs.map(b => b.title),
-            // ]),
-          ];
+              ...prev,
+              ...res?.data.docs.map(b => b.title),
+              // ]),
+            ];
+          }
         });
       })
       .catch(e => {
@@ -62,6 +69,8 @@ const useBookSearch = (pageNum, query, startIndex) => {
 
     return () => controller.abort();
   }, [pageNum, query, startIndex]);
+
+  console.log('en asagida', books.length);
 
   return { books, error, isLoading, hasNextPage };
 };

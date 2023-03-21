@@ -46,7 +46,7 @@ const InfScroll = () => {
   );
 
   useEffect(() => {
-    console.log('books.length', books.length);
+    if (books.length !== 0) console.log('books.length', books.length);
   }, [books]);
 
   return (

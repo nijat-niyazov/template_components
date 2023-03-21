@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 const Book = forwardRef(({ book, i, startChanger }, ref) => {
-  console.log(i === 40 ? i : '');
+  // console.log(i === 40 ? i : '');
   return (
     <>
       <article
