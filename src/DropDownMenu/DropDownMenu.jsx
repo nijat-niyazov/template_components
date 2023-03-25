@@ -15,19 +15,22 @@ const DropDownMenu = () => {
   }, []);
 
   const heightSetter = element => {
-    console.log(element.height);
+    console.log(element.offsetHeight);
   
-    setmenuHeight(element.height);
+    
+    setmenuHeight(element.offsetHeight);
   };
 
+  // style={{ height: menuHeight + 'px' }}
+
   return (
-    <div className="dropdown" style={{ height: menuHeight + 'px' }} ref={menu}>
+    <div className="dropdown"  ref={menu}>
       <CSSTransition
         in={activeMenu === 'main'} // in, if condition === true, then children will be seen
         unmountOnExit // unmountonexit, rmeoves all children when they are not active
         timeout={500} // timeout, duration of animation
-        classNames="menu-primary"
-        onEnter={heightSetter}
+        classNames="first-menu"
+        onEntering={heightSetter}
       >
         <div className="menu">
           <DropItem>My Profile</DropItem>

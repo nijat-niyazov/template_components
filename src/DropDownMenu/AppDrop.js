@@ -1,5 +1,5 @@
 import Navbar from './Navbar';
-import './style/style.scss';
+// import './style/style.scss';
 
 const AppDrop = () => {
   return (

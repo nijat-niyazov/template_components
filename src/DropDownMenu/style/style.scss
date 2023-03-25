@@ -29,28 +29,6 @@ a {
       align-items: center;
       justify-content: center;
 
-      .icon {
-        width: calc($height * 0.6);
-        height: calc($height * 0.6);
-        background-color: $bg-accent;
-        border-radius: 50%;
-        padding: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: filter 300ms;
-        cursor: pointer;
-        &:hover {
-          filter: brightness(1.2);
-        }
-
-        svg {
-          fill: $text-color;
-          width: 20px;
-          height: 20px;
-        }
-      }
-
       .dropdown {
         position: absolute;
         top: 58px;
@@ -71,9 +49,33 @@ a {
           transition: background $speed;
           padding: 0.5rem;
 
+          .icon-left {
+            width: calc($height * 0.6);
+            height: calc($height * 0.6);
+            background-color: $bg-accent;
+            border-radius: 50%;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            transition: filter 300ms;
+            cursor: pointer;
+            &:hover {
+              filter: brightness(1.2);
+            }
+
+            svg {
+              fill: $text-color;
+              width: 20px;
+              height: 20px;
+            }
+          }
+
           &:hover {
             background-color: #525357;
           }
+          
           .icon-right {
             margin-left: auto;
           }
@@ -82,21 +84,21 @@ a {
         .menu {
           width: 100%;
 
-          &.menu-primary-enter {
+          &.first-menu-enter {
             position: absolute;
             transform: translateX(-110%);
           }
 
-          &.menu-primary-enter-active {
+          &.first-menu-enter-active {
             transform: translateX(0%);
             transition: all $speed ease;
           }
 
-          &.menu-primary-exit {
+          &.first-menu-exit {
             position: absolute;
           }
 
-          &.menu-primary-exit-active {
+          &.first-menu-exit-active {
             transform: translateX(-110%);
             transition: all $speed ease;
           }
