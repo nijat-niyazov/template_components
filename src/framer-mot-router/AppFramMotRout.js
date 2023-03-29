@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import AnimatedRoutes from './components/AnimatedRoutes';
 import Footer from './components/Footer';
 import Layout from './components/Layout';
-import './style.css';
+// import './style.css';
 
 const AppFramMotRout = () => {
   return (
