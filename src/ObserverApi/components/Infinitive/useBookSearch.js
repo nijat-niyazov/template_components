@@ -11,11 +11,12 @@ const useBookSearch = (searchQuery, pageNum) => {
   useEffect(() => {
     setBooks([]);
   }, [searchQuery]);
+  // if query changed remove all books
 
   useEffect(() => {
-    let cancel; // we create a variable and then change it in cancelToken because we want to cancel request if useeffect is called
     setLoading(true);
     setError(false);
+    let cancel; // we create a variable and then change it in cancelToken because we want to cancel request if useeffect is called
     axios({
       method: 'GET',
       url: 'http://openlibrary.org/search.json',
@@ -23,15 +24,18 @@ const useBookSearch = (searchQuery, pageNum) => {
       cancelToken: new axios.CancelToken(c => (cancel = c)),
     })
       .then(res => {
+        console.log(
+          res.data.docs.filter(b => b.title.toLowerCase().includes(searchQuery))
+        );
+
         setBooks(
           prevBooks => [
             ...new Set([...prevBooks, ...res?.data.docs.map(b => b.title)]),
           ]
           // adding set for unique values
         );
-        setHasMore(res.data.docs.length >= 0);
+        setHasMore(res.data.docs.length > 0);
         setLoading(false);
-        // console.log(...res.data.docs);
       })
       .catch(e => {
         if (axios.isCancel(e)) return;
@@ -41,7 +45,7 @@ const useBookSearch = (searchQuery, pageNum) => {
     return () => cancel();
   }, [searchQuery, pageNum]);
 
-  console.log(hasMore);
+  // console.log(hasMore);
 
   return { loading, error, books, hasMore };
 };
