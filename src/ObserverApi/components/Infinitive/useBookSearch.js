@@ -16,17 +16,20 @@ const useBookSearch = (searchQuery, pageNum) => {
   useEffect(() => {
     setLoading(true);
     setError(false);
-    let cancel; // we create a variable and then change it in cancelToken because we want to cancel request if useeffect is called
+
+    const controller = new AbortController();
+    const { signal } = controller;
+
     axios({
       method: 'GET',
       url: 'http://openlibrary.org/search.json',
       params: { q: searchQuery, page: pageNum }, // these are for url searching parametrs for example like  http://openlibrary.org/search.json?query=martin&pagenum=1 but if we haven't params like query or pagenum we have to implement it into params of url
-      cancelToken: new axios.CancelToken(c => (cancel = c)),
+      signal: signal,
     })
       .then(res => {
-        console.log(
-          res.data.docs.filter(b => b.title.toLowerCase().includes(searchQuery))
-        );
+        // console.log(
+        //   res.data.docs.filter(b => b.title.toLowerCase().includes(searchQuery))
+        // );
 
         setBooks(
           prevBooks => [
@@ -38,14 +41,13 @@ const useBookSearch = (searchQuery, pageNum) => {
         setLoading(false);
       })
       .catch(e => {
-        if (axios.isCancel(e)) return;
+        if (signal.aborted) return;
+        console.error(e.message);
         setError(true);
       });
 
-    return () => cancel();
+    return () => controller.abort();
   }, [searchQuery, pageNum]);
-
-  // console.log(hasMore);
 
   return { loading, error, books, hasMore };
 };

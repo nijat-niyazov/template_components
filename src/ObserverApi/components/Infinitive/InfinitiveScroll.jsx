@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import useBookSearch from './useBookSearch';
 
 const InfinitiveScroll = () => {
@@ -7,32 +7,32 @@ const InfinitiveScroll = () => {
 
   const { loading, error, hasMore, books } = useBookSearch(query, pageNum);
 
-  useEffect(() => {
-    console.log(hasMore);
-  }, [hasMore]);
-
   const observer = useRef();
   // undefined ⤴
 
   const lastbookElementRef = useCallback(
-    node => {
+    lastBookElement => {
       if (loading) return; // if loading is continuning we don't want make infinitive scroll
 
-      if (observer?.current) {
+      if (observer.current) {
+        console.log('we have one already', lastBookElement?.innerHTML);
         console.log(observer.current);
         observer.current.disconnect();
       }
 
-      observer.current = new IntersectionObserver(entries => {
-      // let testObserver = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting && hasMore) {
+      observer.current = new IntersectionObserver(books => {
+        // let testObserver = new IntersectionObserver(books => {
+        if (books[0].isIntersecting && hasMore) {
           setPageNum(p => p + 1);
         }
       });
+      console.log(observer.current);
 
-      if (node) {
-        observer.current.observe(node);
-        // testObserver.observe(node);
+      if (lastBookElement) {
+        // console.log(lastBookElement.innerHTML);
+
+        observer.current.observe(lastBookElement);
+        // testObserver.observe(lastBookElement);
       }
     },
     [loading, hasMore]
