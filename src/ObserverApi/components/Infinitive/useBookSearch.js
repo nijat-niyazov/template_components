@@ -20,6 +20,8 @@ const useBookSearch = (searchQuery, pageNum) => {
     const controller = new AbortController();
     const { signal } = controller;
 
+    // console.log(signal);
+
     axios({
       method: 'GET',
       url: 'http://openlibrary.org/search.json',
@@ -31,9 +33,20 @@ const useBookSearch = (searchQuery, pageNum) => {
         //   res.data.docs.filter(b => b.title.toLowerCase().includes(searchQuery))
         // );
 
+        console.log(
+          [... new Set([...res.data.docs.map(b => b.title)])],
+          res.data.numFound
+        );
+
         setBooks(
           prevBooks => [
-            ...new Set([...prevBooks, ...res?.data.docs.map(b => b.title)]),
+            // console.log(res.data.docs),
+            // ...new Set([
+            ...prevBooks,
+            ...res?.data.docs.map(b => {
+              return b.title;
+            }),
+            // ]),
           ]
           // adding set for unique values
         );
@@ -43,11 +56,14 @@ const useBookSearch = (searchQuery, pageNum) => {
       .catch(e => {
         if (signal.aborted) return;
         console.error(e.message);
+        setLoading(false);
         setError(true);
       });
 
     return () => controller.abort();
   }, [searchQuery, pageNum]);
+
+  console.log(books.length);
 
   return { loading, error, books, hasMore };
 };
