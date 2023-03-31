@@ -18,7 +18,6 @@ const chaySlice = createSlice({
       .addCase(orderTort, state => {
         // when it dispatch, change state
         // when tort ordered automaticly ordered 2 cup of tea
-        console.log(state.chay);
         if (state.chay <= 2) {
           state.chay = 0;
         } else {
