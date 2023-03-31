@@ -5,8 +5,8 @@ import InfScroll from './components/InfinitiveSroll/InfScroll';
 const AppObserver = () => {
   return (
     <>
-      {/* <InfScroll /> */}
-      <InfinitiveScroll />
+      <InfScroll />
+      {/* <InfinitiveScroll /> */}
     </>
   );
 };

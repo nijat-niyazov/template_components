@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-const useBookSearch = (pageNum, query, limit) => {
+const useBookSearch = (pageNum, query, startIndex) => {
   const [books, setBooks] = useState([]);
   const [error, setError] = useState({ message: '', exist: false });
   const [isLoading, setIsLoading] = useState(true);
@@ -22,23 +22,37 @@ const useBookSearch = (pageNum, query, limit) => {
     axios({
       method: 'GET',
       url: 'http://openlibrary.org/search.json',
-      params: { q: query, page: pageNum, limit: limit }, // these are for url searching parametrs for example like  http://openlibrary.org/search.json?query=martin&pagenum=1 but if we haven't params like query or pagenum we have to implement it into params of url
+      params: {
+        q: query, // query we write
+        // page: pageNum, // pageNum
+        limit: 10, // how much must seen
+        offset: startIndex, // from which index to show
+      }, // these are for url searching parametrs for example like  http://openlibrary.org/search.json?query=martin&pagenum=1 but if we haven't params like query or pagenum we have to implement it into params of url
       signal: signal,
     })
       .then(res => {
-        console.log(limit, res.data.docs, res.data.numFound);
         setIsLoading(false);
         setHasNextPage(Boolean(res.data.docs.length > 0));
         setError(e => ({ ...e, exist: false }));
-        setBooks(prev => [
-          ...new Set([
+
+        if (startIndex === 40) {
+          console.log(res.data.docs.map(t => t.title).length);
+        }
+
+        setBooks(prev => {
+          if (startIndex === 40) {
+            console.log('it rendered');
+            return res?.data.docs.map(b => b.title);
+          }
+          
+          return [
+            // ...new Set([
+
             ...prev,
-            ...res?.data.docs.map(b => {
-              const { title, author_name, first_publish_year } = b;
-              return { title, author_name, first_publish_year };
-            }),
-          ]),
-        ]);
+            ...res?.data.docs.map(b => b.title),
+            // ]),
+          ];
+        });
       })
       .catch(e => {
         if (signal.aborted) return;
@@ -47,11 +61,7 @@ const useBookSearch = (pageNum, query, limit) => {
       });
 
     return () => controller.abort();
-  }, [pageNum, query, limit]);
-
-  if (books.length !== 0) {
-    console.log(books);
-  }
+  }, [pageNum, query, startIndex]);
 
   return { books, error, isLoading, hasNextPage };
 };
