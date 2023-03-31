@@ -1,12 +1,13 @@
 import { Provider } from 'react-redux';
-import Home from './e-commerce/Home';
+import AppCake from './cakeShop/AppCake';
 import { store } from './e-commerce/redux/store';
-import './style.css';
+// import './style.css';
 
 const AppRedux = () => {
   return (
     <Provider store={store}>
-      <Home />
+      {/* <Home /> */}
+      <AppCake />
     </Provider>
   );
 };

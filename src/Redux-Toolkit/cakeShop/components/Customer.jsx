@@ -1,18 +1,28 @@
-import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUser } from '../redux/slices/userSlice';
 
 const Customer = () => {
+  const { users, isLoading, error } = useSelector(store => store.customers);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, []);
+
   return (
     <div>
       <h2>List of Users</h2>
-      {user.loading && <div>Loading...</div>}
-      {!user.loading && user.error ? <div>Error: {user.error}</div> : null}
-      {!user.loading && user.users.length ? (
+      {isLoading && <div>Loading...</div>}
+      {error.exist && <div>Error: {error.message}</div>}
+      {!isLoading && users?.length !== 0 && (
         <ul>
-          {user.users.map(user => (
+          {users?.map(user => (
             <li key={user.id}>{user.name} + </li>
           ))}
         </ul>
-      ) : null}
+      )}
     </div>
   );
 };
