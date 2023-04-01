@@ -1,11 +1,8 @@
 import React from 'react';
 import { Form, redirect, useActionData } from 'react-router-dom';
-import useTitleSetter from '../../utils/titleSetter';
 
 const Contact = () => {
-  const data = useActionData();
-
-  useTitleSetter('Contact');
+  const testData = useActionData();
 
   return (
     <div className="contact">
@@ -20,7 +17,7 @@ const Contact = () => {
           <textarea name="message" required></textarea>
         </label>
         <button>Submit</button>
-        {data && data.error && <p> {data.error} </p>}
+        {testData && testData.error && <p> {testData.error} </p>}
       </Form>
     </div>
   );
@@ -32,18 +29,21 @@ export const contactAction = async ({ request }) => {
   console.log(request);
 
   const data = await request.formData();
+
   const submission = {
-    email: data.get('email'),
+    email: data.get('email'), // value will be equal of data get name attribute
     message: data.get('message'),
   };
 
   console.log(submission);
 
   // send post request
-  if (submission.message.trim().length < 10) {
-    return { error: 'Message characters must be at least 10 characters' };
+
+  if (submission.message.length < 10) {
+    return {
+      error: 'Message is too short, please provide at least 10 chars',
+    };
   }
 
-  // redirect user to for ex Home Page
   return redirect('/');
 };

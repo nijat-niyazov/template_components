@@ -6,7 +6,7 @@ const Breadcrumbs = () => {
 
   let currentLink = '';
 
-  console.log(location.pathname.split('/'));
+  // console.log(location.pathname.split('/'));
 
   const crumbs = location.pathname
     .split('/')  // ["", contact, ""]
