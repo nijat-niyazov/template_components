@@ -32,7 +32,7 @@ const ReactHighlights = () => {
   }
 
   const text =
-    'Today we are learning #feature @react- $highlight. we love learn new things and also this #features and #ŞİFreleme';
+    'Today We are learning #feature @react- $highlight. we love learn new things and also this #features and #ŞİFreleme';
 
   return (
     <div>
