@@ -1,6 +1,4 @@
-import React from 'react';
-
-const ReactHighlights = () => {
+function App() {
   function HighLighting({ children, match }) {
     const types = {
       hashtag: '(#[a-zçşıəğİ]+)',
@@ -39,6 +37,6 @@ const ReactHighlights = () => {
       <HighLighting match="hashtag">{text}</HighLighting>
     </div>
   );
-};
+}
 
-export default ReactHighlights;
+export default App;
