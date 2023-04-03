@@ -5,7 +5,7 @@ import Customer from './components/Customer';
 import Marojna from './components/Marojna';
 import Tort from './components/Tort';
 import { store } from './redux/store';
-import './style.css';
+// import './style.css';
 
 const AppCake = () => {
   return (

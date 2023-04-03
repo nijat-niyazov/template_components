@@ -1,0 +1,149 @@
+.container {
+  margin-left: 10px;
+
+  .after-before {
+    background-color: yellow;
+    &::after {
+      content: '  after ' attr(data-first);
+      background-color: blue;
+      color: white;
+    }
+    &::before {
+      content: 'before ' attr(class);
+      background-color: red;
+      color: white;
+    }
+  }
+
+  a[target='_blank'] {
+    background-color: gray;
+    &::after {
+      content: ' (' attr(href) ') ';
+    }
+  }
+  p {
+    &::selection {
+      background-color: red;
+    }
+  }
+  span {
+    &::selection {
+      background-color: aqua;
+    }
+  }
+  .list-container {
+    &:first-child {
+      background-color: yellow;
+      margin-left: 20px;
+
+      ul {
+        &:first-child {
+          background-color: green;
+        }
+      }
+      li {
+        &:first-child {
+          background-color: red;
+        }
+        &:last-child {
+          background-color: gray;
+        }
+      }
+    }
+    .list {
+      &:last-of-type {
+        color: rgb(91, 11, 171);
+      }
+    }
+  }
+
+  .nth-container {
+    margin-left: 20px;
+    li {
+      // &:first-child {
+      //   background: red;
+      // }
+      // &:last-child {
+      //   background: gray;
+      // }
+      // &:nth-child(3) {
+      //   background-color: yellow;
+      // }
+      // &:nth-child(even) {
+      //   background-color: lime;
+      // }
+      // &:nth-child(3n) {
+      //   background-color: lime;
+      // }
+      // &:nth-child(3n+2) {
+      //   background-color: lime;
+      // }
+      // &:nth-child(n+7) {
+      //   background-color: brown;
+      // }
+      // &:nth-child(n + 4):nth-child(even):nth-child(-n + 8) {
+      //   background-color: brown;
+      // }
+    }
+    div {
+      &:nth-of-type(3) {
+        background: red;
+      }
+    }
+  }
+  .hover {
+    button {
+      &:hover {
+        + ul {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .form {
+    input[type='radio'] {
+      &:checked {
+        + span {
+          color: red;
+        }
+      }
+    }
+    .checkbox {
+      &:checked {
+        + .button::after {
+          transition: all 0.5s;
+          content: attr(data-hide);
+        }
+        ~ .box {
+          transition: all 0.5s;
+          display: none;
+        }
+      }
+    }
+
+    .button::after {
+      transition: all 0.5s;
+      content: attr(data-show);
+    }
+  }
+
+  .focus {
+    button {
+      &:focus {
+        background: red;
+        outline: none;
+      }
+    }
+    input:focus {
+      color: red;
+      border-color: lime;
+      outline: none;
+    }
+    ul {
+      &:focus-within {
+        background-color: lime;
+      }
+    }
+  }
+}
