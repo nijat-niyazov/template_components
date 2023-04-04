@@ -40,3 +40,7 @@ select {
 .error {
   color: red;
 }
+
+button:disabled {
+  display: none;
+}

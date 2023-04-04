@@ -1,5 +1,5 @@
 import ModernForm from './simpleForms/Form';
-// import './style.css';
+import './style.css';
 
 const Home = () => {
   return (

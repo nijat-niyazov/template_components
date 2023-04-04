@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Index from './CSS/Index';
+import Home from './Formik&Evol/Home';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
-    <Index />
+    <Home />
   </>
 );
