@@ -251,16 +251,19 @@ const ModernForm = () => {
             {/* Manually checkking-triggering validation */}
             <button
               type="button"
-              onClick={() => formik.validateField('checkbox')}
+              onClick={() =>{
+                formik.validateField('checkbox')
+                formik.setFieldTouched('checkbox')
+              } }
             >
               check validate
             </button>
-            <button
+            {/* <button
               type="button"
               onClick={() => formik.setFieldTouched('checkbox')}
             >
               visit checked
-            </button>
+            </button> */}
 
             <button
               type="button"
