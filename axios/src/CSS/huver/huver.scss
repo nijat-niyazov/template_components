@@ -1,0 +1,56 @@
+.huver {
+  abbr[title] {
+    background: yellow;
+  }
+  abbr {
+    &:not([title]):not(.test):not(#test) {
+      background: yellow;
+    }
+  }
+
+  .animation {
+    height: auto;
+    transition: all 0.3s;
+    border: 1px solid black;
+    .total {
+      transition: all 0.3s;
+      &:empty {
+        display: none;
+      }
+      &:not(:empty) {
+        ~ .loading {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .valid {
+    input {
+      &:valid {
+        border-color: green;
+      }
+      &:invalid {
+        border-color: red;
+      }
+    }
+  }
+
+  a {
+    &:any-link {
+      background-color: rgb(160, 99, 99);
+    }
+    &:link {
+      color: aqua;
+    }
+    &:visited {
+      color: red;
+    }
+    &:hover {
+      color: yellow;
+    }
+    &:active {
+      color: pink;
+    }
+  }
+}
