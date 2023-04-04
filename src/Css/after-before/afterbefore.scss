@@ -146,4 +146,12 @@
       }
     }
   }
+
+  .only-child {
+    li {
+      &:only-child {
+        background: red;
+      }
+    }
+  }
 }

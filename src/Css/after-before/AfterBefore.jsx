@@ -1,8 +1,22 @@
-// import './afterbefore.scss';
+import './afterbefore.scss';
 
 const AfterBefore = () => {
   return (
     <div className="container">
+      <div className="only-child">
+        <button>focus</button>
+        <ul>
+          <li>1</li>
+        </ul>
+        <ul>
+          <li>2</li>
+          <li>2</li>
+          <li>2</li>
+          <li>2</li>
+          <li>2</li>
+        </ul>
+      </div> <br />
+
       <div className="focus">
         <button>focus</button>
         <input type="text" />
