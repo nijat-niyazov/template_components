@@ -6,6 +6,7 @@ import {
   Form,
   Formik,
 } from 'formik';
+import { useState } from 'react';
 import * as Yup from 'yup';
 import TextError from '../components/TextError';
 
@@ -13,6 +14,7 @@ import TextError from '../components/TextError';
 const initialValues = {
   name: '', // input with name 'name'
   email: '', // input with name 'email'
+  confirmEmail: '',
   channel: '', // input with name 'channel'
   message: '',
   address: '',
@@ -48,6 +50,7 @@ const validationSchema = Yup.object().shape({
   //   [true],
   //   'You need to accept the terms and conditions'
   // ),
+  address: Yup.string().required('You have to declare adress'),
 });
 
 const validateMessage = value => {
@@ -67,14 +70,23 @@ const validationChecked = value => {
 };
 
 const ModernForm = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handlePaste = event => {
+    event.preventDefault();
+    setShowModal(true);
+    setTimeout(() => setShowModal(false), 2000); // hide the modal after 2 seconds
+  };
+
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
-      validateOnChange={false} // on change values validation won't be rendered
-      validateOnBlur={false} // on blur validation won't be rendered
+      // validateOnChange={false} // on change values validation won't be rendered which means show errors till submit
+      validateOnBlur={false} // on blur validation won't be seen or rendered
       // we do them because we don't want see validation issues when we typed something and just stopped we only want them see on submit
+      // validateOnMount // boolean is true. on page load all validation will be rendered agains each of particular field which means formik.error object will be fulled with comprehensive error and error object won't be rendered which also affects isValid to be false, it's not good practice
     >
       {formik => {
         console.log(formik); // formik props which also within in address as form
@@ -86,7 +98,9 @@ const ModernForm = () => {
               {/* replacing input  */}
 
               {/* #1 way of creating new textError and make it component ⤵ */}
+              {/* <ErrorMessage name="name" component={TextError} /> */}
               <ErrorMessage name="name" component={TextError} />
+
               {/* error message coming from corresponding name validate */}
             </div>
             <div className="form-control">
@@ -94,13 +108,44 @@ const ModernForm = () => {
               <Field type="email" id="email" name="email" placeholder="email" />
               {/* replacing input and name has to be equal of initial value  */}
 
-              {/* #2 way is creating func which accept validatet error value ⤵  */}
+              {/* #2 way is creating func which accept validate error value ⤵  */}
               <ErrorMessage name="email" component="div">
                 {errorMessage => {
                   return <div className="error">{errorMessage}</div>;
                 }}
               </ErrorMessage>
               {/*  without component its just message and not any tag */}
+            </div>
+
+            <div className="form-control">
+              <label htmlFor="confirmEmail">Confirm Email:</label>
+              <Field
+                type="email"
+                id="confirmEmail"
+                name="confirmEmail"
+                required
+                placeholder="Confirm Email"
+                onChange={formik.handleChange}
+                value={formik.values.confirmEmail}
+                onPaste={handlePaste}
+              />
+              {showModal && (
+                <div
+                  style={{
+                    position: 'fixed',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    background: 'white',
+                    padding: '1rem',
+                    boxShadow: '0 0 5px rgba(0, 0, 0, 0.3)',
+                    zIndex: 9999,
+                  }}
+                >
+                  It can't copy pasted!
+                </div>
+              )}
+              <ErrorMessage name="confirmEmail" />
             </div>
 
             <div className="form-control">
@@ -136,9 +181,11 @@ const ModernForm = () => {
               {/* <Field name="address" placeholder="address"> */}
               <FastField name="address" placeholder="address">
                 {props => {
-                  console.log('field rendered');
+                  // console.log('field rendered');
                   // console.log(props); // field, form, meta
                   const { field, form, meta } = props;
+
+                  // console.log(meta);
                   return (
                     <div>
                       <input type="text" id="address" {...field} />
@@ -251,10 +298,10 @@ const ModernForm = () => {
             {/* Manually checkking-triggering validation */}
             <button
               type="button"
-              onClick={() =>{
-                formik.validateField('checkbox')
-                formik.setFieldTouched('checkbox')
-              } }
+              onClick={() => {
+                formik.validateField('checkbox');
+                formik.setFieldTouched('checkbox');
+              }}
             >
               check validate
             </button>
@@ -302,8 +349,12 @@ const ModernForm = () => {
             >
               Visit all inputs
             </button>
-
-            <button type="submit">Submit</button>
+            {/* formik.dirty=false means not any value has changed yet  */}
+            <button disabled={!(formik.isValid && formik.dirty)} type="submit">
+              {/* isValid when error objcet is not empty and isValid is true when all errors are gone or all required sections is writed */}
+              {/* isValid on first render doesn't give what we want beacsue when nothing has changed yet isValid is true because empty object is true */}
+              Submit
+            </button>
           </Form>
         );
       }}
