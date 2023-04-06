@@ -30,7 +30,7 @@ const usersSlice = createSlice({
   },
 });
 
-export const allUsers = state => state.usersSlice;
+export const selectAllUsers = state => state.usersSlice;
 // because we want it when it change automatically change in component also
 
 export default usersSlice.reducer;

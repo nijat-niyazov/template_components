@@ -1,7 +1,5 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
-  fetchingPosts,
   selecPostsStatus,
   selectAllPosts,
   selectErrorState,
@@ -9,15 +7,9 @@ import {
 import PostsInfo from './components/PostsInfo';
 
 const PostsList = () => {
-  const dispatch = useDispatch();
-
   const posts = useSelector(selectAllPosts);
   const status = useSelector(selecPostsStatus);
   const error = useSelector(selectErrorState);
-
-  useEffect(() => {
-    status === 'idle' ? dispatch(fetchingPosts()) : null;
-  }, [status, dispatch]);
 
   const orderedPosts = posts
     .slice()
@@ -28,7 +20,6 @@ const PostsList = () => {
 
   return (
     <section>
-      <h2>Posts</h2>
       {status === 'loading' && <p>Loading...</p>}
       {status === 'fulfilled' &&
         orderedPosts.map(post => {

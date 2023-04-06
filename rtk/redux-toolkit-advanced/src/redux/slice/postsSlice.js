@@ -23,17 +23,56 @@ export const fetchingPosts = createAsyncThunk(
 export const addNewPost = createAsyncThunk(
   'posts/addNewPost',
   async initialPost => {
-    // console.log(initialPost);
+    // this is action payload of reducer and in addcase action.payload is initialPost
+
     try {
       const { data } = await axios.post(POSTS_URL, initialPost);
-      // initialPost = body ⤴
+      // initialPost = post ⤴
 
-      console.log(initialPost, data);
+      // console.log(initialPost, data);
 
       return data;
     } catch (e) {
       console.log(e.message);
       return thunkAPI.rejectWithValue('Somethign went wrong');
+    }
+  }
+);
+export const updatePost = createAsyncThunk(
+  'posts/updatePost',
+  async initialPost => {
+    // this is action payload of reducer and in addcase action.payload is initialPost
+
+    const { id } = initialPost;
+    try {
+      const { data } = await axios.put(`${POSTS_URL}/${id}`, initialPost);
+      // initialPost = update ⤴
+
+      // console.log(initialPost, data);
+
+      return data;
+    } catch (e) {
+      // console.log(e.message);
+      // return thunkAPI.rejectWithValue('Somethign went wrong');
+      return initialPost;
+      // beacause we can't update created post
+    }
+  }
+);
+
+export const deletePost = createAsyncThunk(
+  'posts/deletePost',
+  async initialPost => {
+    // this is action payload of reducer and in addcase action.payload is initialPost
+
+    const { id } = initialPost;
+    try {
+      const response = await axios.delete(`${POSTS_URL}/${id}`);
+      if (response?.status === 200) return initialPost;
+      return `${response?.status}: ${response?.statusText}`;
+    } catch (e) {
+      console.log(e.message);
+      return thunkAPI.rejectWithValue('Something went wrong');
     }
   }
 );
@@ -166,6 +205,27 @@ const postsSlice = createSlice({
         };
         console.log(action.payload);
         state.posts.push(action.payload);
+      })
+      .addCase(updatePost.fulfilled, (state, action) => {
+        if (!action.payload.id) {
+          console.log('didn"t updated');
+          console.log(action.payload);
+          return;
+        }
+        action.payload.date = new Date().toISOString();
+        const posts = state.posts.filter(post => post.id !== action.payload.id);
+        // console.log(action.payload);
+        state.posts = [...posts, action.payload];
+      })
+      .addCase(deletePost.fulfilled, (state, action) => {
+        if (!action.payload?.id) {
+          console.log('Delete could not complete');
+          console.log(action.payload);
+          return;
+        }
+        const { id } = action.payload;
+        const posts = state.posts.filter(post => post.id !== id);
+        state.posts = posts;
       });
   },
 });
@@ -175,6 +235,8 @@ const postsSlice = createSlice({
 export const selectAllPosts = state => state.postsSlice.posts;
 export const selecPostsStatus = state => state.postsSlice.status;
 export const selectErrorState = state => state.postsSlice.error;
+export const selectPostById = (state, postId) =>
+  state.postsSlice.posts.find(post => post.id === postId);
 
 export const { addPost, reactionToPost } = postsSlice.actions;
 
