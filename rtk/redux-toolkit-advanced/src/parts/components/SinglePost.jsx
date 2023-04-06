@@ -8,12 +8,8 @@ import PostAuthor from './PostAuthor';
 const SinglePost = () => {
   const { postId } = useParams();
 
-  console.log(postId);
-
-  
   const post = useSelector(state => selectPostById(state, Number(postId)));
   // we send arguments to slice function
-  console.log(post);
 
   if (!post) {
     return (

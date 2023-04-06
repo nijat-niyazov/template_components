@@ -33,4 +33,9 @@ const usersSlice = createSlice({
 export const selectAllUsers = state => state.usersSlice;
 // because we want it when it change automatically change in component also
 
+export const selectUserById = (state, userId) => {
+  // console.log(state, userId, state.usersSlice);
+  return state.usersSlice?.find(user => user.id === userId);
+};
+
 export default usersSlice.reducer;
