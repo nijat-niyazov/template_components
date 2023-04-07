@@ -7,71 +7,24 @@ import {
   Formik,
 } from 'formik';
 import { useState } from 'react';
-import * as Yup from 'yup';
-import TextError from '../components/TextError';
-
-// #1 initialvalues
-const initialValues = {
-  name: '', // input with name 'name'
-  email: '', // input with name 'email'
-  confirmEmail: '',
-  channel: '', // input with name 'channel'
-  message: '',
-  address: '',
-  social: {
-    facebook: '',
-    linkedn: '',
-  },
-  phoneNums: ['', ''],
-  telNom: [''],
-  checkbox: false,
-};
-// they have to be properties of input names
+import TextError from './components/TextError';
+import { validateMessage, validationChecked, validationSchema } from './schema';
+import { initialValues, savedValues } from './values';
 
 // #2 submit
-const onSubmit = values => {
+const onSubmit = (values, onSubmitProps) => {
   // it recieves last values of submitted form
 
   console.log('Submitted values', values);
-};
-
-const validationSchema = Yup.object().shape({
-  name: Yup.string().required('Name is required'),
-  // message of required field ⤴
-
-  email: Yup.string()
-    .email('Invalid format of email') // if its passed then give required
-    .required('Email is required'),
-
-  channel: Yup.string().required('Channel is required'),
-
-  // message : Yup.string().required('Message is required'),
-  // checkbox: Yup.bool().oneOf(
-  //   [true],
-  //   'You need to accept the terms and conditions'
-  // ),
-  address: Yup.string().required('You have to declare adress'),
-});
-
-const validateMessage = value => {
-  let error;
-  if (!value) {
-    error = 'Message is required !!!';
-  }
-  return error;
-};
-
-const validationChecked = value => {
-  let error;
-  if (!value) {
-    error = 'You have to accept all terms!!';
-  }
-  return error;
+  console.log('on sub props', onSubmitProps);
+  onSubmitProps.setSubmitting(false); // while submission  is going make isSubmitting false
+  onSubmitProps.resetForm(); //
 };
 
 const ModernForm = () => {
+  const [formValues, setFormValues] = useState(null);
+  
   const [showModal, setShowModal] = useState(false);
-
   const handlePaste = event => {
     event.preventDefault();
     setShowModal(true);
@@ -80,20 +33,27 @@ const ModernForm = () => {
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={formValues || initialValues}
+      // if formValues is present which we change on saveLoad button
+
+      enableReinitialize // it allows change initialvalues after initailization happened for form
       validationSchema={validationSchema}
+      //
+
       onSubmit={onSubmit}
       // validateOnChange={false} // on change values validation won't be rendered which means show errors till submit
+
       validateOnBlur={false} // on blur validation won't be seen or rendered
       // we do them because we don't want see validation issues when we typed something and just stopped we only want them see on submit
       // validateOnMount // boolean is true. on page load all validation will be rendered agains each of particular field which means formik.error object will be fulled with comprehensive error and error object won't be rendered which also affects isValid to be false, it's not good practice
     >
       {formik => {
-        console.log(formik); // formik props which also within in address as form
+        console.log(formik, formik.values); // formik props which also within in address as form
         return (
           <Form>
             <div className="form-control">
               <label htmlFor="name">Name</label>
+
               <Field type="text" id="name" name="name" placeholder="name" />
               {/* replacing input  */}
 
@@ -111,19 +71,19 @@ const ModernForm = () => {
               {/* #2 way is creating func which accept validate error value ⤵  */}
               <ErrorMessage name="email" component="div">
                 {errorMessage => {
+                  console.log(errorMessage);
                   return <div className="error">{errorMessage}</div>;
                 }}
               </ErrorMessage>
               {/*  without component its just message and not any tag */}
             </div>
 
-            <div className="form-control">
+            {/* <div className="form-control">
               <label htmlFor="confirmEmail">Confirm Email:</label>
               <Field
                 type="email"
                 id="confirmEmail"
                 name="confirmEmail"
-                required
                 placeholder="Confirm Email"
                 onChange={formik.handleChange}
                 value={formik.values.confirmEmail}
@@ -146,7 +106,7 @@ const ModernForm = () => {
                 </div>
               )}
               <ErrorMessage name="confirmEmail" />
-            </div>
+            </div> */}
 
             <div className="form-control">
               <label htmlFor="channel">Channel</label>
@@ -296,64 +256,86 @@ const ModernForm = () => {
             </div>
 
             {/* Manually checkking-triggering validation */}
-            <button
-              type="button"
-              onClick={() => {
-                formik.validateField('checkbox');
-                formik.setFieldTouched('checkbox');
-              }}
-            >
-              check validate
-            </button>
-            {/* <button
+            <div className="manual-validation">
+              <button
+                type="button"
+                onClick={() => {
+                  formik.validateField('checkbox');
+                  formik.setFieldTouched('checkbox');
+                }}
+              >
+                check validate
+              </button>
+              {/* <button
               type="button"
               onClick={() => formik.setFieldTouched('checkbox')}
             >
               visit checked
             </button> */}
 
-            <button
-              type="button"
-              onClick={() => formik.validateField('message')}
-              // it returns all errors of field with name ↖
-            >
-              Validate message
-            </button>
-            <button
-              type="button"
-              onClick={() => formik.validateForm()}
-              //  it returns all errors of form ⤴
-            >
-              Validate all
-            </button>
+              <button
+                type="button"
+                onClick={() => formik.validateField('message')}
+                // it returns all errors of field with name ↖
+              >
+                Validate message
+              </button>
+              <button
+                type="button"
+                onClick={() => formik.validateForm()}
+                //  it returns all errors of form ⤴
+              >
+                Validate all
+              </button>
 
-            <button
-              type="button"
-              onClick={() => formik.setFieldTouched('message')}
-              // it returns all errors of field with name ↖
-            >
-              Visit message
-            </button>
-            <button
-              type="button"
-              onClick={() =>
-                formik.setTouched({
-                  name: true,
-                  email: true,
-                  channel: true,
-                  // message: true,
-                  checkbox: true,
-                })
-              }
-              //  differently than validateForm which takes all field it does't do this. so we pass fields as argument that those fields are touched ⤴
-            >
-              Visit all inputs
-            </button>
+              <button
+                type="button"
+                onClick={() => formik.setFieldTouched('message')}
+                // it returns all errors of field with name ↖
+              >
+                Visit message
+              </button>
+              <button
+                type="button"
+                onClick={() =>
+                  formik.setTouched({
+                    name: true,
+                    email: true,
+                    channel: true,
+                    // message: true,
+                    checkbox: true,
+                  })
+                }
+                //  differently than validateForm which takes all field it does't do this. so we pass fields as argument that those fields are touched ⤴
+              >
+                Visit all inputs
+              </button>
+            </div>
+
             {/* formik.dirty=false means not any value has changed yet  */}
-            <button disabled={!(formik.isValid && formik.dirty)} type="submit">
-              {/* isValid when error objcet is not empty and isValid is true when all errors are gone or all required sections is writed */}
-              {/* isValid on first render doesn't give what we want beacsue when nothing has changed yet isValid is true because empty object is true */}
+            {/* <button
+              disabled={!(formik.isValid && formik.dirty)}
+              // #1  isValid when error objcet is not empty and isValid is true when all errors are gone or all required sections is writed
+              //  isValid on first render doesn't give what we want beacsue when nothing has changed yet isValid is true because empty object is true
+
+              type="submit"
+            >
               Submit
+            </button> */}
+            <button type="reset">Reset</button>
+            <button
+              type="submit"
+              disabled={!formik.isValid || formik.isSubmitting} // while submitting process is going or formik validation is true then disable button
+            >
+              Submit
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setFormValues(savedValues);
+              }}
+            >
+              Load Data
             </button>
           </Form>
         );

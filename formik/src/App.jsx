@@ -1,10 +1,13 @@
-import ModernForm from './simpleForms/Form';
-import './style.css';
+import FormikContainer from './advanced/Container';
+import ModernForm from './simpleForms/ModernForm';
 
 function App() {
   return (
     <div className="App">
-      <ModernForm />
+      {/* modernForm */}
+      {/* <ModernForm /> */}
+
+      <FormikContainer />
     </div>
   );
 }
