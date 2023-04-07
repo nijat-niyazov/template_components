@@ -11,7 +11,7 @@ import TextError from './components/TextError';
 import { validateMessage, validationChecked, validationSchema } from './schema';
 import { initialValues, savedValues } from './values';
 
-// #2 submit
+// submit
 const onSubmit = (values, onSubmitProps) => {
   // it recieves last values of submitted form
 
@@ -23,7 +23,7 @@ const onSubmit = (values, onSubmitProps) => {
 
 const ModernForm = () => {
   const [formValues, setFormValues] = useState(null);
-  
+
   const [showModal, setShowModal] = useState(false);
   const handlePaste = event => {
     event.preventDefault();

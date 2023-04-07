@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import * as yup from 'yup';
 
 // #1 initialvalues
 const initialValues = {
@@ -41,13 +41,13 @@ const validate = values => {
   return errors;
 };
 
-const validationSchema = Yup.object({
-  name: Yup.string().required('Name is required'),
+const validationSchema = yup.object({
+  name: yup.string().required('Name is required'),
   // message of required field ⤴
-  email: Yup.string()
+  email: yup.string()
     .email('Invalid format of email') // if its passed then give required
     .required('Email is required'),
-  channel: Yup.string().required('Channel is required'),
+  channel: yup.string().required('Channel is required'),
 });
 
 const OldForm = () => {
