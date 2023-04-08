@@ -30,12 +30,27 @@ export const allCategories = [
     parent: 5,
   },
   {
-    id: 3,
+    id: 7,
     name: 'Chocholate',
     parent: 6,
   },
   {
-    id: 5,
+    id: 8,
+    name: 'Kinder',
+    parent: 7,
+  },
+  {
+    id: 9,
+    name: 'Milky',
+    parent: 8,
+  },
+  {
+    id: 10,
+    name: 'Sour',
+    parent: 8,
+  },
+  {
+    id: 11,
     name: 'Caramel',
     parent: 6,
   },
@@ -68,5 +83,5 @@ export const allCategories = [
   //   id: 10,
   //   name: 'B-2-2 sub-1 / 2',
   //   parent: 9,
-  // },  
+  // },
 ];

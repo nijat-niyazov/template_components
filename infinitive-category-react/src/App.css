@@ -67,6 +67,7 @@
 }
 
 .subCatButton {
+  cursor: pointer;
   height: 2.125rem;
   padding: 0.5rem;
   border-radius: 0.375rem;
@@ -75,7 +76,6 @@
   font-size: 0.875rem;
 }
 
-.CategorySelect {
-  /* Style for CategorySelect component */
-  /* ... */
+.del {
+  background-color: #dc2626;
 }
