@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import './App.css';
+import CategorySelect from './CategorySelect';
 import { allCategories } from './categories';
 
 function App() {
@@ -75,7 +76,6 @@ function App() {
           <nav className="nav">
             {breadCrumbs.length !== 0 &&
               breadCrumbs?.map((link, i) => {
-                console.log(link);
                 return (
                   <button key={i} onClick={() => setNewParent(link.parent)}>
                     {link.name}
@@ -106,13 +106,13 @@ function App() {
                     Delete
                   </button>
                 </nav>
+
               </div>
             );
           })}
         </div>
-
-        <pre>{JSON.stringify(categories, null, 2)}</pre>
       </div>
+          <CategorySelect categories={categories} />
     </div>
   );
 }

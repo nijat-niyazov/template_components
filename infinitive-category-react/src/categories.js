@@ -31,28 +31,33 @@ export const allCategories = [
   },
   {
     id: 7,
+    name: 'Diabetic',
+    parent: 5,
+  },
+  {
+    id: 8,
     name: 'Chocholate',
     parent: 6,
   },
   {
-    id: 8,
-    name: 'Kinder',
+    id: 9,
+    name: 'Caramel',
+    parent: 6,
+  },
+  {
+    id: 10,
+    name: 'Qaramat',
     parent: 7,
   },
   {
-    id: 9,
+    id: 11,
     name: 'Milky',
     parent: 8,
   },
   {
-    id: 10,
+    id: 12,
     name: 'Sour',
     parent: 8,
-  },
-  {
-    id: 11,
-    name: 'Caramel',
-    parent: 6,
   },
   // {
   //   id: 5,
