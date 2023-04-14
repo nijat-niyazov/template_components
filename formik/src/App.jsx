@@ -1,5 +1,4 @@
-import FormikContainer from './advanced/Container';
-import ModernForm from './simpleForms/ModernForm';
+import Login from './forms/Login';
 
 function App() {
   return (
@@ -7,7 +6,8 @@ function App() {
       {/* modernForm */}
       {/* <ModernForm /> */}
 
-      <FormikContainer />
+      {/* <FormikContainer /> */}
+      <Login />
     </div>
   );
 }
