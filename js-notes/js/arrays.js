@@ -357,12 +357,6 @@ const groupedMovies = movies.reduce((group, movie) => {
 
 console.log(groupedMovies);
 
-const obj = {
-  name: 'John',
-  age: 30,
-  city: 'New York',
-};
-
 const inventori = [
   { name: 'cucumber', type: 'vegetables', quantity: 5 },
   { name: 'banana', type: 'fruit', quantity: 0 },
