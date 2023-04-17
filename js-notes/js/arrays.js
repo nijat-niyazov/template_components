@@ -49,7 +49,7 @@ const fruits1_1 = new Array(foods);
 console.log(fruits1_1);
 
 //1.2
-const fruits1_2 = Array.of('cart, okat');
+const fruits1_2 = Array.of('Apple, Banana');
 console.log(fruits1_2);
 
 // ================ Methods =======================
@@ -69,7 +69,7 @@ console.log(Array.from(nums, n => Number(n) ** n));
 // creating array from 1 to giving length element
 console.log(Array.from({ length: 5 }, (_, i) => i + 1));
 
-// #3 join
+// #3 JOIN method joins arrays into string with the givin sybmbol
 const fruitsJoin = ['Apple', 'Banana'];
 const fruitsString = fruitsJoin.join(', ');
 console.log(fruitsString); // "Apple, Banana"
@@ -143,6 +143,33 @@ console.log(fruitsSplice3);
 console.log(removedItems3);
 // ["Banana", "Strawberry"]
 
+// WITH method used for replaced with given index element value with given value
+
+const fruitsWith = [
+  'Apple',
+  'Strawberry',
+  'Cherry',
+  'Banana',
+  'Mango',
+  'Pearl',
+];
+
+const replacedElementIndex = fruitsWith.findIndex(fruit => fruit === 'Cherry');
+
+const changeWith = 'Berry';
+
+console.log(fruitsWith.with(replacedElementIndex, changeWith));
+
+// SLICE method cuts within givin indexes of elements
+
+const animalsArr = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+
+const bisonCamel = animalsArr.slice(1, 3);
+console.log(bisonCamel);
+
+const elephantDuck = animalsArr.slice(-2);
+console.log(elephantDuck);
+
 // #8 at find element with given index
 const arr = ['a', 'b', 'c'];
 console.log(arr.at(2)); // 'c'
@@ -166,15 +193,24 @@ const array1 = [
 
 console.log(array1.copyWithin(-4));
 
-// #10 #entries returns key and value of array element
+// #10 ENTRIES method returns key and value of array element
 const a = ['a', 'b', 'c'];
-
 for (const [key, value] of a.entries()) {
   console.log(key, value); // it descrtuing arrays
 }
 
 for (const entries of a.entries()) {
   console.log(entries); // it return each index&element within array
+}
+
+// KEYS
+for (const key of a.keys()) {
+  console.log(key); // it descrtuing arrays
+}
+
+// VALUES
+for (const value of a.values()) {
+  console.log(value); // it descrtuing arrays
 }
 
 // #11 EVERY test each element respond to condition or not if not any one of them responds it gets false
@@ -248,6 +284,39 @@ console.log(deepArr.flat(Infinity));
 const deepArrMap = [1, [2, [3, [4, [5, [6]]]]]];
 console.log(deepArrMap.flat(Infinity).map(n => n ** 2));
 
+// #17 MAP method we can change any value and create new array
+
+const kvArray = [
+  { key: 1, value: 10 },
+  { key: 2, value: 20 },
+  { key: 3, value: 30 },
+];
+
+const reformattedArray = kvArray.map(({ key, value }) => ({ [key]: value }));
+
+console.log(reformattedArray); // [{ 1: 10 }, { 2: 20 }, { 3: 30 }]
+
+// #18. CONCAT method merges different arrays
+const fruitsConcat = ['Apple', 'Banana', 'Strawberry'];
+const moreFruitsConcat = ['Mango', 'Cherry'];
+const combinedFruitsConcat = fruitsConcat.concat(moreFruitsConcat);
+console.log(combinedFruitsConcat);
+// ["Apple", "Banana", "Strawberry", "Mango", "Cherry"]
+
+// #19. INCLUDES method check if element is within array or not
+const animals = ['cat', 'lion', 'turtle', 'giraffe', 'mouse', 'dog', 'bat'];
+const pets = ['cat', 'dog', 'hamster'];
+
+const ev_heyvanlari = animals.filter(animal => pets.includes(animal));
+console.log(ev_heyvanlari);
+
+// // #19. indexOF method check if element is within array or not
+// const animals = ['cat', 'lion', 'turtle', 'giraffe', 'mouse', 'dog', 'bat'];
+// const pets = ['cat', 'dog', 'hamster'];
+
+// const ev_heyvanlari = animals.filter(animal => pets.includes(animal));
+// console.log(ev_heyvanlari);
+
 // #16 REDUCE method
 console.log([1, 100].reduce((acc, val) => Math.max(acc, val), 50)); // 100
 
@@ -312,35 +381,72 @@ const groupedFoods = inventori.reduce((foodGroup, food) => {
 
 console.log(groupedFoods); // {vegetables: Array(1), fruit: Array(2), meat: Array(2)}
 
-// #17 MAP method we can change any value and create new array
+// REDUCERIGHT method is same with reduce but its element order is reversed
 
-const kvArray = [
-  { key: 1, value: 10 },
-  { key: 2, value: 20 },
-  { key: 3, value: 30 },
+const arrayRIT = [
+  [0, 1],
+  [2, 3],
+  [4, 5],
 ];
 
-const reformattedArray = kvArray.map(({ key, value }) => ({ [key]: value }));
+const resultRIght = arrayRIT.reduceRight((accumulator, currentValue) =>
+  accumulator.concat(currentValue)
+);
 
-console.log(reformattedArray); // [{ 1: 10 }, { 2: 20 }, { 3: 30 }]
+console.log(resultRIght);
 
-// #18. CONCAT method merges different arrays
-const fruitsConcat = ['Apple', 'Banana', 'Strawberry'];
-const moreFruitsConcat = ['Mango', 'Cherry'];
-const combinedFruitsConcat = fruitsConcat.concat(moreFruitsConcat);
-console.log(combinedFruitsConcat);
-// ["Apple", "Banana", "Strawberry", "Mango", "Cherry"]
+const payments = [100, 200, 300, 400];
+const cumulativeSum = payments.reduceRight(
+  (acc, curr) => {
+    acc.push(acc[acc.length - 1] + curr);
+    return acc;
+  },
+  [0]
+);
 
-// #19. INCLUDES method check if element is within array or not
-const animals = ['cat', 'lion', 'turtle', 'giraffe', 'mouse', 'dog', 'bat'];
-const pets = ['cat', 'dog', 'hamster'];
+// 0,+400,+300,+200,+100
+console.log(cumulativeSum); // [0, 400, 700, 900, 1000]
 
-const ev_heyvanlari = animals.filter(animal => pets.includes(animal));
-console.log(ev_heyvanlari);
+// REVERSE method reverse order of element in arr
 
-// // #19. indexOF method check if element is within array or not
-// const animals = ['cat', 'lion', 'turtle', 'giraffe', 'mouse', 'dog', 'bat'];
-// const pets = ['cat', 'dog', 'hamster'];
+const myCountry = 'najiabrezA';
+console.log(Array.from(myCountry).reverse().join('')); // Azerbaijan
 
-// const ev_heyvanlari = animals.filter(animal => pets.includes(animal));
-// console.log(ev_heyvanlari);
+// SORT METHOD sorts from ascending to sendending in place of UTF-16
+const months = ['March', 'Jan', 'Feb', 'Dec'];
+months.sort();
+console.log(months);
+
+const myNums = [5, 6, 7, 1, 5, 3, 2, 1, 8, 9, 0];
+// function compareNumbers(a, b) {
+//   return a - b;
+// }
+
+const ascending = [...new Set(myNums)].sort((a, b) => a - b);
+const descending = [...new Set(myNums)].sort((a, b) => b - a);
+
+console.log(ascending, descending);
+
+const items = [
+  { name: 'Edward', value: 21 },
+  { name: 'Sharpe', value: 37 },
+  { name: 'And', value: 45 },
+  { name: 'The', value: -12 },
+  { name: 'Magnetic', value: 13 },
+  { name: 'Zeros', value: 37 },
+];
+
+// sort by value
+const students = [
+  { name: 'Alex', grade: 15 },
+  { name: 'Devlin', grade: 15 },
+  { name: 'Eagle', grade: 13 },
+  { name: 'Sam', grade: 14 },
+];
+
+// sort by name
+console.log(
+  students.sort((a, b) => {
+    return a.grade - b.grade;
+  })
+);
