@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { Form, redirect, useActionData } from 'react-router-dom';
 
 const Contact = () => {
@@ -6,6 +7,9 @@ const Contact = () => {
 
   return (
     <div className="contact">
+      <Helmet>
+        <title>Contact</title>
+      </Helmet>
       <h3>Contact Us</h3>
       <Form method="post" action="/help/contact">
         <label>

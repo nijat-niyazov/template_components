@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { NavLink, Outlet } from 'react-router-dom';
 
 const HelpLayout = () => {
@@ -7,7 +8,7 @@ const HelpLayout = () => {
   return (
     <div className="help-layout">
       <Helmet>
-        <title>Careers</title>
+        <title>Help</title>
         <meta name="description" content="help description" />
       </Helmet>
       <h2>Website Help</h2>

@@ -1,20 +1,12 @@
 import axios from 'axios';
 import { Link, useLoaderData } from 'react-router-dom';
 
-import { Helmet } from 'react-helmet';
-
 export default function Careers() {
   const careers = useLoaderData();
   // this is name is as you wish
 
-  // useTitleSetter('Careers');
-
   return (
     <>
-      <Helmet>
-        <title>Careers</title>
-        <meta name="description" content="careers description" />
-      </Helmet>
       <div className="careers">
         {careers?.map(career => {
           // console.log(career.id);
