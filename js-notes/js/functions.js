@@ -30,7 +30,7 @@ function sayHi(name) {
   console.log(`Hello, ${name}`);
 }
 
-sayHi2('John'); // error ❌
+sayHi2('John'); // ERROR ❌
 
 // Because expresison funciton doesn't exist till it's called or execution is happened
 let sayHi2 = function (name) {
