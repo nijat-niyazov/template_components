@@ -443,4 +443,26 @@ console.log(
   students.sort((a, b) => {
     return a.grade - b.grade;
   })
-);
+); // {0: 'a', 1:'b'}
+
+// Creating object from arrays
+
+const array2 = ['a', 'b'];
+// #1.reduce 
+const obj = array2.reduce((acc, val, i) => {
+  acc[i] = val;
+  return acc;
+}, {});
+
+// #2. for(loop)
+const emptyObj = {};
+for (i = 0; i < array2.length; i++) {
+  emptyObj[i] = array2[i];
+}
+
+console.log(emptyObj); // {0: 'a', 1:'b'}
+
+// #3. Object.fromEntries
+const fromEntries = Object.fromEntries(array2)
+
+console.log(fromEntries); // {0: 'a', 1:'b'}

@@ -45,13 +45,9 @@ for (let i = 0; i < 3; i++) {
 }
 alert('Done!');
 
-let i;
-
 for (i = 2; i < 11; i++) {
   if (i % 2 !== 0) alert(i);
 }
-
-let i = 0;
 
 while (i < 3) {
   alert(`num is ` + i);
@@ -79,9 +75,9 @@ switch (a) {
     alert("I don't know such values");
 }
 
-let a = '1';
+let ac = '1';
 let b = 0;
-switch (+a) {
+switch (+ac) {
   case b + 1:
     alert('this runs, because +a is 1, exactly equals b+1');
     break;
@@ -89,8 +85,8 @@ switch (+a) {
     alert("this doesn't run");
 }
 
-let a = 2 + 2;
-switch (a) {
+let ab = 2 + 2;
+switch (ab) {
   case 3:
     alert('Right!');
     break;
@@ -143,4 +139,3 @@ if (browserName === 'Opera' || 'Mozilla' || 'Chrome') {
 } else {
   alert('starngge');
 }
-
