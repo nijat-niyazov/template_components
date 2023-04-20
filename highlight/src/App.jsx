@@ -12,20 +12,19 @@ function App() {
     // it will split till by matched word
 
     return parts.map(part =>
-      regexp.test(part) ? (
-        // if part is euqal to match in regex test method then return mark
-        match === 'hashtag' ? (
-          <mark onClick={() => alert(part)}>
-            <b> {part} </b>
-          </mark>
-        ) : (
-          <a href={`https://www.npmjs.com/package/${part}`} target="_blank">
-            <b> {part} </b>
-          </a>
-        )
-      ) : (
-        part
-      )
+      regexp.test(part)
+        ? // if part is euqal to match in regex test method then return mark
+          (match === 'hashtag' && (
+            <mark onClick={() => alert(part)}>
+              <b> {part} </b>
+            </mark>
+          )) ||
+          (match === 'mention' && (
+            <a href={`https://www.npmjs.com/package/${part}`} target="_blank">
+              <b> {part} </b>
+            </a>
+          ))
+        : part
     );
   }
 
