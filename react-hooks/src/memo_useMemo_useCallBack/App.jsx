@@ -29,7 +29,7 @@ function App() {
        */
       setTodo('');
     },
-    []
+    [todo]
   );
 
   /**
@@ -53,15 +53,15 @@ function App() {
    * ! in every render because it's array&object(NoN-Primitive) it will be stored in different area than previous on memory that's why list will be rendered each time to prevent it we can use USEMEMO
    */
 
-  // const filteredTodos = useMemo(() => {
-  //   return list.filter(todo =>
-  //     todo.toLowerCase().includes(search.toLowerCase())
-  //   );
-  // }, [list, search]);
+  const filteredTodos = useMemo(() => {
+    return list.filter(todo =>
+      todo.toLowerCase().includes(search.toLowerCase())
+    );
+  }, [list, search]);
 
-  const filteredTodos = list.filter(todo =>
-    todo.toLowerCase().includes(search.toLowerCase())
-  );
+  // const filteredTodos = list.filter(todo =>
+  //   todo.toLowerCase().includes(search.toLowerCase())
+  // );
 
   // const men = people.filter(({ name }) => name.toLowerCase().includes(creator));
 
@@ -79,7 +79,7 @@ function App() {
         onChange={e => setCreator(e.target.value)}
       />
       <Header creator={creator} 
-      // people={men}
+      people={men}
        />
       <h3>{count}</h3>
       <button onClick={() => setCount(p => p + 1)}>increase </button>

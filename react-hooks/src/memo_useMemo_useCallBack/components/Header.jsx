@@ -9,11 +9,11 @@ const Header = ({ creator, people }) => {
   return (
     <>
       <p>{creator}</p>
-      {/* <ul>
+      <ul>
         {ppp.map((n, i) => (
           <li key={i}>{n}</li>
         ))}
-      </ul> */}
+      </ul>
     </>
   );
 };
