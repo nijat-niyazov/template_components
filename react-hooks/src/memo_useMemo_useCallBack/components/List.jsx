@@ -5,7 +5,7 @@ const List = ({ list }) => {
   console.log('list rendered');
 
   return (
-    <ul>
+    <ul style={{ listStyle: 'none' }}>
       {list?.map((todo, i) => (
         <Item key={i} todo={todo} />
       ))}

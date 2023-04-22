@@ -2,19 +2,23 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import AddTodo from './components/AddTodo';
 import Header from './components/Header';
 import List from './components/List';
+import { arr } from './components/arr';
 
 function App() {
   console.log('App rendered');
 
   const [count, setCount] = useState(0);
-  const [todo, setTodo] = useState('');
+  const [todo, setTodo] = useState('c');
+  const [people, setPeople] = useState(arr);
+  const [creator, setCreator] = useState('');
   const [search, setSearch] = useState('');
   const [list, setList] = useState([]);
   const inputRef = useRef(null);
 
   /**
-   * * we use USECALLBACK when we pass method by prop to child element
+   * * we use USECALLBACK when we pass method by prop to child element. Because on render of parent the method(function) because of fact it is object will render child elemnet that'swhy we need execute function when something in changed on dependency
    */
+
   const submitForm = useCallback(
     e => {
       e.preventDefault();
@@ -25,16 +29,18 @@ function App() {
        */
       setTodo('');
     },
-    [todo]
+    []
   );
+
   /**
    * ! if dependency is empty todo will be emtpy because in useState initial value is empty and we don't calcucalte this function based on any dependency. so if todo changes useCallBack function will be rendered
    */
 
   /**
-   * * we use USECALLBACK when we pass method by prop to child element
+   * * we use USECALLBACK when we pass method by prop to child element. Because on render of parent the method(function) because of fact it is object will render child elemnet that'swhy we need execute function when something in changed on dependency
    */
   const onChange = useCallback(e => setTodo(e.target.value), []);
+
   /**
    * ! here we don't use any dependency because we don't need value of useState it comes from e.target.value
    */
@@ -47,15 +53,34 @@ function App() {
    * ! in every render because it's array&object(NoN-Primitive) it will be stored in different area than previous on memory that's why list will be rendered each time to prevent it we can use USEMEMO
    */
 
-  const filteredTodos = useMemo(() => {
-    return list.filter(todo =>
-      todo.toLowerCase().includes(search.toLowerCase())
-    );
-  }, [list, search]);
+  // const filteredTodos = useMemo(() => {
+  //   return list.filter(todo =>
+  //     todo.toLowerCase().includes(search.toLowerCase())
+  //   );
+  // }, [list, search]);
+
+  const filteredTodos = list.filter(todo =>
+    todo.toLowerCase().includes(search.toLowerCase())
+  );
+
+  // const men = people.filter(({ name }) => name.toLowerCase().includes(creator));
+
+  const men = useMemo(() => {
+    return people.filter(({ name }) => name.toLowerCase().includes(creator));
+  }, [creator]);
 
   return (
     <div style={{ padding: '20px' }}>
-      <Header />
+      <input
+        id="find"
+        type="text"
+        placeholder="Creator"
+        value={creator}
+        onChange={e => setCreator(e.target.value)}
+      />
+      <Header creator={creator} 
+      // people={men}
+       />
       <h3>{count}</h3>
       <button onClick={() => setCount(p => p + 1)}>increase </button>
       {/* when increase button is clicked AddTodo is rendered because we passed methods by props. They are functions and as we know functions are objects and they stored in different areas in memory */}

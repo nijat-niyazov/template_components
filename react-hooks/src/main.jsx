@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Filtering from './defered&transition/Filtering.jsx';
+import App from './memo_useMemo_useCallBack/App.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* <App /> */}
+    <App />
     {/* <Reducer /> */}
     {/* <Imperative /> */}
     {/* <Component /> */}
     {/* <Transition /> */}
     {/* <DeferredValue /> */}
-    <Filtering />
+    {/* <Filtering /> */}
     {/* <LayoutEffect /> */}
   </React.StrictMode>
 );
