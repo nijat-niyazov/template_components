@@ -19,7 +19,7 @@ function App() {
     e => {
       e.preventDefault();
       inputRef.current.focus();
-      setList(prev => [...prev, state.todo]);
+      setList(prev => [...prev, todo]);
       /**
        * ! because this todo must be changed and not used of useState initial value
        */
