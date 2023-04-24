@@ -3,14 +3,27 @@ import AddTodo from './components/AddTodo';
 import Header from './components/Header';
 import List from './components/List';
 
+const initialState = {
+  count: 0,
+  todo: '',
+  search: '',
+  list: [],
+};
+
 function App() {
   console.log('App rendered');
 
-  const [count, setCount] = useState(0);
-  const [todo, setTodo] = useState('');
-  const [search, setSearch] = useState('');
-  const [list, setList] = useState([]);
-  const inputRef = useRef(null);
+  // const [count, setCount] = useState(0);
+  // const [todo, setTodo] = useState('');
+  // const [search, setSearch] = useState('');
+  // const [list, setList] = useState([]);
+  // const inputRef = useRef(null);
+
+  const valueHandler = (state,action)=>{
+
+  }
+
+  const [state, dispatch] = useReducer(valueHandler, initialState)
 
   /**
    * * we use USECALLBACK when we pass method by prop to child element
