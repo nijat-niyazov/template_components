@@ -2,7 +2,6 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
-  RouterProvider,
 } from 'react-router-dom';
 import { HelpLayout, RootLayout } from './Layout/exporter';
 import {
