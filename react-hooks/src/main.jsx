@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Transition from './useTransition/Transition.jsx';
+import DeferredValue from './useDeferredValue/DeferredValue.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -8,7 +8,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     {/* <Reducer /> */}
     {/* <Imperative /> */}
     {/* <Component /> */}
-    <Transition />
+    {/* <Transition /> */}
+    <DeferredValue />
     {/* <LayoutEffect /> */}
   </React.StrictMode>
 );
