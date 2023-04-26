@@ -8,7 +8,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     {/* <Reducer /> */}
     {/* <Imperative /> */}
     {/* <Component /> */}
-    {/* <LayoutEffect /> */}
     <Transition />
+    {/* <LayoutEffect /> */}
   </React.StrictMode>
 );
