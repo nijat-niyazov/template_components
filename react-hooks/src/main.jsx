@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Component from './useId/Component.jsx';
+import LayoutEffect from './useLayoutEffect/LayoutEffect.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     {/* <App /> */}
     {/* <Reducer /> */}
     {/* <Imperative /> */}
-    <Component />
+    {/* <Component /> */}
+    <LayoutEffect />
   </React.StrictMode>
 );
