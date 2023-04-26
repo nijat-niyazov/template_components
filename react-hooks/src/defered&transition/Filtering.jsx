@@ -9,18 +9,21 @@ const Filtering = () => {
 
   const delayedValue = useDeferredValue(search);
 
-  useEffect(() => {
-    console.log(delayedValue);
-  }, [delayedValue]);
+  // useEffect(() => {
+  //   console.log(delayedValue);
+  // }, [delayedValue]);
 
   useEffect(() => {
     startTransition(() => {
-      // console.log('filtered');
+      /**
+       * ! as you see we used startTransition on useEffect rather it has delayedValue dependency. we used it when our high priority or urgent function is exectuin our isPending is true and  we need startTransition to execute its callBack function in order to make isPending false
+       */
+      console.log('filtered with ');
+      console.log(delayedValue);
       const filtered = bigData.filter(b => b.toString().includes(delayedValue));
 
       setData(filtered);
     });
-    // console.log('delayed changed');
   }, [delayedValue]);
 
   const handleChange = e => {
