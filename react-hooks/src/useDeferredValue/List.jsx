@@ -17,9 +17,15 @@ const List = ({ text }) => {
 
   console.log('text', text, 'delayed', delayedValue);
 
-  return list.map((t, i) => {
-    return <div key={i}>{t} </div>;
-  });
+  return (
+    <>
+      <p>{list.length}</p>
+      {list.map((t, i) => {
+        return <div key={i}>{t} </div>;
+      })}
+      ;
+    </>
+  );
 };
 
 export default List;

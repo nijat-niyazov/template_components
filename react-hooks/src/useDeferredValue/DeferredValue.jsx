@@ -11,7 +11,8 @@ const DeferredValue = () => {
   return (
     <div>
       <input type="text" value={text} onChange={e => handleChange(e)} />
-      <button onClick={() => settext(p => p + 1)}>increase</button>
+      <button onClick={() => settext(p => p + 1)}>++</button>
+      <button onClick={() => settext(p => p - 1)}>--</button>
       <List text={text} />
     </div>
   );
