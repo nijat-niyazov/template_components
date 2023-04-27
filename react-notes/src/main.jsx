@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Debounce from './debounce/Debounce.jsx';
 import './index.css';
+import AnotherForm from './multipleInputsForm/AnotherForm.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     {/* <App /> */}
-    <Debounce />
+    {/* <Debounce /> */}
+    <AnotherForm />
   </React.StrictMode>
 );

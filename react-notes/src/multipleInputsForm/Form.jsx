@@ -69,7 +69,7 @@ const Form = () => {
                 borderColor: errors[key] ? 'red' : '',
               }}
               onChange={e => onChange(key, e.target.value)}
-            />{' '}
+            />
             <p>{errors[key] && 'error'}</p>
             <br /> <br />
           </div>
