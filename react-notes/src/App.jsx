@@ -1,9 +1,10 @@
-import Form from './multipleInputsForm/Form';
+import ReRender from './shift-pop-sort/ReRender';
 
 function App() {
   return (
     <>
-      <Form />
+      {/* <Form /> */}
+      <ReRender />
     </>
   );
 }
