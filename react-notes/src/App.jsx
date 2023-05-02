@@ -1,10 +1,11 @@
-import ReRender from './shift-pop-sort/ReRender';
+import Grid2 from "./grid/Grid2";
 
 function App() {
   return (
     <>
       {/* <Form /> */}
-      <ReRender />
+      {/* <ReRender /> */}
+      <Grid2 />
     </>
   );
 }

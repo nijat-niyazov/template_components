@@ -1,10 +1,9 @@
-import SortedTable from './component/SortedTable';
-import Table from './component/Table';
+import BasicTable from './tables/BasicTable';
 
 function App() {
   return (
     <div className="App">
-      <SortedTable />
+      <BasicTable />
     </div>
   );
 }
