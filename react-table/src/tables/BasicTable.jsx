@@ -8,6 +8,12 @@ const BasicTable = () => {
   const columns = useMemo(() => cols, []);
   const data = useMemo(() => DATAS, []);
 
+  // const defaultCol = useMemo(() => {
+  //   return {
+  //     Filter: FilterByCol,
+  //   };
+  // }, []);
+
   const {
     getTableProps,
     getTableBodyProps,
