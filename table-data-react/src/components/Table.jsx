@@ -8,6 +8,8 @@ const Table = () => {
 
   const headers = Object.keys(data[0]);
 
+  const canBeSorted = ['id', 'age'];
+
   const sortByToggle = key => {
     if (sorted === 2) {
       console.log('triggered');
@@ -49,7 +51,7 @@ const Table = () => {
                 padding: '10px',
               }}
             >
-              <button
+              <li
                 style={{
                   color: 'white',
                   width: '100%',
@@ -59,11 +61,13 @@ const Table = () => {
                   cursor: 'pointer',
                 }}
                 value={header}
-                onClick={() => sortByToggle(header)}
               >
                 {header.toUpperCase()}{' '}
+                {canBeSorted.includes(header) && (
+                  <button onClick={() => sortByToggle(header)}>sort</button>
+                )}
                 {sorted !== 0 && <span> {ascending ? '🔼' : '🔽'} </span>}
-              </button>
+              </li>
             </td>
           ))}
         </tr>
