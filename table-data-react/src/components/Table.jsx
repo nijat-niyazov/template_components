@@ -1,33 +1,89 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import DATA from '../data/data.json';
+import { features } from '../data/tasks';
+import './table.scss';
 
 const Table = () => {
-  const [page, setPage] = useState(0);
   const [data, setData] = useState([]);
   const [ascending, setAscending] = useState(true);
   const [sorted, setSorted] = useState(0);
-  const [tasks, setTasks] = useState([
-    'groupHeaders',
-    'sorting',
-    'filtering',
-    'pagination',
-    'results',
-    'goToPage',
-    'hiding-column',
-    'changePlace',
-  ]);
+  const [activePage, setActivePage] = useState(1);
+  const [pageNums, setPageNums] = useState(1);
+  const [result, setResult] = useState(20);
+  const [showTables, setShowTables] = useState(20);
+  const [search, setSearch] = useState('');
+  const [tasks, setTasks] = useState(
+    JSON.parse(localStorage.getItem('tasks')) ?? features
+  );
+
+  // ============== FILTERING ===============
 
   useEffect(() => {
-    setData(DATA.slice(page, page === 0 ? 20 : page * 2));
-  }, [page]);
+    if (!search) {
+      setData(DATA);
+    } else {
+      const debounced = setTimeout(() => {
+        setData(
+          data.filter(d =>
+            d.first_name.toLowerCase().includes(search.toLowerCase())
+          )
+        );
+      }, 300);
+      return () => {
+        clearTimeout(debounced);
+      };
+    }
+  }, [search]);
 
-  const headers = Object.keys(DATA[0]);
+  // ============== CLEAR SEARCH ON CLICK WINDOW ===============
+
+  const searchRef = useRef();
+
+  useEffect(() => {
+    window.addEventListener('mousedown', handleClickOutside);
+    return () => window.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleClickOutside = e => {
+    const triggeredElement = e.target;
+    if (searchRef.current && !searchRef.current.contains(triggeredElement)) {
+      setSearch('');
+    }
+  };
+
+  // ============== TASKS DONE ===============
+
+  const checked = id => {
+    const changed = tasks.map(task =>
+      task.id === id ? { ...task, checked: task.checked ? false : true } : task
+    );
+    setTasks(changed);
+    localStorage.setItem('tasks', JSON.stringify(changed));
+  };
+
+  // =============== RESULTS ==============
+
+  useEffect(() => {
+    setData(DATA.slice(showTables * (activePage - 1), result));
+  }, [result]);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
+  // ========== CHANGE SHOW TABLES ===============
+
+  const changeShowTables = e => {
+    setShowTables(Number(e.target.value));
+    setResult(Number(e.target.value));
+  };
+
+  // ========== SORTING COLUMNS ===============
 
   const canBeSorted = ['id', 'age'];
 
   const sortByToggle = key => {
     if (sorted === 2) {
-      console.log('triggered');
       setSorted(0);
       setData([...data].sort((a, b) => a.id - b.id));
     } else {
@@ -41,82 +97,69 @@ const Table = () => {
     }
   };
 
+  // ==========  PAGINATION ==============
+
+  useEffect(() => {
+    setPageNums(Math.ceil(DATA?.length / showTables));
+  }, [showTables]);
+
+  const activeRef = useRef();
+
+  useEffect(() => {
+    const allPages = activeRef.current?.children;
+
+    for (let i = 0; i < allPages.length; i++) {
+      allPages[i].classList.remove('active');
+    }
+
+    const active = activeRef.current?.children[activePage - 1];
+
+    active.classList.add('active');
+
+    setResult(activePage * showTables);
+  }, [activePage]);
+
+  const headers = Object.keys(DATA[0]);
+
   return (
     <>
-      <div
-        style={{
-          display: 'flex',
-          width: '80%',
-          margin: 'auto',
-          justifyContent: 'space-between',
-        }}
-      >
+      <div className="tasks">
         {tasks?.map((task, i) => {
           return (
-            <div key={i} style={{ marginRight: '20px' }}>
-              <label htmlFor={task}>{task}</label>
-              <input type="checkbox" id={task} name={task} value={task} />
+            <div
+              className={`task  ${task.checked ? 'checked' : ''}`}
+              key={task.id}
+            >
+              <span>{task.task}</span>
+              <button onClick={() => checked(task.id)}>✅</button>
             </div>
           );
         })}
       </div>
-      <div
-        style={{
-          width: '20%',
-          margin: '20px auto',
-          background: 'pink',
-          padding: '20px',
-          textAlign: 'center',
-          fontSize: '20px',
-        }}
-      >
+      <div className="results">
         <span>
-          Show results {page + 20} of {DATA.length}
+          Show results {data.length !== 0 && data[0].id} -{' '}
+          {result > DATA.length ? DATA.length : result} of {DATA.length}
         </span>
         <br />
-        <button disabled={page === 0} onClick={() => setPage(p => p - 20)}>
-          Decrease ➖
-        </button>
-        <button
-          disabled={page + 20 === 100}
-          onClick={() => setPage(p => p + 20)}
-        >
-          Increase ➕
-        </button>
       </div>
 
-      <table
-        style={{
-          borderCollapse: 'collapse',
-          width: '100%',
-        }}
-      >
+      <table>
         <thead>
-          <tr
-            style={{
-              background: 'blue',
-            }}
-          >
+          <tr className="header-row">
             {headers.map((header, i) => (
-              <td
-                key={i}
-                style={{
-                  border: '1px solid white',
-                  padding: '10px',
-                }}
-              >
-                <li
-                  style={{
-                    color: 'white',
-                    width: '100%',
-                    padding: '0 10px',
-                    border: 'none',
-                    background: 'transparent',
-                    cursor: 'pointer',
-                  }}
-                  value={header}
-                >
+              <td key={i}>
+                <li>
                   {header.toUpperCase()}
+                  {header === 'first_name' && (
+                    <input
+                      type="text"
+                      autoFocus
+                      value={search}
+                      ref={searchRef}
+                      onChange={e => setSearch(e.target.value)}
+                    />
+                  )}
                   {canBeSorted.includes(header) && (
                     <button onClick={() => sortByToggle(header)}>sort</button>
                   )}
@@ -126,106 +169,60 @@ const Table = () => {
             ))}
           </tr>
         </thead>
+
         <tbody>
-          {data.map(cell => (
-            <tr key={cell.id}>
-              <td
-                style={{
-                  border: '1px solid black',
-                  padding: '10px',
-                  background: cell.id % 2 === 0 ? 'pink' : '',
-                }}
-              >
-                {cell.id}
-              </td>
-              <td
-                style={{
-                  border: '1px solid black',
-                  padding: '10px',
-                  background: cell.id % 2 === 0 ? 'pink' : '',
-                }}
-              >
-                {cell.first_name}
-              </td>
-              <td
-                style={{
-                  border: '1px solid black',
-                  padding: '10px',
-                  background: cell.id % 2 === 0 ? 'pink' : '',
-                }}
-              >
-                {cell.last_name}
-              </td>
-              <td
-                style={{
-                  border: '1px solid black',
-                  padding: '10px',
-                  background: cell.id % 2 === 0 ? 'pink' : '',
-                }}
-              >
-                {cell.email}
-              </td>
-              <td
-                style={{
-                  border: '1px solid black',
-                  padding: '10px',
-                  background: cell.id % 2 === 0 ? 'pink' : '',
-                }}
-              >
-                {cell.birth_date}
-              </td>
-              <td
-                style={{
-                  border: '1px solid black',
-                  padding: '10px',
-                  background: cell.id % 2 === 0 ? 'pink' : '',
-                }}
-              >
-                {cell.age}
-              </td>
-              <td
-                style={{
-                  border: '1px solid black',
-                  padding: '10px',
-                  background: cell.id % 2 === 0 ? 'pink' : '',
-                }}
-              >
-                {cell.phone}
-              </td>
-            </tr>
-          ))}
+          {data.map(cell => {
+            const datas = Object.values(cell);
+            return (
+              <tr key={cell.id}>
+                {datas.map((data, i) => (
+                  <td key={i}>{data}</td>
+                ))}
+              </tr>
+            );
+          })}
         </tbody>
         <tfoot>
-          <tr
-            style={{
-              background: 'blue',
-            }}
-          >
+          <tr>
             {headers.map((header, i) => (
-              <td
-                key={i}
-                style={{
-                  border: '1px solid white',
-                  padding: '10px',
-                }}
-              >
-                <li
-                  style={{
-                    color: 'white',
-                    width: '100%',
-                    padding: '0 10px',
-                    border: 'none',
-                    background: 'transparent',
-                    cursor: 'pointer',
-                  }}
-                >
-                  {header.toUpperCase()}
-                </li>
+              <td key={i}>
+                <li>{header.toUpperCase()}</li>
               </td>
             ))}
           </tr>
         </tfoot>
       </table>
+      {activePage === 1 && (
+        <div className="showTables">
+          <label htmlFor="">Show {showTables} </label> <br />
+          <input
+            type="range"
+            value={showTables}
+            max={DATA.length}
+            min={5}
+            onChange={changeShowTables}
+          />
+        </div>
+      )}
+      <section className="pagination">
+        {activePage !== 1 && (
+          <button onClick={() => setActivePage(p => p - 1)}>Previous ⏮</button>
+        )}
+        <div className="numbs" ref={activeRef}>
+          {Array.from({ length: pageNums }, (_, i) => (
+            <button
+              className="pageNum"
+              onClick={e => setActivePage(Number(e.target.innerText))}
+              key={i}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </div>
+        {activePage !== pageNums && (
+          <button onClick={() => setActivePage(p => p + 1)}>Next ⏭</button>
+        )}
+      </section>
     </>
   );
 };
