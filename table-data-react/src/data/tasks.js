@@ -1,9 +1,4 @@
-export const features =  [
-  {
-    task: 'groupHeaders',
-    id: 1,
-    checked: false,
-  },
+export const features = [
   {
     task: 'sorting',
     id: 2,
@@ -44,4 +39,4 @@ export const features =  [
     id: 9,
     checked: false,
   },
-]
+];
