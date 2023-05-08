@@ -1,10 +1,9 @@
-import BasicTable from './tables/BasicTable';
+import Table from "./components/Table";
+import Test from "./components/Test";
 
 function App() {
   return (
-    <div className="App">
-      <BasicTable />
-    </div>
+      <Table />
   );
 }
 
