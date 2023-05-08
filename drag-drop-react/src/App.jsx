@@ -1,7 +1,11 @@
-import TodoReactDND from './components/TodoReactDND';
+import TodoWithDragDrop from './components/Todo/Test';
 
 function App() {
-  return <TodoReactDND />;
+  return (
+    <div>
+      <TodoWithDragDrop />
+    </div>
+  );
 }
 
 export default App;
