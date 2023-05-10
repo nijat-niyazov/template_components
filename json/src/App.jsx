@@ -55,53 +55,73 @@ function App() {
   };
 
   /**
-   * ! 1#. filtering data by its property which is might be categories, prices, anthying
-   * * /products?category(property)=electronics(value)
+   * ! Order of getting data
+   * ? filter / sort / paginate /
+   * * users?age_gte=26&age_lte=35&_sort=age&_order=asc&page=1&_limit=3
    */
 
   /**
-   * ! 2#.sort data by its property which is might be prices, ages etc.
-   * * /products?_sort=price(property)
-   * ? in default its ascending order
-   * * /products?_sort=price(property)&_oder=desc
-   * it will be in descending order ⤴
+   * ! 1#. filtering data by its property eqaul to value
+   * * /products?category=electronics
+   * ?         (property) (value)
    */
 
   /**
-   * ! 3#. pagination
+   * ! 2#. pagination
    * * /products?_page=1
    * * /products?_page=1&_limit=2
    * ? it shows how much must be per page
+   */
+
+  /**
+   * ! 3#.sort data by its property which is might be prices, ages etc.
+   * * /products?_sort=price(property)
+   * ? in default its ascending order
    
+   * * /products?_sort=price(property)&_oder=desc
+   * ?    it will be in descending order ⤴
    */
 
   /**
-   * ! 4#. ranged data by its property which is might be prices,reviews etc
-   * * /products?price(property)_gte(greater than eqaul)=2000&price_lte(less than eqaul)=6000
+   * ! 4#.sort data by starting and ending or starting and limit.
+   * * /users?_start=3&_end=7
+   * ? it will start from 4th element because it takes index and will end on end property
+ 
+   * * /users?_start=3&_limit=4
+   * ? it will start from 4th element because it takes index
    */
 
   /**
-   * ! 5#. skip data by its property which is might be id etc
-   * * /products?id(property)_ne(not eqaul)=1
+   * ! 5#. ranged data by its property which is might be prices,reviews etc
+   * * /products?price_gte=2000&price_lte=6000
+   * ? (property) (greater than eqaul) (less than eqaul)
    */
 
   /**
-   * ! 6#. find data by its property which is might be category and starts with eqauled input
-   * * /products?price(property)_like=^1
+   * ! 6#. skip data by its property which is might be id etc
+   * * /products?id_ne=1
+   * ?  (property) (not eqaul)
    */
 
   /**
-   * ! 7#. find data by searching with given query(input) and will return any data that contains query
-   * * /products?q=ok(query)
+   * ! 7#. find data by its property contains value which is might be skills contains JAVASCRIPT
+   * * /users?skills_like=javascript
+   *  ? (property) equal (value)
    */
-  
+
   /**
-   * ! 8#. children resources of data 
+   * ! 8#. find data by searching with given query(input) and will return data that which any prop of data contains query
+   * * /products?q=ok
+   * ?         (query)
+   */
+
+  /**
+   * ! 9#. children resources of data
    * * /products?_embed=reviews(property)
    */
   /**
   
-  * ! 9#. parent resources of data 
+  * ! 10#. parent resources of data 
    * * /reviews?_expand=product(property)
    */
 
