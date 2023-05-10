@@ -1,7 +1,7 @@
-import TodoRedux from './Components/TodoRedux';
+import TodoCrudRedux from "./redux-crud-todo/Components/TodoCrudRedux";
 
 function App() {
-  return <TodoRedux />;
+  return <TodoCrudRedux />;
 }
 
 export default App;
