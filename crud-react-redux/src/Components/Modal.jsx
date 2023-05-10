@@ -1,11 +1,13 @@
 import { useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import EditItem from './EditItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeModal, modal } from '../redux/slices/mainSlice';
+import EditItem from './EditItem'
 
 const Modal = () => {
   const dispatch = useDispatch();
 
   const modalRef = useRef();
+  const modalOpened = useSelector(modal);
 
   const handleCloseModal = () => {
     dispatch(closeModal());
@@ -32,13 +34,18 @@ const Modal = () => {
     };
   }, []);
 
+  // console.log(modalOpened);
+
+  if (!modalOpened.opened) return null;
+
   return (
     <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
       <div
         ref={modalRef}
         className="bg-white p-8 rounded-lg flex w-1/3  justify-around "
       >
-        <EditItem />
+
+        <EditItem modal={modalOpened} />
       </div>
     </div>
   );

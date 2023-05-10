@@ -4,6 +4,7 @@ import { addItem, list } from '../redux/slices/mainSlice';
 
 const AddItem = () => {
   const [item, setItem] = useState('');
+  const [sorted, setSorted] = useState(false);
 
   const inputRef = useRef();
   const dispatch = useDispatch();
@@ -17,6 +18,14 @@ const AddItem = () => {
     setItem('');
     inputRef.current.focus();
   };
+
+  // const sort = () => {
+  //   setSorted(p => !p);
+  //   const sortedList = [
+  //     ...list.sort((a, b) => (sorted ? a.id - b.id : b.id - a.id)),
+  //   ];
+  //   dispatch() setList(sortedList);
+  // };
 
   
 

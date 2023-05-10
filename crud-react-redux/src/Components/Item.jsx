@@ -5,7 +5,7 @@ const Item = ({ act }) => {
   const dispatch = useDispatch();
 
   const handleOpenModal = () => {
-    dispatch(openModal(act));
+    dispatch(openModal({ opened: true, item: act }));
   };
 
   const handleDeleteItem = id => {

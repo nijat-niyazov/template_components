@@ -1,11 +1,15 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { edited, updateItem } from '../redux/slices/mainSlice';
+import { useDispatch } from 'react-redux';
+import { updateItem } from '../redux/slices/mainSlice';
 
-const EditItem = () => {
-  const som = useSelector(edited);
-  const [title, setTitle] = useState(som.item);
+const EditItem = ({ modal }) => {
+  // const modalOpened = useSelector(modal);
+  // console.log(modal);
+  const [edited, setEdited] = useState(modal.item);
+  // const [title, setTitle] = useState(som.item);
   const dispatch = useDispatch();
+
+  // console.log(edited);
 
   return (
     <>
@@ -13,11 +17,11 @@ const EditItem = () => {
         className="outline-black outline-1 outline-none mr-4 focus:outline-blue p-2 rounded-xl"
         type="text"
         autoFocus
-        value={title}
-        onChange={e => setTitle(e.target.value)}
+        value={edited.item}
+        onChange={e => setEdited(p => ({ ...p, item: e.target.value }))}
       />
       <button
-        onClick={() => dispatch(updateItem({ ...som, item: title }))}
+        onClick={() => dispatch(updateItem(edited))}
         className="bg-green-300 p-2 rounded-xl mr-[5px] text-black"
       >
         Update
