@@ -3,13 +3,8 @@ import { useDispatch } from 'react-redux';
 import { updateItem } from '../redux/slices/mainSlice';
 
 const EditItem = ({ modal }) => {
-  // const modalOpened = useSelector(modal);
-  // console.log(modal);
   const [edited, setEdited] = useState(modal.item);
-  // const [title, setTitle] = useState(som.item);
   const dispatch = useDispatch();
-
-  // console.log(edited);
 
   return (
     <>

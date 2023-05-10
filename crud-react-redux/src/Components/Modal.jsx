@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal, modal } from '../redux/slices/mainSlice';
-import EditItem from './EditItem'
+import EditItem from './EditItem';
 
 const Modal = () => {
   const dispatch = useDispatch();
@@ -34,8 +34,6 @@ const Modal = () => {
     };
   }, []);
 
-  // console.log(modalOpened);
-
   if (!modalOpened.opened) return null;
 
   return (
@@ -44,7 +42,6 @@ const Modal = () => {
         ref={modalRef}
         className="bg-white p-8 rounded-lg flex w-1/3  justify-around "
       >
-
         <EditItem modal={modalOpened} />
       </div>
     </div>

@@ -27,8 +27,6 @@ const AddItem = () => {
   //   dispatch() setList(sortedList);
   // };
 
-  
-
   return (
     <div className="flex flex-col sm:flex-row gap-[20px] justify-between">
       <form className="flex justify-between items-center sm:w-[80%]">

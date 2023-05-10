@@ -4,7 +4,6 @@ const initialState = {
   item: '',
   list: [],
   modal: { opened: false },
-  edited: null,
 };
 
 export const counterSlice = createSlice({
@@ -24,7 +23,6 @@ export const counterSlice = createSlice({
     openModal: (state, { payload }) => {
       console.log(payload);
       state.modal = payload;
-      // state.edited = payload;
     },
     closeModal: state => {
       state.modal = { opened: false };
