@@ -54,7 +54,7 @@ export const findItem = createAsyncThunk(
   async (query, { rejectWithValue }) => {
     try {
       const { data } = await mainApi.get('todos/?q=' + query);
-      // console.log(data);
+      console.log(data);
       return data
     } catch (err) {
       return rejectWithValue(err.message);

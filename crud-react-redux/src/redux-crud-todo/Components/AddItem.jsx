@@ -6,22 +6,17 @@ const AddItem = () => {
   const [item, setItem] = useState('');
   const [sorted, setSorted] = useState(false);
   const [search, setSearch] = useState('');
-  const [delayedVal, setDelayedVal] = useState('');
+  const inputRef = useRef();
+  const dispatch = useDispatch();
 
+  // Debounced functionalty ⤵
   useEffect(() => {
     let timerDelay = setTimeout(() => {
-      setDelayedVal(search);
+      dispatch(findItem(search));
     }, 500);
 
     return () => clearTimeout(timerDelay);
   }, [search]);
-
-  useEffect(() => {
-    dispatch(findItem(delayedVal));
-  }, [delayedVal]);
-
-  const inputRef = useRef();
-  const dispatch = useDispatch();
 
   const handleAddItem = e => {
     e.preventDefault();
