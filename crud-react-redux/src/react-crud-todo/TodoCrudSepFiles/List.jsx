@@ -1,0 +1,23 @@
+import Item from './Item';
+
+const ListOfItems = ({ list, setList,setModal }) => {
+
+  console.log('list rendered');
+
+
+  return (
+    <ul className="mt-[40px] flex flex-col gap-[20px] m-auto w-full">
+      {list?.length > 0 ? (
+        list.map(act => (
+          <Item setModal={setModal} list={list} setList={setList} key={act.id} {...act} />
+        ))
+      ) : (
+        <div className="flex justify-center items-center w-1/2 m-auto p-4 bg-gray-600 rounded-2xl text-white">
+          <h2 className=" cursor-grab active:cursor-grabbing">Nothing yet</h2>
+        </div>
+      )}
+    </ul>
+  );
+};
+
+export default ListOfItems;
