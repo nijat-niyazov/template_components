@@ -54,8 +54,8 @@ export const findItem = createAsyncThunk(
   async (query, { rejectWithValue }) => {
     try {
       const { data } = await mainApi.get('todos/?q=' + query);
-      console.log(data);
-      return data
+
+      return data;
     } catch (err) {
       return rejectWithValue(err.message);
     }
@@ -75,7 +75,6 @@ export const todoSlice = createSlice({
   initialState,
   reducers: {
     openModal: (state, { payload }) => {
-      console.log(payload);
       state.modal = payload;
     },
     closeModal: state => {
@@ -108,7 +107,6 @@ export const todoSlice = createSlice({
         state.modal = { opened: false };
       }),
       builder.addCase(findItem.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.list = payload;
       });
   },
