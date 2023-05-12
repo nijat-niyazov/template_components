@@ -35,13 +35,13 @@ const AddItem = () => {
   // };
 
   return (
-    <div className="flex flex-col sm:flex-row gap-[20px] justify-between">
-      <form className="flex justify-between items-center sm:w-[80%]">
+    <div className="flex flex-col md:flex-row gap-[20px] justify-between">
+      <form className="flex justify-between items-center md:w-[80%]">
         <input
           type="text"
           autoFocus
           ref={inputRef}
-          className="w-1/2 sm:w-inline p-2 rounded-xl"
+          className="w-1/2 md:w-inline p-2 rounded-xl"
           placeholder="item"
           value={item}
           onChange={e => setItem(e.target.value)}

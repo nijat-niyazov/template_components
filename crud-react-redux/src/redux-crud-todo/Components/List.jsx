@@ -5,15 +5,8 @@ import Item from './Item';
 const List = () => {
   const data = useSelector(list);
 
-  // const dispatch = useDispatch();
-
-
-  // useEffect(() => {
-  //   dispatch(fetchItems());
-  // }, []);
-
   return (
-    <ul className="mt-[40px] flex flex-col gap-[20px] m-auto w-full">
+    <ul className="mt-[40px] flex flex-col gap-[20px] m-auto w-full overflowY-scroll">
       {data?.length > 0 ? (
         data.map(act => {
           return <Item key={act.id} act={act} />;
