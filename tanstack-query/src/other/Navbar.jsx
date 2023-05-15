@@ -6,10 +6,10 @@ const Navbar = () => {
       <NavLink className="bg-blue-300 p-2 rounded-xl" to="/">
         Home
       </NavLink>
-      <NavLink to="sh" className="bg-blue-300 p-2 rounded-xl">
+      <NavLink to="heroes" className="bg-blue-300 p-2 rounded-xl">
         useEf Heroes
       </NavLink>
-      <NavLink to="rq_sh" className="bg-blue-300 p-2 rounded-xl">
+      <NavLink to="rq_heroes" className="bg-blue-300 p-2 rounded-xl">
         RQ HEROES
       </NavLink>
     </nav>
