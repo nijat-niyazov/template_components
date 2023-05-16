@@ -25,7 +25,6 @@ const useCountryHook = id => {
         ?.find(hero => hero.id === parseInt(id));
       return city ? city : undefined;
     },
-
     /*
      * Initial data will be represented instead of loading. Instead of seing loading we will see initialData that we send from initialData return, untill fetched is completed and on mount of component fetched data is will be updated and it will be seen in UI. For example we have cities data but it doesn't contain all info about one. When we click it will start with initialValues we send to DetailsPage and because of Details page has its own query and when fetched is  completed and get new data of its own query on details page it will be replaced with initialData.
      */

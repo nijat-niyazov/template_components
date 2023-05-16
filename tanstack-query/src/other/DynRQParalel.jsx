@@ -2,7 +2,7 @@ import { useQueries } from '@tanstack/react-query';
 import { fetchCountryById } from './api';
 
 const DynRQParalel = ({ cityIdies }) => {
-  /*
+   /*
    ? This might be usefull \ in scenario where we select array of multiple elements and want to maybe compare them. So we select an array and this array will return its own queryKey and function 
    */
 

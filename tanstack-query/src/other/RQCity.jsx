@@ -13,14 +13,6 @@ const RqCountry = () => {
     return <h2>{error.message}</h2>;
   }
 
-  // const { data: country } = useQuery({
-  //   queryKey:['countryById'],
-  //   queryFn:fetchCityById,
-  //   enabled:!!data.id
-  // })
-
-  console.log(data);
-
   return (
     <div className=" w-1/2 m-auto p-4 rounded-lg bg-blue-500 text-white text-center">
       {data.id}. {data.name} <br /> <br />

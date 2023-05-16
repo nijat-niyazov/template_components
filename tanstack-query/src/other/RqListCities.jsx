@@ -101,7 +101,7 @@ const RqListCities = () => {
   console.log({ isLoading, isFetching });
 
   if (isLoading) {
-    // isLoading becomes true when it fetches new updated Data isntedf of using cache
+    
     return (
       <h2 className="bg-yellow-300 text-center p-4 w-full mt-2 rounded-lg font-bold">
         Loading...

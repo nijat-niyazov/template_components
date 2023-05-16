@@ -5,7 +5,7 @@ const List = () => {
   const [allowed, setAllowed] = useState(false);
 
   const { data, isLoading, isError, isFetching, error, refetch } =
-    useCustomHookRQ('heroesOnClick',false);
+    useCustomHookRQ('heroesOnClick', false);
 
   console.log(data);
 
@@ -31,7 +31,7 @@ const List = () => {
   return (
     <div className="p-4 bg-yellow-300 mt-3">
       <button
-        onClick={()=>setAllowed(true)}
+        onClick={() => setAllowed(true)}
         className="block bg-green-400 p-2 rounded-xl mb-3 "
       >
         Refresh Data

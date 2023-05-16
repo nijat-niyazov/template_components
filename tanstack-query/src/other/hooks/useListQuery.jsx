@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchCities } from '../api';
 
 const useListQuery = () => {
+  
   return useQuery({
     queryKey: ['lists'],
     queryFn: fetchCities,

@@ -13,6 +13,7 @@ export const useCustomHookRQ = (query, booelan = true) => {
     //   const names = data.map(hero => hero.name);
     //   return names;
     // },
+    
   });
 };
 

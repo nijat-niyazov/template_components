@@ -4,7 +4,7 @@ import { fetchTopicsByChannelId, fetchUserByEmail } from './api';
 const DependendQueries = ({ email }) => {
   /*
   ? This is used for depending array we get data from one query and then other one is enabled based on data we need to have from first fetch
-   */
+  */
 
   const { data: user } = useQuery({
     queryKey: ['userMail', email],
