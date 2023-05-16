@@ -1,46 +1,162 @@
 {
-  "careers": [
+  "products": [
     {
       "id": 1,
-      "title": "Senior React Developer",
-      "salary": 50000,
-      "location": "London, UK"
+      "title": "Product 1",
+      "category": "electronics",
+      "price": 4000,
+      "description": "This is description about product 1",
+      "discount": {
+        "type": "shipping",
+        "fee": {
+          "includes": "yes"
+        }
+      }
     },
     {
       "id": 2,
-      "title": "Plumber",
-      "salary": 40000,
-      "location": "Bowser's Castle"
+      "title": "Product 2",
+      "category": "electronics",
+      "price": 2000,
+      "description": "This is description about product 2",
+      "discount": {
+        "type": "point",
+        "fee": {
+          "includes": "yes"
+        }
+      }
     },
     {
       "id": 3,
-      "title": "Gym Leader",
-      "salary": 75000,
-      "location": "Kanto Region"
+      "title": "Product 3",
+      "category": "books",
+      "price": 1000,
+      "description": "This is description about product 3"
     },
     {
       "id": 4,
-      "title": "Vue Developer",
-      "salary": 40000,
-      "location": "Liverpool, UK"
+      "title": "Product 4",
+      "category": "fitness",
+      "price": 3000,
+      "description": "This is description about product 4"
     },
     {
       "id": 5,
-      "title": "Tutorial Maker",
-      "salary": 35000,
-      "location": "Manchester, UK"
+      "title": "Product 5",
+      "category": "fitness",
+      "price": 4000,
+      "description": "This is description about product 5"
     },
     {
       "id": 6,
-      "title": "Website Manager",
-      "salary": 50000,
-      "location": "Berlin, Germany"
+      "title": "Product 6",
+      "category": "gardening",
+      "price": 5000,
+      "description": "This is description about product 6"
     },
     {
       "id": 7,
-      "title": "Food Tester",
-      "salary": 30000,
-      "location": "London, UK"
+      "title": "Product 7",
+      "category": "furniture",
+      "price": 6000,
+      "description": "This is description about product 7"
+    },
+    {
+      "id": 8,
+      "title": "Product 8",
+      "category": "furniture",
+      "price": 7000,
+      "description": "This is description about product 8"
+    },
+    {
+      "id": 9,
+      "title": "Product 9",
+      "category": "accessories",
+      "price": 4000,
+      "description": "This is description about product 9"
+    },
+    {
+      "id": 10,
+      "title": "Product 10",
+      "category": "electronics",
+      "price": 3000,
+      "description": "This is description about product 10",
+      "discount": {
+        "type": "shipping",
+        "fee": {
+          "includes": "noo"
+        }
+      }
+    }
+  ],
+  "users": [
+    { "id": 1, "name": "Nijat" },
+    { "id": 2, "name": "Ibo" },
+    { "id": 3, "name": "Elsad" },
+    { "id": 4, "name": "Vahid" },
+    { "id": 5, "name": "Muto" },
+    { "id": 6, "name": "Ayxan" }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "rating": 3,
+      "comment": "Review 1 for product id 1",
+      "productId": 1
+    },
+    {
+      "id": 2,
+      "rating": 4,
+      "comment": "Review 2 for product id 1",
+      "productId": 1
+    },
+    {
+      "id": 3,
+      "rating": 4,
+      "comment": "Review 3 for product id 1",
+      "productId": 1
+    },
+    {
+      "id": 4,
+      "rating": 5,
+      "comment": "Review 1 for product id 2",
+      "productId": 2
+    },
+    {
+      "id": 5,
+      "rating": 3,
+      "comment": "Review 1 for product id 3",
+      "productId": 3
+    },
+    {
+      "id": 6,
+      "rating": 3,
+      "comment": "Review 1 for product id 5",
+      "productId": 5
+    },
+    {
+      "id": 7,
+      "rating": 3,
+      "comment": "Review 1 for user id 1",
+      "userId": 1
+    },
+    {
+      "id": 8,
+      "rating": 3,
+      "comment": "Review 1 for user id 3",
+      "userId": 3
+    },
+    {
+      "id": 7,
+      "rating": 3,
+      "comment": "Review 1 for user id 1",
+      "userId": 4
+    },
+    {
+      "id": 8,
+      "rating": 3,
+      "comment": "Review 1 for user id 3",
+      "postId": 5
     }
   ]
 }

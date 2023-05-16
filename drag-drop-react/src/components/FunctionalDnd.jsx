@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 function FunctionalDnd() {
-  console.log('okay');
   const [widgets, setwidgets] = useState(['Widget A', 'Widget B', 'Widget C']);
   const [selected, setSelected] = useState([]);
 
@@ -19,8 +18,6 @@ function FunctionalDnd() {
 
   // we want to remove style from element when we are done with DND
   const endDrag = e => {
-    console.log(e.target);
-    e.dataTransfer.setData('widgetType', e.target.innerText);
     e.target.classList.remove(
       'opacity-50',
       'border',
@@ -75,7 +72,6 @@ function FunctionalDnd() {
               {widget}
             </div>
           ))}
-          <div></div>
         </section>
       </article>
     </div>

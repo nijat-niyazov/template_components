@@ -1,0 +1,83 @@
+.container {
+  margin-left: 10px;
+}
+.container .after-before {
+  background-color: yellow;
+}
+.container .after-before::after {
+  content: "  after " attr(data-first);
+  background-color: blue;
+  color: white;
+}
+.container .after-before::before {
+  content: "before " attr(class);
+  background-color: red;
+  color: white;
+}
+.container a[target=_blank] {
+  background-color: gray;
+}
+.container a[target=_blank]::after {
+  content: " (" attr(href) ") ";
+}
+.container p::selection {
+  background-color: red;
+}
+.container span::selection {
+  background-color: aqua;
+}
+.container .list-container:first-child {
+  background-color: yellow;
+  margin-left: 20px;
+}
+.container .list-container:first-child ul:first-child {
+  background-color: green;
+}
+.container .list-container:first-child li:first-child {
+  background-color: red;
+}
+.container .list-container:first-child li:last-child {
+  background-color: gray;
+}
+.container .list-container .list:last-of-type {
+  color: rgb(91, 11, 171);
+}
+.container .nth-container {
+  margin-left: 20px;
+}
+.container .nth-container div:nth-of-type(3) {
+  background: red;
+}
+.container .hover button:hover + ul {
+  display: none;
+}
+.container .form input[type=radio]:checked + span {
+  color: red;
+}
+.container .form .checkbox:checked + .button::after {
+  transition: all 0.5s;
+  content: attr(data-hide);
+}
+.container .form .checkbox:checked ~ .box {
+  transition: all 0.5s;
+  display: none;
+}
+.container .form .button::after {
+  transition: all 0.5s;
+  content: attr(data-show);
+}
+.container .focus button:focus {
+  background: red;
+  outline: none;
+}
+.container .focus input:focus {
+  color: red;
+  border-color: lime;
+  outline: none;
+}
+.container .focus ul:focus-within {
+  background-color: lime;
+}
+.container .only-child li:only-child {
+  background: red;
+}/*# sourceMappingURL=afterbefore.css.map */

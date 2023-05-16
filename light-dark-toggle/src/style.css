@@ -1,0 +1,161 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+a {
+  color: #8e05c2;
+}
+
+.app {
+  background-color: #ffffff;
+  color: #000;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 0.8rem;
+  transition: all 0.5s;
+}
+.app .login h1 {
+  text-align: center;
+  margin: -6rem 0 2rem;
+  font-size: 48px;
+}
+.app .login h2 {
+  text-align: center;
+  padding: 1rem;
+}
+.app .login .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  width: 300px;
+  margin: auto;
+  box-shadow: 0px 0px 12px #333;
+  border-radius: 8px;
+  background-color: #fff;
+}
+.app .login .container .top {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.app .login .container .top i {
+  font-size: 1rem;
+}
+.app .login .container .divider {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #000;
+  line-height: 0.1rem;
+  margin: 2rem 0;
+}
+.app .login .container .divider span {
+  padding: 0 10px;
+  background-color: #fff;
+}
+.app .login .container form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.app .login .container form button {
+  background-color: #8e05c2;
+  border: 1px solid #8e05c2;
+  color: #fff;
+  margin: 16px 0;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.app .login .container form label {
+  margin: 8px 0;
+  font-weight: 600;
+}
+.app .login .container form input {
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background: #ffffff;
+  color: #000;
+}
+.app .login .container form .remember {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.app .login .container form .remember input[type=checkbox]:checked {
+  margin: 0;
+  padding: 0;
+}
+.app .login .container form .remember p {
+  padding-left: 8px;
+}
+.app .login .container .bottom {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 0.8rem;
+}
+.app .login .container .create {
+  font-size: 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+.app .login .theme-toggle {
+  text-align: center;
+}
+.app .login .theme-toggle button {
+  background-color: #8e05c2;
+  border: 1px solid #8e05c2;
+  color: #fff;
+  margin: 16px 0;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.app.dark {
+  background-color: #000;
+  color: #fff;
+}
+.app.dark .container {
+  box-shadow: 0px 0px 12px #808080;
+  background-color: #191919;
+}
+.app.dark .container .divider {
+  border-color: #fff;
+}
+.app.dark .container .divider span {
+  background-color: #191919;
+}
+.app.dark .container button {
+  background-color: #8e05c2;
+  color: #fff;
+}
+.app.dark .container input {
+  border-color: #808080;
+  background: #000;
+  color: #fff;
+}
+.app.dark .theme-toggle button {
+  background-color: #8e05c2;
+  border-color: #8e05c2;
+  color: #fff;
+}
+
+@media screen and (max-width: 478px) {
+  .login {
+    width: 95%;
+  }
+}/*# sourceMappingURL=style.css.map */

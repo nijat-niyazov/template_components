@@ -1,0 +1,63 @@
+{
+  "cities": [
+    {
+      "name": "Baku",
+      "id": 1
+    },
+    {
+      "name": "Madrid",
+      "id": 2
+    },
+    {
+      "name": "New-York",
+      "id": 3
+    }
+  ],
+  "countries": [
+    {
+      "name": "Baku",
+      "capitalOf": "Azerbaijan",
+      "population": 3000000,
+      "id": 1
+    },
+    {
+      "name": "Madrid",
+      "capitalOf": "Espanyol",
+      "population": 5000000,
+      "id": 2
+    },
+    {
+      "name": "New-York",
+      "capitalOf": "USA",
+      "population": 9000000,
+      "id": 3
+    }
+  ],
+
+  "friends": [
+    {
+      "id": 1,
+      "name": "Ibrahim Atayev"
+    },
+    {
+      "id": 2,
+      "name": "Mutallib Alizade"
+    },
+    {
+      "id": 3,
+      "name": "Ulvi Ismayilov"
+    }
+  ],
+  "users": [
+    {
+      "id": "nidzhat.niyazov@gmail.com",
+      "channelId": "portal"
+    }
+  ],
+  "channels": [
+    {
+      "id": "portal",
+      "topics": ["philosophy", "art", "science"]
+    }
+  ]
+}

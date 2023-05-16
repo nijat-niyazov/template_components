@@ -13,7 +13,7 @@ const ReRender = () => {
 
   const changeName = () => {
     // ❌
-    // object.name = 'Ibrahim';
+    // object.name = 'Ibrahim'; 
     // setObject(object);
     // setArray(array.sort((a, b) => b - a));
     // ✅

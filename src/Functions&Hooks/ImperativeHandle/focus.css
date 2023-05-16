@@ -1,0 +1,35 @@
+header {
+  width: 100%;
+  background: #ce2121;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: relative;
+  height: 80px;
+}
+header button {
+  border: none;
+  transition: all 0.3s;
+}
+header button:focus {
+  transform: scale(1.2);
+  outline: #ce2121;
+}
+header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header .nav-components {
+  display: flex;
+  gap: 40px;
+  font-size: 20px;
+}
+header .nav-components li {
+  list-style: none;
+}
+header .nav-components li a {
+  color: wheat;
+  text-decoration: none;
+}/*# sourceMappingURL=focus.css.map */

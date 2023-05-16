@@ -1,11 +1,13 @@
-import Grid2 from "./grid/Grid2";
+import DatePick from './datePicker/DatePicker';
 
 function App() {
   return (
     <>
       {/* <Form /> */}
       {/* <ReRender /> */}
-      <Grid2 />
+      {/* <Card /> */}
+      {/* <PaymentForm /> */}
+      <DatePick />
     </>
   );
 }

@@ -32,11 +32,6 @@ const AnotherForm = () => {
     console.log(form);
   };
 
-  // const obj = { a: 1, b: 2, c: 3 };
-
-  // console.log({ ...obj, ['a']: 'dynamic' });
-  // console.log({ ...obj, b: 'non dynamic' });
-
   return (
     <form onSubmit={onSubmit}>
       {inputs?.map((key, i) => {
