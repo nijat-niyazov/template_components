@@ -1,0 +1,60 @@
+{
+  "users": [
+    {
+      "name": "User1",
+      "id": "123456",
+      "projects": [
+        {
+          "name": "Project1",
+          "status": "InProgress"
+        },
+        {
+          "name": "Project2",
+          "status": "Completed"
+        }
+      ]
+    },
+    {
+      "name": "User2",
+      "id": "789012",
+      "projects": [
+        {
+          "name": "Project3",
+          "status": "InProgress"
+        },
+        {
+          "name": "Project4",
+          "status": "Pending"
+        }
+      ]
+    },
+    {
+      "name": "User3",
+      "id": "345678",
+      "projects": [
+        {
+          "name": "Project5",
+          "status": "InProgress"
+        },
+        {
+          "name": "Project6",
+          "status": "Completed"
+        }
+      ]
+    },
+    {
+      "name": "User4",
+      "id": "901234",
+      "projects": [
+        {
+          "name": "Project2",
+          "status": "Pending"
+        },
+        {
+          "name": "Project7",
+          "status": "InProgress"
+        }
+      ]
+    }
+  ]
+}
