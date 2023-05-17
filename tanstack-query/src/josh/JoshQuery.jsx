@@ -3,7 +3,6 @@ import React from 'react';
 import { mainApi } from '../Components/api';
 
 const JoshQuery = () => {
-  console.log('okay');
   const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
   const { data, isLoading } = useQuery({
