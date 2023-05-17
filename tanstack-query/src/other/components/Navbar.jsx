@@ -18,6 +18,12 @@ const Navbar = () => {
       <NavLink to="dependent_rq" className="bg-blue-300 p-2 rounded-xl">
         Dependent Queries
       </NavLink>
+      <NavLink to="paginated_rq" className="bg-blue-300 p-2 rounded-xl">
+        Paginated Queries
+      </NavLink>
+      <NavLink to="infinite_rq" className="bg-blue-300 p-2 rounded-xl">
+        Load More(Infinite) Queries
+      </NavLink>
       <NavLink
         to="list_cities"
         className="bg-pink-600 opacity-50 p-2 rounded-xl"

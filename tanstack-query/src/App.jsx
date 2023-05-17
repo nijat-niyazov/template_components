@@ -4,13 +4,15 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
+import DependendQueries from './other/DependendQueries';
 import DynRQParalel from './other/DynRQParalel';
+import InfiniteRQ from './other/InfiniteRQ';
+import PaginatedRQ from './other/PaginatedRQ';
 import ParallelQueries from './other/ParallelQueries';
 import RqCity from './other/RQCity';
 import RqListCities from './other/RqListCities';
 import Layout from './other/layouts/Layout';
 import Home from './other/pages/Home';
-import DependendQueries from './other/DependendQueries';
 // import Home from './other/Home';
 // import Layout from './other/Layout';
 // import List from './other/List';
@@ -38,6 +40,8 @@ function App() {
           path="dependent_rq"
           element={<DependendQueries email={'nidzhat.niyazov@gmail.com'} />}
         />
+        <Route path="paginated_rq" element={<PaginatedRQ />} />
+        <Route path="infinite_rq" element={<InfiniteRQ />} />
       </Route>
     )
   );

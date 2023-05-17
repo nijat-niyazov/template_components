@@ -1,0 +1,68 @@
+import { useQuery } from '@tanstack/react-query';
+import React from 'react';
+
+const TestQueryComponent = () => {
+  const {
+    data,
+    dataUpdatedAt,
+    error,
+    errorUpdateCount,
+    errorUpdatedAt,
+    failureCount,
+    failureReason,
+    fetchStatus,
+    isError,
+    isFetched,
+    isFetchedAfterMount,
+    isFetching,
+    isInitialLoading,
+    isLoading,
+    isLoadingError,
+    isPaused,
+    isPlaceholderData,
+    isPreviousData,
+    isRefetchError,
+    isRefetching,
+    isStale,
+    isSuccess,
+    refetch,
+    remove,
+    status,
+  } = useQuery({
+    useErrorBoundary,
+    cacheTime,
+    context,
+    behavior,
+    enabled,
+    getNextPageParam,
+    getPreviousPageParam,
+    initialData,
+    initialDataUpdatedAt,
+    isDataEqual,
+    keepPreviousData,
+    meta,
+    networkMode,
+    notifyOnChangeProps,
+    placeholderData,
+    queryFn,
+    queryHash,
+    queryKey,
+    queryKeyHashFn,
+    refetchInterval,
+    refetchIntervalInBackground,
+    refetchOnMount,
+    refetchOnReconnect,
+    refetchOnWindowFocus,
+    retry,
+    retryDelay,
+    retryOnMount,
+    select,
+    staleTime,
+    suspense,
+    structuralSharing,
+  });
+
+  return <div>TestQueryComponent</div>;
+};
+
+export default TestQueryComponent;
