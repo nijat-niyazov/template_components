@@ -66,20 +66,22 @@ function App() {
    * ?         (property) (value)
    */
 
-  /**
-   * ! 2#. pagination
-   * * /products?_page=1
-   * * /products?_page=1&_limit=2
-   * ? it shows how much must be per page
+  /*
+    ! 2#. pagination
+    * /products?_page=1
+    * /products?_page=1&_limit=2
+    ? it shows how much must be per page
    */
 
-  /**
-   * ! 3#.sort data by its property which is might be prices, ages etc.
-   * * /products?_sort=price(property)
-   * ? in default its ascending order
-   
-   * * /products?_sort=price(property)&_oder=desc
-   * ?    it will be in descending order ⤴
+  /*
+    ! 3#.sort data by its property which is might be prices, ages etc.
+    * /products?_sort=price
+    TODO            (property)
+    ? in default its ascending order
+    
+    * /products?_sort=price&_oder=desc
+    TODO           (property)
+    ? it will be in descending order ⤴
    */
 
   /**
@@ -94,23 +96,23 @@ function App() {
   /**
    * ! 5#. ranged data by its property which is might be prices,reviews etc
    * * /products?price_gte=2000&price_lte=6000
-   * ? (property) (greater than eqaul) (less than eqaul)
+   * TODO (property) (greater than eqaul) (less than eqaul)
+   */
+
+  /*
+    ! 6#. skip data by its property which is might be id etc
+    * /products?id_ne=1
+    ?  (property) (not eqaul)
+   */
+
+  /*
+    ! 7#. find data with spesific category contains query. for example skills contains JAVASCRIPT
+    * /users?skills_like=javascript
+    TODO   (property)  (value)
    */
 
   /**
-   * ! 6#. skip data by its property which is might be id etc
-   * * /products?id_ne=1
-   * ?  (property) (not eqaul)
-   */
-
-  /**
-   * ! 7#. find data by its property contains value which is might be skills contains JAVASCRIPT
-   * * /users?skills_like=javascript
-   *  ? (property) equal (value)
-   */
-
-  /**
-   * ! 8#. find data by searching with given query(input) and will return data that which any prop of data contains query
+   * ! 8#. find data by searching with given query(input) and will return data that which any category of data contains query
    * * /products?q=ok
    * ?         (query)
    */
