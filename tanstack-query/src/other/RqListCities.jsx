@@ -1,26 +1,20 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { deleteCity, postNewCity, updateCity } from './api';
+import { postNewCity } from './api';
 import { useCitiesHookRQ } from './hooks/useCustomHookRQ';
 
 const RqListCities = () => {
   const [name, setName] = useState('');
   const [capital, setCapital] = useState('');
 
-  const { data, isLoading, isError, error, refetch, isFetching } =
+  const { data, isLoading, isError, error, refetch } =
     useCitiesHookRQ('citiesOnMount');
-
-  // console.log({ isLoading, isFetching });
 
   const queryClient = useQueryClient();
   // this is client we created on main.jsx
 
   const addNewCity = useMutation({
-    mutationFn: postNewCity,
-
-    // #1. ✅
-
     // onSuccess: ({ data }) => {
     //   // // #1. ✅ we adding new city and then refetch changed data
     //   // queryClient.invalidateQueries('cities');
@@ -45,7 +39,11 @@ const RqListCities = () => {
     //   setCapital('');
     //   setName('');
     // },
+    /*
+     * First way of adding ⤴
+     */
 
+    mutationFn: postNewCity,
     onMutate: async city => {
       await queryClient.cancelQueries(['cities']);
       /*
@@ -87,16 +85,6 @@ const RqListCities = () => {
     },
   });
 
-  // ============= EVENTS   ==============
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    const city = { name, capital };
-
-    addNewCity.mutate(city);
-    // ! This mutate sends data to api because of mutationFN of addNewCity
-  };
-
   const deleteAddedCity = useMutation({
     mutationFn: deleteCity,
     onMutate: async id => {
@@ -118,10 +106,6 @@ const RqListCities = () => {
       queryClient.invalidateQueries(['cities']);
     },
   });
-
-  const handleDelete = id => {
-    deleteAddedCity.mutate(id);
-  };
 
   const updateCityQuery = useMutation({
     mutationFn: updateCity,
@@ -153,6 +137,20 @@ const RqListCities = () => {
       queryClient.invalidateQueries(['cities']);
     },
   });
+
+  // ============= EVENTS   ==============
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const city = { name, capital };
+
+    addNewCity.mutate(city);
+    // ! This mutate sends data to api because of mutationFN of addNewCity
+  };
+
+  const handleDelete = id => {
+    deleteAddedCity.mutate(id);
+  };
 
   const handleUpdate = id => {
     const city = { name: 'paris', capital: 'france', id };
