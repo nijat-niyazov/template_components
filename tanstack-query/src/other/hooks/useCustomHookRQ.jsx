@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { fetchCities, postNewCity } from '../api';
 
-export const useCustomHookRQ = () => {
+export const useCitiesHookRQ = () => {
   return useQuery({
     queryKey: ['cities'],
     queryFn: fetchCities,

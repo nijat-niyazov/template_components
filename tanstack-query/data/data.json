@@ -1,8 +1,19 @@
 {
   "cities": [
     {
-      "name": "Baku",
+      "name": "baku",
+      "capital": "azerbaijan",
       "id": 1
+    },
+    {
+      "name": "tehran",
+      "capital": "iran",
+      "id": 2
+    },
+    {
+      "name": "paris",
+      "capital": "france",
+      "id": 3
     }
   ],
   "countries": [

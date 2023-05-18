@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
-import { fetchColors } from './api';
+import { fetchColorsWithPagination } from './api';
 
 const PaginatedRQ = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -16,8 +16,8 @@ const PaginatedRQ = () => {
     /*
      * We have to give dynamic query for key because it will have new data and we need cache this query with givin property
      */
-    
-    queryFn: fetchColors,
+
+    queryFn: fetchColorsWithPagination,
     keepPreviousData: true,
     /*
      * It used for displaying previous data while new updated data comes instead of seing loading for new requested data. For example in scenario where we paginate datas when we change data instead of seing loading while changed pages data comes, we see previous one. Once new data is fetched it will replace with previous data

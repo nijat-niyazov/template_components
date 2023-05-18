@@ -6,7 +6,7 @@ const useCountryHook = id => {
   // client we created on main.jsx which will access to queries on react-query devtolls
 
   return useQuery({
-    queryKey: ['countries', id],
+    queryKey: ['country', id],
     /*
     ! ID must be attached to key for indiviudal query
     */
@@ -20,7 +20,7 @@ const useCountryHook = id => {
 
     initialData: () => {
       const city = queryClient
-        .getQueryData(['citiesOnMount'])
+        .getQueryData(['cities'])
         /*
          * this key must be eqaul to key in react querydevtool queryKey we want to getData of
          */

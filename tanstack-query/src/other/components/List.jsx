@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useCustomHookRQ from './hooks/useCustomHookRQ';
+import useCustomHookRQ from '../hooks/useCustomHookRQ';
 
 const List = () => {
   const [allowed, setAllowed] = useState(false);

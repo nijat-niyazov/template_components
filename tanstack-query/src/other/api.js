@@ -38,7 +38,7 @@ export const fetchTopicsByChannelId = async ({ queryKey }) => {
   return data;
 };
 
-export const fetchColors = async ({ queryKey }) => {
+export const fetchColorsWithPagination = async ({ queryKey }) => {
   let pageNum = queryKey[1];
   // const { data } = await mainApi.get(`/colors?_page=${pageNum}&_limit=2`);
 
@@ -72,9 +72,8 @@ export const fetchColorsWithInfiniteQuery = async ({ pageParam = 1 }) => {
 };
 
 export const fetchCityById = async id => {
-  // console.log(id);
   const { data } = await mainApi.get('/cities/' + id);
-  // console.log(data);
+
   return data;
 };
 
@@ -82,12 +81,11 @@ export const postNewCity = city => {
   return mainApi.post('/cities', city);
 };
 
-export const deleteCity = ({ id }) => {
-  console.log(id);
+export const deleteCity = id => {
   return mainApi.delete('/cities/' + id);
 };
 
-export const updateCity = ({ id, name }) => {
-  console.log(id, name);
-  return mainApi.delete('/cities/' + id, { name, id });
+export const updateCity = data => {
+  console.log(data);
+  return mainApi.patch('/cities/' + data.id, data);
 };

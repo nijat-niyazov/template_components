@@ -2,20 +2,16 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { deleteCity, postNewCity, updateCity } from './api';
-import { useCustomHookRQ } from './hooks/useCustomHookRQ';
+import { useCitiesHookRQ } from './hooks/useCustomHookRQ';
 
 const RqListCities = () => {
   const [name, setName] = useState('');
   const [capital, setCapital] = useState('');
 
   const { data, isLoading, isError, error, refetch, isFetching } =
-    useCustomHookRQ('citiesOnMount');
+    useCitiesHookRQ('citiesOnMount');
 
   // console.log({ isLoading, isFetching });
-
-  // const { mutate } = useCustomAddCity();
-  // /*
-  // */
 
   const queryClient = useQueryClient();
   // this is client we created on main.jsx
@@ -23,108 +19,148 @@ const RqListCities = () => {
   const addNewCity = useMutation({
     mutationFn: postNewCity,
 
-    onSuccess: ({ data }) => {
-      // // 1.# ✅ we adding new city and then refetch changed data
-      // queryClient.invalidateQueries('cities');
+    // #1. ✅
+
+    // onSuccess: ({ data }) => {
+    //   // // #1. ✅ we adding new city and then refetch changed data
+    //   // queryClient.invalidateQueries('cities');
+    //   /*
+    //   * This invalidates query and it makes react query refetch in background again for that query
+    //   ! this query must be same with fetched query or with query of data we got
+    //    */
+
+    //   // console.log(data);
+
+    //   queryClient.setQueryData(['cities'], oldQueryDataInDevTools => {
+    //     /*
+    //      * setQueryData updates query cache
+    //      */
+
+    //     return [data, ...oldQueryDataInDevTools];
+    //     /*
+    //      * and returned data of this function will be setted to query
+    //      */
+    //   });
+
+    //   setCapital('');
+    //   setName('');
+    // },
+
+    onMutate: async city => {
+      await queryClient.cancelQueries(['cities']);
       /*
-      * This invalidates query and it makes react query refetch in background again for that query
-      ! this query must be same with fetched query or with query of data we got
+      ! it has to be async and awaited
+       * Firstly we cancel any potential refetches with cities to be sure they don't overwrite our optimistic update, which means cancel all fetch request on our given query while mutation is going.. write this code because we want to keep previousData before make any update, it will help to roll back our data in case of mutation fails
        */
 
-      console.log(data);
+      const { capital, name } = city;
 
-      queryClient.setQueryData(['cities'], oldQueryDataInDevTools => {
-        /*
-         * setQueryData updates query cache
-         */
+      const previousData = queryClient.getQueryData(['cities']);
+      /*
+      ! This has to be written before updating because we want to keep previousData before updating in case of mutation fails 
+      */
 
-        return [data, ...oldQueryDataInDevTools];
-        /*
-         * and returned data of this function will be setted to query
-         */
+      queryClient.setQueryData(['cities'], oldDataValuesOnDevTools => {
+        return [
+          { id: oldDataValuesOnDevTools.length + 1, capital, name },
+          ...oldDataValuesOnDevTools,
+        ];
       });
+      /*
+       * We've updated our list with adding new one and joined other spreaded components
+       */
 
+      return {
+        previousData,
+      };
+      /*
+         ! This has to be written because we need to reach this data onError if  any problem on update happened or mutation failed 
+         */
+    },
+    onError: (_error, _city, context) => {
+      queryClient.setQueryData(['cities'], context.previousData);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries('cities');
       setCapital('');
       setName('');
     },
   });
 
-  const deleteAddedCity = useMutation({
-    mutationFn: data => {
-      console.log(data);
-      return deleteCity(data);
-    },
-
-    onMutate: data => {
-      console.log(data);
-      queryClient.setQueryData(['cities'], oldQueryDataInDevTools => {
-        return oldQueryDataInDevTools.filter(city => city.id !== data);
-      });
-    },
-    onSuccess: ({ data }) => {
-      console.log(data);
-    },
-    onError: ({ data }) => {
-      console.log(data);
-    },
-    //   // 1.# ✅
-    //   // queryClient.invalidateQueries('cities');
-
-    //   queryClient.setQueryData(['cities'], oldQueryDataInDevCache => {
-    //     // console.log(oldQueryDataInDevCache, data);
-    //   });
-    // },
-  });
-
-  const updateCityQuery = useMutation({
-    mutationFn: data => {
-      console.log(data);
-      return updateCity(data);
-    },
-    onSuccess: data => {
-      console.log(data);
-      // queryClient.setQueryData(['cities', { id: 6 }], data);
-    },
-  });
-
-  const updateBtn = id => {
-    updateCityQuery.mutate({
-      id: id,
-      name: 'Updated City',
-    });
-  };
-
-  // const { data: city, error: cityError } = useQuery({
-  //   queryKey: ['city', 6],
-  //   queryFn: () => fetchCityById(6),
-  // });
-
-  // const deleteAddedCity = useMutation(deleteCity, {
-  //   onSuccess: data => {
-  //     console.log(data);
-
-  //     queryClient.setQueryData(['cities'], oldQueryDataInDevCache => {
-  //       // console.log(oldQueryDataInDevCache, data);
-  //     });
-  //   },
-  // });
-
   // ============= EVENTS   ==============
 
   const handleSubmit = e => {
     e.preventDefault();
-    const city = { name, id: capital };
+    const city = { name, capital };
 
     addNewCity.mutate(city);
     // ! This mutate sends data to api because of mutationFN of addNewCity
   };
 
+  const deleteAddedCity = useMutation({
+    mutationFn: deleteCity,
+    onMutate: async id => {
+      await queryClient.cancelQueries(['cities']);
+      const prevData = queryClient.getQueryData(['cities']);
+
+      queryClient.setQueryData(['cities'], oldDataValuesOnDevTools => {
+        return oldDataValuesOnDevTools.filter(city => city.id !== id);
+      });
+      return {
+        prevData,
+      };
+    },
+
+    onError: (_error, _id, context) => {
+      queryClient.setQueryData(['cities'], context.prevData);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries(['cities']);
+    },
+  });
+
   const handleDelete = id => {
-    deleteAddedCity.mutate({ id });
+    deleteAddedCity.mutate(id);
+  };
+
+  const updateCityQuery = useMutation({
+    mutationFn: updateCity,
+
+    onMutate: async data => {
+      await queryClient.cancelQueries(['cities']);
+      console.log(data);
+
+      const prevData = queryClient.getQueryData(['cities']);
+
+      queryClient.setQueryData(['cities'], oldDataValuesOnDevTools => {
+        console.log(oldDataValuesOnDevTools);
+        const updatedIndex = oldDataValuesOnDevTools.findIndex(
+          city => city.id === data.id
+        );
+
+        oldDataValuesOnDevTools.splice(updatedIndex, 1, data);
+        console.log(updatedIndex, oldDataValuesOnDevTools);
+      });
+
+      return {
+        prevData,
+      };
+    },
+    onError: (_error, _data, context) => {
+      queryClient.setQueryData(['cities'], context.prevData);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries(['cities']);
+    },
+  });
+
+  const handleUpdate = id => {
+    const city = { name: 'paris', capital: 'france', id };
+    updateCityQuery.mutate(city);
   };
 
   return (
-    <div className="p-4 bg-pink-300 mt-3">
+    <div className="p-4 bg-pink-300 mt-3 rounded-lg">
       {isLoading && (
         <h2 className="bg-yellow-300 text-center p-4 w-full mt-2 rounded-lg font-bold">
           Loading...
@@ -148,46 +184,48 @@ const RqListCities = () => {
           value={name}
           onChange={e => setName(e.target.value)}
         />
-        <label htmlFor="">ID</label>
+        <label htmlFor="">Capital Of</label>
         <input
           className="m-4 rounded-lg p-2"
           type="text"
           value={capital}
-          onChange={e => setCapital(parseInt(e.target.value))}
+          onChange={e => setCapital(e.target.value)}
         />
         <button className="bg-green-300 p-2">Add</button>
       </form>
 
-      <div className="flex flex-col gap-[20px]">
-        <button className="block bg-blue-400 p-2" onClick={refetch}>
-          Load Data
-        </button>
+      <button className="block w-full m-3 bg-blue-400 p-2" onClick={refetch}>
+        Load Data
+      </button>
+
+      <ul className="grid grid-rows-[0fr] gap-[20px] transition-all duration-300">
         {data?.map(city => {
           return (
-            <Link
-              // to={`/rq_cities/${city.id}`}
-              className="bg-green-300 flex justify-between items-center first-letter: border-black border-2 mb-3 p-3 rounded-lg "
+            <li
               key={city.id}
+              className="bg-green-300 flex justify-between items-center first-letter: border-black border-2 mb-3 p-3 rounded-lg"
             >
-              <span>
+              <Link className="z-10 w-full" to={`/rq_cities/${city.id}`}>
                 {city.id}. {city.name}
-              </span>
-              <button
-                onClick={() => handleDelete(city.id)}
-                className="bg-red-300 px-4 py-2 rounded-lg hover:bg-red-400"
-              >
-                Delete
-              </button>
-              <button
-                onClick={() => updateBtn(city.id)}
-                className="bg-yellow-300 px-4 py-2 rounded-lg hover:bg-red-400"
-              >
-                Update
-              </button>
-            </Link>
+              </Link>
+              <div className="z-30 flex items-center justify-center">
+                <button
+                  onClick={() => handleDelete(city.id)}
+                  className="bg-red-300 px-4 mr-2 py-2 rounded-lg hover:bg-red-400"
+                >
+                  Delete
+                </button>
+                <button
+                  onClick={() => handleUpdate(city.id)}
+                  className="bg-yellow-300 px-4 py-2 rounded-lg hover:bg-red-400"
+                >
+                  Update
+                </button>
+              </div>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 };

@@ -9,7 +9,7 @@ import DynRQParalel from './other/DynRQParalel';
 import InfiniteRQ from './other/InfiniteRQ';
 import PaginatedRQ from './other/PaginatedRQ';
 import ParallelQueries from './other/ParallelQueries';
-import RqCity from './other/RQCity';
+import RqCountry from './other/RQCountry';
 import RqListCities from './other/RqListCities';
 import Layout from './other/layouts/Layout';
 import Home from './other/pages/Home';
@@ -29,7 +29,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="rq_cities">
           <Route index element={<RqListCities />} />
-          <Route path=":id" element={<RqCity />} />
+          <Route path=":id" element={<RqCountry />} />
         </Route>
         <Route path="rq_paralel" element={<ParallelQueries />} />
         <Route

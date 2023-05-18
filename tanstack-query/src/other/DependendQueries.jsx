@@ -22,7 +22,7 @@ const DependendQueries = ({ email }) => {
   return (
     <div>
       <article>
-        <p className="p-4 bg-yellow-400 rounded-md flex items-center justify-between gap-3">
+        <div className="p-4 bg-yellow-400 rounded-md flex items-center justify-between gap-3">
           User with account {user?.id} likes most
           {loadChannel ? (
             <span className="bg-gray-400 p-4 rounded-sm text-white text-center">
@@ -41,7 +41,7 @@ const DependendQueries = ({ email }) => {
               </p>
             </section>
           )}
-        </p>
+        </div>
       </article>
     </div>
   );
