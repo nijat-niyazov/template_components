@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { postNewCity } from './api';
+import { deleteCity, postNewCity, updateCity } from './api';
 import { useCitiesHookRQ } from './hooks/useCustomHookRQ';
 
 const RqListCities = () => {
