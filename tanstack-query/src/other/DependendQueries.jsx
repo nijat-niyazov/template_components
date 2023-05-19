@@ -13,13 +13,18 @@ const DependendQueries = ({ email }) => {
 
   const channelId = user?.channelId;
 
-  const { data: channel, isLoading: loadChannel,status,fetchStatus } = useQuery({
+  const {
+    data: channel,
+    isLoading: loadChannel,
+    status,
+    fetchStatus,
+  } = useQuery({
     queryKey: ['channelId', channelId],
     queryFn: fetchTopicsByChannelId,
     enabled: !!channelId,
   });
 
-  console.log(status,fetchStatus);
+  console.log(status, fetchStatus);
 
   return (
     <div>

@@ -9,11 +9,12 @@ const PaginatedRQ = () => {
 
   const {
     data: colors,
+
     isLoading,
     isError,
     error,
     isFetching,
-    isPreviousData,
+    isPreviousData, // --> it will be true if shown data is previous
   } = useQuery({
     queryKey: ['colors', pageNumber],
     /*
@@ -25,6 +26,11 @@ const PaginatedRQ = () => {
     /*
      * It used for displaying previous data while new updated data comes instead of seing loading for new requested data. For example in scenario where we paginate datas when we change data instead of seing loading while changed pages data comes, we see previous one. Once new data is fetched it will replace with previous data
      */
+    //  refetchInterval:3000,
+    //  refetchIntervalInBackground:true,
+    // notifyOnChangeProps:['data','error']
+
+    // suspense: true,
   });
 
   if (isLoading) {
@@ -36,8 +42,6 @@ const PaginatedRQ = () => {
 
   const data = colors?.data;
   const pages = colors?.pages;
-
-  console.table({ isLoading, isFetching, isPreviousData });
 
   const handlePageNumber = type => {
     const newPage = pageNumber + (type === 'inc' ? 1 : -1);

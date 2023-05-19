@@ -13,7 +13,6 @@ import RqCountry from './other/RQCountry';
 import RqListCities from './other/RqListCities';
 import Layout from './other/layouts/Layout';
 import Home from './other/pages/Home';
-import TestQueryComponent from './other/TestQueryComponent';
 // import Home from './other/Home';
 // import Layout from './other/Layout';
 // import List from './other/List';
@@ -43,13 +42,12 @@ function App() {
         />
         <Route path="paginated_rq" element={<PaginatedRQ />} />
         <Route path="infinite_rq" element={<InfiniteRQ />} />
-        <Route path="test" element={<TestQueryComponent />} />
+        {/* <Route path="test" element={<TestQueryComponent />} /> */}
       </Route>
     )
   );
 
   return <RouterProvider router={router} />;
-  // return <TestQueryComponent />;
 }
 
 export default App;

@@ -4,7 +4,13 @@ import useCountryHook from './hooks/useCountryHook';
 const RqCountry = () => {
   const { id } = useParams();
 
-  const { isLoading, data, isError, error } = useCountryHook(id);
+  const {
+    isLoading,
+    data,
+    isError,
+    error,
+    isPlaceholderData, // --> will be true if shown data is placeHolderData
+  } = useCountryHook(id);
 
   if (isLoading) {
     return <h2>Loading...</h2>;
