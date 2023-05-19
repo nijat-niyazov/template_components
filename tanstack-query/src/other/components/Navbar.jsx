@@ -24,6 +24,9 @@ const Navbar = () => {
       <NavLink to="infinite_rq" className="bg-blue-300 p-2 rounded-xl">
         Load More(Infinite) Queries
       </NavLink>
+      <NavLink to="test" className="bg-blue-300 p-2 rounded-xl">
+        Test Queries
+      </NavLink>
       <NavLink
         to="list_cities"
         className="bg-pink-600 opacity-50 p-2 rounded-xl"

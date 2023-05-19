@@ -8,16 +8,18 @@ export const changeLimit = total => {
 };
 
 const InfiniteRQ = () => {
-  
   const {
     data,
     isLoading,
     isError,
     error,
-    hasNextPage,
-    fetchNextPage,
     isFetching,
     isFetchingNextPage,
+    isFetchingPreviousPage,
+    hasNextPage,
+    hasPreviousPage,
+    fetchNextPage, // must be attached to on click button or intersection observer
+    fetchPreviousPage,
   } = useInfiniteQuery({
     /*
     ! This is used for load more data as infinite scroll
@@ -26,7 +28,7 @@ const InfiniteRQ = () => {
     queryFn: fetchColorsWithInfiniteQuery,
     getNextPageParam: (_lastPage, pages) => {
       /*
-       * second argument(pages) always is array and responsed data will be in array like [resonse(array)]
+       * second argument(pages) always is array and responsed data will be in array like [response(array)]
        */
 
       return pages.length < limit ?? 1e10 ? pages.length + 1 : undefined;
@@ -34,13 +36,19 @@ const InfiniteRQ = () => {
       /*
        * result of pages.length+1 will be send to api as pageParam
        ! if false then undefined is returned and react query knows there is no nextpage
+       ! A hasNextPage boolean is true if getNextPageParam returns a value other than undefined
        */
     },
+    getPreviousPageParam: () => {},
   });
 
-  if (data) {
-    console.log(data, isFetching, isFetchingNextPage);
-  }
+  console.table({
+    isFetching,
+    isFetchingNextPage,
+    isFetchingPreviousPage,
+    hasNextPage,
+    hasPreviousPage,
+  });
 
   if (isLoading) {
     return <h2>Loading...</h2>;
@@ -65,11 +73,7 @@ const InfiniteRQ = () => {
           </Fragment>
         ))}
       </ul>
-      <div
-        className={`${
-          isFetching ? 'opacity-50' : ''
-        } w-full mt-4 flex items-center justify-around`}
-      >
+      <div className=" w-full mt-4 flex items-center justify-around">
         <button
           className="bg-green-500 inline-block rounded-lg p-2 disabled:opacity-50 hover:bg-green-600"
           disabled={!hasNextPage}
@@ -78,7 +82,7 @@ const InfiniteRQ = () => {
           Load More
         </button>
       </div>
-      <p>{isFetching && !isFetchingNextPage ? 'Fetching...' : null}</p>
+      <p>{isFetching ? 'Fetching...' : null}</p>
     </>
   );
 };

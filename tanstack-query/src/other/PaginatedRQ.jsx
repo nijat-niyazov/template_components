@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 import { fetchColorsWithPagination } from './api';
 
 const PaginatedRQ = () => {
-  const [pageNumber, setPageNumber] = useState(1);
+  const [pageNumber, setPageNumber] = useState(
+    JSON.parse(localStorage.getItem('page')) ?? 1
+  );
 
   const {
     data: colors,
@@ -11,6 +13,7 @@ const PaginatedRQ = () => {
     isError,
     error,
     isFetching,
+    isPreviousData,
   } = useQuery({
     queryKey: ['colors', pageNumber],
     /*
@@ -34,6 +37,14 @@ const PaginatedRQ = () => {
   const data = colors?.data;
   const pages = colors?.pages;
 
+  console.table({ isLoading, isFetching, isPreviousData });
+
+  const handlePageNumber = type => {
+    const newPage = pageNumber + (type === 'inc' ? 1 : -1);
+    setPageNumber(newPage);
+    localStorage.setItem('page', JSON.stringify(newPage));
+  };
+
   return (
     <>
       <ul className="ml-10 list-decimal">
@@ -46,15 +57,12 @@ const PaginatedRQ = () => {
           </li>
         ))}
       </ul>
-      <div
-        className={`${
-          isFetching ? 'opacity-50' : ''
-        } w-full mt-4 flex items-center justify-around`}
-      >
+      <div className=" w-full mt-4 flex items-center justify-around">
         <button
           className="bg-gray-700 inline-block rounded-lg text-white p-2 disabled:opacity-50 hover:bg-gray-600"
-          disabled={pageNumber === 1}
-          onClick={() => setPageNumber(p => p - 1)}
+          disabled={isPreviousData || pageNumber === 1}
+          // here we used isPrevious data instead of isfetching because  isfetching will happen doesn't matter if this adata is cached or not. but with ispreviousdata we ensure that while wee see data from coming keepPrevius data we want' to disable this button
+          onClick={() => handlePageNumber('dec')}
         >
           Prev Page
         </button>
@@ -63,8 +71,9 @@ const PaginatedRQ = () => {
         </h2>
         <button
           className="bg-gray-700 inline-block rounded-lg text-white p-2 hover:bg-gray-600 disabled:opacity-50"
-          disabled={pageNumber === pages}
-          onClick={() => setPageNumber(p => p + 1)}
+          disabled={isPreviousData || pageNumber === pages}
+          // here we used isPrevious data instead of isfetching because  isfetching will happen doesn't matter if this adata is cached or not. but with ispreviousdata we ensure that while wee see data from coming keepPrevius data we want' to disable this button
+          onClick={() => handlePageNumber('inc')}
         >
           Next Page
         </button>

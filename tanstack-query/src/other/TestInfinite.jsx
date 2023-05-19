@@ -1,34 +1,16 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { fetchCities } from './apiTest';
 
 const TestQueryComponent = () => {
   const {
-    data,
-    // dataUpdatedAt,
-    // errorUpdateCount,
-    // errorUpdatedAt,
-    // failureCount,
-    // failureReason,
-    // isFetched,
-    // isFetchedAfterMount,
-    isInitialLoading, // --> used in scenario where you first time has not downloaded yet
-    error, // -->  show an error
-    isError, // --> error got
-    isLoading, // --> loads query
-    status, // --> (loading,error,success)
-    isSuccess, // ❌ --> sucessfully
-    fetchStatus, // --> ❌ (fetching, paused,idle )  fetching we know, paused fetch has stopped, idle(not doing anything)
-    isFetching, // --> ❌
-    // isLoadingError,
-    // isPaused,
-    // isPlaceholderData,
-    isPreviousData, // --> Will be true when keepPreviousData is true and used for disable next,prev pages while we see previousData
-    // isRefetchError,
-    // isRefetching,
-    // isStale,
-    // refetch,
-    // remove,
-  } = useQuery({
+  
+    fetchNextPage,
+    fetchPreviousPage,
+    hasNextPage,
+    hasPreviousPage,
+    isFetchingNextPage,
+    isFetchingPreviousPage,
+  } = useInfiniteQuery({
     queryKey: ['cities'], // --> queryKey for cahcing data with key
     queryFn: fetchCities, // --> fetch function
     // useErrorBoundary,
@@ -36,6 +18,8 @@ const TestQueryComponent = () => {
     // context,
     // behavior,
     enabled: false || true, // --> based on condition if enabled is false it won't fetch, and default is true
+    getNextPageParam, // --> used for fetching page 
+    getPreviousPageParam, // --> used for fetching page
     // initialData,
     // initialDataUpdatedAt,
     // isDataEqual,
