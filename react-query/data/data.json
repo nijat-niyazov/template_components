@@ -1,0 +1,107 @@
+{
+  "cities": [
+    {
+      "name": "baku",
+      "capital": "azerbaijan",
+      "id": 1
+    },
+    {
+      "name": "tehran",
+      "capital": "iran",
+      "id": 2
+    },
+    {
+      "name": "paris",
+      "capital": "france",
+      "id": 3
+    }
+  ],
+  "countries": [
+    {
+      "name": "Baku",
+      "capitalOf": "Azerbaijan",
+      "population": 3000000,
+      "id": 1
+    },
+    {
+      "name": "Madrid",
+      "capitalOf": "Espanyol",
+      "population": 5000000,
+      "id": 2
+    },
+    {
+      "name": "New-York",
+      "capitalOf": "USA",
+      "population": 9000000,
+      "id": 3
+    }
+  ],
+  "friends": [
+    {
+      "id": 1,
+      "name": "Ibrahim Atayev"
+    },
+    {
+      "id": 2,
+      "name": "Mutallib Alizade"
+    },
+    {
+      "id": 3,
+      "name": "Ulvi Ismayilov"
+    }
+  ],
+  "users": [
+    {
+      "id": "nidzhat.niyazov@gmail.com",
+      "channelId": "portal"
+    }
+  ],
+  "channels": [
+    {
+      "id": "portal",
+      "topics": [
+        "philosophy",
+        "art",
+        "science"
+      ]
+    }
+  ],
+  "colors": [
+    {
+      "id": 1,
+      "label": "red"
+    },
+    {
+      "id": 2,
+      "label": "blue"
+    },
+    {
+      "id": 3,
+      "label": "green"
+    },
+    {
+      "id": 4,
+      "label": "yellow"
+    },
+    {
+      "id": 5,
+      "label": "black"
+    },
+    {
+      "id": 6,
+      "label": "orange"
+    },
+    {
+      "id": 7,
+      "label": "purple"
+    },
+    {
+      "id": 8,
+      "label": "pink"
+    },
+    {
+      "id": 9,
+      "label": "aqua"
+    }
+  ]
+}
