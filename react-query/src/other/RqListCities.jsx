@@ -55,7 +55,7 @@ const RqListCities = () => {
 
       const previousData = queryClient.getQueryData(['cities']);
       /*
-      ! This has to be written before updating because we want to keep previousData before updating in case of mutation fails 
+      ! This has to be written before setQueryData because we want to keep previousData before updating, in case of mutation fails 
       */
 
       queryClient.setQueryData(['cities'], oldDataValuesOnDevTools => {
@@ -72,14 +72,20 @@ const RqListCities = () => {
         previousData,
       };
       /*
-         ! This has to be written because we need to reach this data onError if  any problem on update happened or mutation failed 
-         */
+      ! This has to be written because we need to reach this data onError if  any problem on update happened or mutation failed 
+      */
     },
     onError: (_error, _city, context) => {
       queryClient.setQueryData(['cities'], context.previousData);
+      /*
+      ! If error has occured we want setQueryData to previousData
+      */
     },
     onSettled: () => {
       queryClient.invalidateQueries('cities');
+      /*
+      ! We also want to get latest data in background
+      */
       setCapital('');
       setName('');
     },

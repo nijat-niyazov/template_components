@@ -22,7 +22,7 @@ export const fetchCountries = async () => {
 
 export const fetchCountryById = async ({ queryKey }) => {
   let id = queryKey[1];
-  const { data } = await mainApi.get('/countriese/' + id);
+  const { data } = await mainApi.get('/countries/' + id);
   return data;
 };
 

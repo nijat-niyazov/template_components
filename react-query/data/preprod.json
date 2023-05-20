@@ -1,0 +1,242 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "iPhone 9",
+      "price": 549,
+      "stock": 94,
+      "thumbnail": "https://dummyjson.com/image/i/products/1/thumbnail.jpg",
+      "description": "An apple mobile which is nothing like apple"
+    },
+    {
+      "id": 2,
+      "title": "iPhone X",
+      "price": 899,
+      "stock": 34,
+      "thumbnail": "https://dummyjson.com/image/i/products/2/thumbnail.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Samsung Universe 9",
+      "price": 1249,
+      "stock": 36,
+      "thumbnail": "https://dummyjson.com/image/i/products/3/thumbnail.jpg",
+      "description": "Samsung's new variant which goes beyond Galaxy to the Universe"
+    },
+    {
+      "id": 4,
+      "title": "OPPOF19",
+      "stock": 123,
+      "description": "OPPO F19 is officially announced on April 2021.",
+      "thumbnail": "https://dummyjson.com/image/i/products/4/thumbnail.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Huawei P30",
+      "price": 499,
+      "stock": 32,
+      "thumbnail": "https://dummyjson.com/image/i/products/5/thumbnail.jpg",
+      "description": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK."
+    },
+    {
+      "id": 6,
+      "title": "MacBook Pro",
+      "price": 1749,
+      "stock": 83,
+      "thumbnail": "https://dummyjson.com/image/i/products/6/thumbnail.png",
+      "description": "MacBook Pro 2021 with mini-LED display may launch between September, November"
+    },
+    {
+      "id": 7,
+      "title": "Samsung Galaxy Book",
+      "price": 1499,
+      "stock": 50,
+      "thumbnail": "https://dummyjson.com/image/i/products/7/thumbnail.jpg",
+      "description": "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched"
+    },
+    {
+      "id": 8,
+      "title": "Microsoft Surface Laptop 4",
+      "price": 1499,
+      "stock": 68,
+      "thumbnail": "https://dummyjson.com/image/i/products/8/thumbnail.jpg",
+      "description": "Style and speed. Stand out on HD video calls backed by Studio Mics. Capture ideas on the vibrant touchscreen."
+    },
+    {
+      "id": 9,
+      "title": "Infinix INBOOK",
+      "price": 1099,
+      "stock": 96,
+      "thumbnail": "https://dummyjson.com/image/i/products/9/thumbnail.jpg",
+      "description": "Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty"
+    },
+    {
+      "id": 10,
+      "title": "HP Pavilion 15-DK1056WM",
+      "price": 1099,
+      "stock": 89,
+      "thumbnail": "https://dummyjson.com/image/i/products/10/thumbnail.jpeg",
+      "description": "HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10"
+    },
+    {
+      "id": 11,
+      "title": "perfume Oil",
+      "price": 13,
+      "stock": 65,
+      "thumbnail": "https://dummyjson.com/image/i/products/11/thumbnail.jpg",
+      "description": "Mega Discount, Impression of Acqua Di Gio by GiorgioArmani concentrated attar perfume Oil"
+    },
+    {
+      "id": 12,
+      "title": "Brown Perfume",
+      "price": 40,
+      "stock": 52,
+      "thumbnail": "https://dummyjson.com/image/i/products/12/thumbnail.jpg",
+      "description": "Royal_Mirage Sport Brown Perfume for Men & Women - 120ml"
+    },
+    {
+      "id": 13,
+      "title": "Fog Scent Xpressio Perfume",
+      "price": 13,
+      "stock": 61,
+      "thumbnail": "https://dummyjson.com/image/i/products/13/thumbnail.webp",
+      "description": "Product details of Best Fog Scent Xpressio Perfume 100ml For Men cool long lasting perfumes for Men"
+    },
+    {
+      "id": 14,
+      "title": "Non-Alcoholic Concentrated Perfume Oil",
+      "price": 120,
+      "stock": 114,
+      "thumbnail": "https://dummyjson.com/image/i/products/14/thumbnail.jpg",
+      "description": "Original Al Munakh® by Mahal Al Musk | Our Impression of Climate | 6ml Non-Alcoholic Concentrated Perfume Oil"
+    },
+    {
+      "id": 15,
+      "title": "Eau De Perfume Spray",
+      "price": 30,
+      "stock": 105,
+      "thumbnail": "https://dummyjson.com/image/i/products/15/thumbnail.jpg",
+      "description": "Genuine  Al-Rehab spray perfume from UAE/Saudi Arabia/Yemen High Quality"
+    },
+    {
+      "id": 16,
+      "title": "Hyaluronic Acid Serum",
+      "price": 19,
+      "stock": 110,
+      "thumbnail": "https://dummyjson.com/image/i/products/16/thumbnail.jpg",
+      "description": "L'OrÃ©al Paris introduces Hyaluron Expert Replumping Serum formulated with 1.5% Hyaluronic Acid"
+    },
+    {
+      "id": 17,
+      "title": "Tree Oil 30ml",
+      "price": 12,
+      "stock": 78,
+      "thumbnail": "https://dummyjson.com/image/i/products/17/thumbnail.jpg",
+      "description": "Tea tree oil contains a number of compounds, including terpinen-4-ol, that have been shown to kill certain bacteria,"
+    },
+    {
+      "id": 18,
+      "title": "Oil Free Moisturizer 100ml",
+      "price": 40,
+      "stock": 88,
+      "thumbnail": "https://dummyjson.com/image/i/products/18/thumbnail.jpg",
+      "description": "Dermive Oil Free Moisturizer with SPF 20 is specifically formulated with ceramides, hyaluronic acid & sunscreen."
+    },
+    {
+      "id": 19,
+      "title": "Skin Beauty Serum.",
+      "price": 46,
+      "stock": 54,
+      "thumbnail": "https://dummyjson.com/image/i/products/19/thumbnail.jpg",
+      "description": "Product name: rorec collagen hyaluronic acid white face serum riceNet weight: 15 m"
+    },
+    {
+      "id": 20,
+      "title": "Freckle Treatment Cream- 15gm",
+      "price": 70,
+      "stock": 140,
+      "thumbnail": "https://dummyjson.com/image/i/products/20/thumbnail.jpg",
+      "description": "Fair & Clear is Pakistan's only pure Freckle cream which helpsfade Freckles, Darkspots and pigments. Mercury level is 0%, so there are no side effects."
+    },
+    {
+      "id": 21,
+      "title": "- Daal Masoor 500 grams",
+      "price": 20,
+      "stock": 133,
+      "thumbnail": "https://dummyjson.com/image/i/products/21/thumbnail.png",
+      "description": "Fine quality Branded Product Keep in a cool and dry place"
+    },
+    {
+      "id": 22,
+      "title": "Elbow Macaroni - 400 gm",
+      "price": 14,
+      "stock": 146,
+      "thumbnail": "https://dummyjson.com/image/i/products/22/thumbnail.jpg"
+    },
+    {
+      "id": 23,
+      "title": "Orange Essence Food Flavou",
+      "price": 14,
+      "stock": 26,
+      "thumbnail": "https://dummyjson.com/image/i/products/23/thumbnail.jpg",
+      "description": "Specifications of Orange Essence Food Flavour For Cakes and Baking Food Item"
+    },
+    {
+      "id": 24,
+      "title": "cereals muesli fruit nuts",
+      "price": 46,
+      "stock": 113,
+      "thumbnail": "https://dummyjson.com/image/i/products/24/thumbnail.jpg",
+      "description": "original fauji cereal muesli 250gm box pack original fauji cereals muesli fruit nuts flakes breakfast cereal break fast faujicereals cerels cerel foji fouji"
+    },
+    {
+      "id": 25,
+      "title": "Gulab Powder 50 Gram",
+      "price": 70,
+      "stock": 47,
+      "thumbnail": "https://dummyjson.com/image/i/products/25/thumbnail.jpg",
+      "description": "Dry Rose Flower Powder Gulab Powder 50 Gram • Treats Wounds"
+    },
+    {
+      "id": 26,
+      "title": "Plant Hanger For Home",
+      "price": 41,
+      "stock": 131,
+      "thumbnail": "https://dummyjson.com/image/i/products/26/thumbnail.jpg",
+      "description": "Boho Decor Plant Hanger For Home Wall Decoration Macrame Wall Hanging Shelf"
+    },
+    {
+      "id": 27,
+      "title": "Flying Wooden Bird",
+      "price": 51,
+      "stock": 17,
+      "thumbnail": "https://dummyjson.com/image/i/products/27/thumbnail.webp",
+      "description": "Package Include 6 Birds with Adhesive Tape Shape: 3D Shaped Wooden Birds Material: Wooden MDF, Laminated 3.5mm"
+    },
+    {
+      "id": 28,
+      "title": "3D Embellishment Art Lamp",
+      "price": 20,
+      "stock": 54,
+      "thumbnail": "https://dummyjson.com/image/i/products/28/thumbnail.jpg",
+      "description": "3D led lamp sticker Wall sticker 3d wall art light on/off button  cell operated (included)"
+    },
+    {
+      "id": 29,
+      "title": "Handcraft Chinese style",
+      "price": 60,
+      "stock": 7,
+      "thumbnail": "https://dummyjson.com/image/i/products/29/thumbnail.webp",
+      "description": "Handcraft Chinese style art luxury palace hotel villa mansion home decor ceramic vase with brass fruit plate"
+    },
+
+    {
+      "id": 30,
+      "title": "Key Holder",
+      "price": 30,
+      "stock": 54,
+      "thumbnail": "https://dummyjson.com/image/i/products/30/thumbnail.jpg",
+      "description": "Attractive DesignMetallic materialFour key hooksReliable & DurablePremium Quality"
+    }
+  ]
+}

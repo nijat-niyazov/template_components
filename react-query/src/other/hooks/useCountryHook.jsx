@@ -36,18 +36,23 @@ const useCountryHook = id => {
       return city ? city : undefined;
     },
 
-    // staleTime: 1000,
-    // initialDataUpdatedAt: () => Date.now(),
-    placeholderData: () => {
-      const city = queryClient
-        .getQueryData(['cities'])
-        /*
-         * It's similar to placeHolderData but it will act differently on error occuring. PlaceHolderData will be gone if error is occured but initialData will be displayed.
-         */
+    staleTime: 3000,
+    /*
+     * it means that it will disable to refetch and this data will be considered as last fetched for givin milliseconds, and will be fetched again any integration with page after this millisecons are done
+     */
 
-        ?.find(hero => hero.id === parseInt(id));
-      return city ? city : undefined;
-    },
+    initialDataUpdatedAt:   1608412420052,
+
+    // placeholderData: () => {
+    //   const city = queryClient
+    //     .getQueryData(['cities'])
+    //     /*
+    //      * It's similar to placeHolderData but it will act differently on error occuring. PlaceHolderData will be gone if error is occured but initialData will be displayed.
+    //      */
+
+    //     ?.find(hero => hero.id === parseInt(id));
+    //   return city ? city : undefined;
+    // },
 
     // 2.# ✅
     placeholderData: {
