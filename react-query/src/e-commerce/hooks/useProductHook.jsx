@@ -7,17 +7,16 @@ const useProductHook = id => {
   return useQuery({
     queryKey: ['product', id],
     queryFn: fetchProduct,
-    // staleTime: 3 * 1000,
     initialData: () => {
       const data = queryClient
         .getQueryData(['products'])
         ?.pages?.flat(Infinity)
         .find(product => product.id === parseInt(id));
-      console.log(data);
 
       return data ? data : undefined;
     },
     enabled: !!parseInt(id),
+    refetchOnWindowFocus: false,
   });
 };
 

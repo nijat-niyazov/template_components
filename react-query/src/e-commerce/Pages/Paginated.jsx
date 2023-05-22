@@ -39,7 +39,8 @@ const Paginated = () => {
       </section>
       <button
         onClick={refetch}
-        className="bg-green-600 text-white block rounded-xl p-2 w-1/3  font-bold text-center m-auto my-5"
+        disabled={isPreviousData}
+        className="bg-green-600 text-white block rounded-xl p-2 w-1/3  font-bold text-center m-auto my-5 disabled:opacity-50"
       >
         Load Data
       </button>

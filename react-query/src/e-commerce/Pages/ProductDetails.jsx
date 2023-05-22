@@ -5,7 +5,7 @@ import { convertCurrency } from '../utils/currencyConverter';
 const ProductDetails = () => {
   const { id } = useParams();
 
-  const { data, isLoading, isError, error } = useProductHook(id);
+  const { data, isLoading, isError, error, isFetching } = useProductHook(id);
 
   if (isLoading) {
     return <h2>Loading...</h2>;
@@ -15,11 +15,9 @@ const ProductDetails = () => {
     return <h2>{error.message}</h2>;
   }
 
-  console.log(data);
-
   return (
     data && (
-      <article className="w-[90%] m-auto">
+      <article className={` ${isFetching && 'opacity-50'} w-[90%] m-auto`}>
         <img
           className="w-full h-40 rounded-lg"
           src={data.thumbnail}
@@ -45,7 +43,7 @@ const ProductDetails = () => {
           </h2>
 
           <div className="flex gap-2 m-auto">
-            {data.images.map((img, i) => (
+            {data.images?.map((img, i) => (
               <img src={img} key={i} alt="" className="w-30 h-20" />
             ))}
           </div>

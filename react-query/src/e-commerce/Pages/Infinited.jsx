@@ -1,12 +1,12 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { Fragment, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { fetchProductsWithInfinitive } from '../api/mainApi';
 import Product from './Product';
 
-let limit = 0;
+let totalPages = 0;
 
-export const setLimit = total => (limit = total);
+export const setTotalPages = totalPageNums => (totalPages = totalPageNums);
 
 const Infinited = () => {
   const {
@@ -25,7 +25,7 @@ const Infinited = () => {
     queryKey: ['products'],
     queryFn: fetchProductsWithInfinitive,
     getNextPageParam: (_, pages) => {
-      return pages.length < limit ? pages.length + 1 : undefined;
+      return pages.length < totalPages ? pages.length + 1 : undefined;
     },
     staleTime: 5 * 60 * 1000,
     refetchOnWindowFocus: false,
@@ -50,6 +50,8 @@ const Infinited = () => {
     return <h2> {error.message}</h2>;
   }
 
+  const lastPostId = data.pages.flat(Infinity).at(-1)?.id;
+
   return (
     <div>
       <section className="mb-10">
@@ -63,26 +65,20 @@ const Infinited = () => {
       </section>
 
       <section className="grid grid-cols-2 gap-5 p-4 md:grid-cols-3">
-        {data?.pages.map((page, i) => {
-          return (
-            <Fragment key={i}>
-              {page.map(product => {
-                return hasNextPage &&
-                  product.id === data.pages.length * (limit - 1) ? (
-                  <Product
-                    product={product}
-                    key={product.id}
-                    ref={ref}
-                    cart={'cart'}
-                  />
-                ) : (
-                  <Product product={product} key={product.id} />
-                );
-              })}
-            </Fragment>
+        {data?.pages.flat(Infinity).map(product => {
+          return hasNextPage && product.id === lastPostId ? (
+            <Product
+              product={product}
+              key={product.id}
+              ref={ref}
+              cart={'cart'}
+            />
+          ) : (
+            <Product product={product} key={product.id} />
           );
         })}
       </section>
+
       {hasNextPage ? (
         <button
           disabled={isFetchingNextPage}

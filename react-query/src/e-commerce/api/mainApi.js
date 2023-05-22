@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setLimit } from '../Pages/Infinited';
+import { setTotalPages } from '../Pages/Infinited';
 
 const mainApi = axios.create({
   baseURL: 'http://localhost:3600/',
@@ -10,11 +10,10 @@ export const fetchAllProducts = async () => {
   return data;
 };
 
-export const fetchProduct = async ({queryKey}) => {
+export const fetchProduct = async ({ queryKey }) => {
   const id = queryKey[1];
-  // console.log(id);
   const { data } = await mainApi.get(`products/${id}`);
-  // console.log(data);
+
   return data;
 };
 
@@ -48,7 +47,7 @@ export const fetchProductsWithInfinitive = async ({ pageParam = 1 }) => {
   });
 
   const totalPages = Math.ceil(response.headers['x-total-count'] / 5);
-  setLimit(totalPages);
+  setTotalPages(totalPages);
 
   return response.data;
 };
