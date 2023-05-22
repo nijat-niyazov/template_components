@@ -12,7 +12,7 @@ const RqCountry = () => {
     isPlaceholderData, // --> will be true if shown data is placeHolderData
   } = useCountryHook(id);
 
-  console.log(isLoading, data);
+  console.log(data);
 
   // console.log(Date.now() / 1000 / 60 / 60 / 60 / 24);
 

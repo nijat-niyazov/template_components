@@ -6,7 +6,7 @@ const DynRQParalel = ({ cityIdies }) => {
    ? This might be usefull in scenario where we select array of multiple elements and want to maybe compare them. So we select an array and this array will return its own queryKey and function 
    */
 
-  let queryResults = useQueries({
+  let results = useQueries({
     queries: cityIdies?.map(id => {
       return {
         queryKey: ['country', id],
@@ -15,12 +15,12 @@ const DynRQParalel = ({ cityIdies }) => {
     }),
   });
 
-  console.log(queryResults);
+  console.log(results?.map(r => r.data));
+
 
   return (
     <div className="flex justify-between items-center w-1/2 m-auto bg-yellow-300 p-2 ">
-      {queryResults?.map(result => {
-        console.log(result);
+      {results?.map(result => {
         return (
           result.data && (
             <article className="border-black border-2 p-4" key={result.data.id}>

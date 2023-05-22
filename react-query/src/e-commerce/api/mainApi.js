@@ -10,9 +10,11 @@ export const fetchAllProducts = async () => {
   return data;
 };
 
-export const fetchProduct = async ({ queryKey }) => {
+export const fetchProduct = async ({queryKey}) => {
   const id = queryKey[1];
+  // console.log(id);
   const { data } = await mainApi.get(`products/${id}`);
+  // console.log(data);
   return data;
 };
 
@@ -38,9 +40,7 @@ export const fetchProductsPerPage = async ({ queryKey }) => {
 };
 
 export const fetchProductsWithInfinitive = async ({ pageParam = 1 }) => {
-  console.log(pageParam);
-
-  const response = await mainApi.get('products', {
+  const response = await mainApi.get('pre-products', {
     params: {
       _page: pageParam,
       _limit: 5,

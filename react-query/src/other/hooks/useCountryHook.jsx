@@ -5,6 +5,8 @@ const useCountryHook = id => {
   const queryClient = useQueryClient();
   // client we created on main.jsx which will access to queries on react-query devtolls
 
+  console.log(queryClient);
+
   return useQuery({
     queryKey: ['country', id],
     /*
@@ -29,19 +31,21 @@ const useCountryHook = id => {
        */
       const city = queryClient
         .getQueryData(['cities'])
+        // console.log(city);
         /*
          * this key must be eqaul to key in react querydevtool queryKey we want to getData of and this data will be displayed if error occured in details page. Showing initialData differs it from placeHolder data because placeHolder data will be gone even if error occured.
          */
         ?.find(hero => hero.id === parseInt(id));
       return city ? city : undefined;
     },
+    refetchOnMount:true,
 
     staleTime: 3000,
     /*
      * it means that it will disable to refetch and this data will be considered as last fetched for givin milliseconds, and will be fetched again any integration with page after this millisecons are done
      */
 
-    initialDataUpdatedAt:   1608412420052,
+    // initialDataUpdatedAt:   1608412420052,
 
     // placeholderData: () => {
     //   const city = queryClient
@@ -55,14 +59,14 @@ const useCountryHook = id => {
     // },
 
     // 2.# ✅
-    placeholderData: {
-      /*
-       * placeHolder can be used for showing ui till new data is fetched.
-       */
+    // placeholderData: {
+    //   /*
+    //    * placeHolder can be used for showing ui till new data is fetched.
+    //    */
 
-      capitalOf: 'Secret',
-      name: 'We are excited too',
-    },
+    //   capitalOf: 'Secret',
+    //   name: 'We are excited too',
+    // },
   });
 };
 

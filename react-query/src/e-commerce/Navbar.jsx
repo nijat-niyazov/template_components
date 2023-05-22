@@ -60,7 +60,7 @@ const Navbar = () => {
             onClick={handleShowNav}
             className="p-2  m-2 mb-0  font-bold  bg-amber-400 text-black hover:text-yellow-50 hover:bg-amber-500 transition-colors duration-300 rounded-md"
           >
-            <Link className="block" to="/compared">
+            <Link className="block" to="/compareselector">
               Compare Products
             </Link>
           </li>
