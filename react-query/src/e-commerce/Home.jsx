@@ -4,14 +4,17 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
+import HeightTransition from './HeightTransition';
 import Layout from './layouts/Layout';
 import AddProduct from './Pages/AddProduct';
 import Categorized from './Pages/Categorized';
 import Compared from './Pages/Compared';
 import Dependent from './Pages/Dependent';
+import Infinited from './Pages/Infinited';
 import Paginated from './Pages/Paginated';
-import Product from './Pages/Product';
-import ProductsList from './ProductsList';
+import ProductDetails from './Pages/ProductDetails';
+import ProductsList from './Pages/ProductsList';
+import Yes from './Pages/Yes';
 
 const Home = () => {
   const router = createBrowserRouter(
@@ -19,15 +22,18 @@ const Home = () => {
       <Route path="/" element={<Layout />}>
         <Route path="products">
           <Route index element={<ProductsList />} />
-          <Route path=":id" element={<Product />} />
+          <Route path=":id" element={<ProductDetails />} />
         </Route>
         <Route path="category">
           <Route path=":category" element={<Categorized />} />
         </Route>
         <Route path="paginated" element={<Paginated />} />
+        <Route path="test" element={<HeightTransition />} />
         <Route path="compared" element={<Compared />} />
         <Route path="addproduct" element={<AddProduct />} />
         <Route path="dependend" element={<Dependent />} />
+        <Route path="infinitive" element={<Infinited />} />
+        <Route path="yes" element={<Yes />} />
       </Route>
     )
   );
