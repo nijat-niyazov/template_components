@@ -85,7 +85,6 @@ export const deleteCity = id => {
   return mainApi.delete('/cities/' + id);
 };
 
-export const updateCity = data => {
-  console.log(data);
-  return mainApi.patch('/cities/' + data.id, data);
+export const updateCity = async data => {
+  return await mainApi.patch('/cities/' + data.id, data);
 };

@@ -17,7 +17,7 @@ const ProductDetails = () => {
 
   return (
     data && (
-      <article className={` ${isFetching && 'opacity-50'} w-[90%] m-auto`}>
+      <article className="w-[90%] m-auto bg-gray-200 p-4 rounded-xl">
         <img
           className="w-full h-40 rounded-lg"
           src={data.thumbnail}

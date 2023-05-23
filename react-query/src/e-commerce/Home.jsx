@@ -1,28 +1,30 @@
+import { useState } from 'react';
 import {
-  createBrowserRouter,
-  createRoutesFromElements,
   Route,
   RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
 } from 'react-router-dom';
 import HeightTransition from './HeightTransition';
+import AddProduct from './components/AddProduct';
+import Compared from './components/Compared';
 import Layout from './layouts/Layout';
-import AddProduct from './Pages/AddProduct';
-import Categorized from './Pages/Categorized';
-import Compared from './Pages/Compared';
-import CompareSelector from './Pages/CompareSelector';
-import Dependent from './Pages/Dependent';
-import Infinited from './Pages/Infinited';
-import Paginated from './Pages/Paginated';
-import ProductDetails from './Pages/ProductDetails';
-import ProductsList from './Pages/ProductsList';
-import Yes from './Pages/Yes';
+import AdminPanel from './pages/AdminPanel';
+import Categorized from './pages/Categorized';
+import CompareSelector from './pages/CompareSelector';
+import Infinited from './pages/Infinited';
+import Paginated from './pages/Paginated';
+import ProductDetails from './pages/ProductDetails';
+import ProductsList from './pages/ProductsList';
 
 const Home = () => {
+  const [logged, setLogged] = useState(false);
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
         <Route path="products">
-          <Route index element={<ProductsList />} />
+          <Route index element={<ProductsList admin={logged} />} />
           <Route path=":id" element={<ProductDetails />} />
         </Route>
         <Route path="category">
@@ -31,11 +33,13 @@ const Home = () => {
         <Route path="paginated" element={<Paginated />} />
         <Route path="test" element={<HeightTransition />} />
         <Route path="compareselector" element={<CompareSelector />} />
-        <Route path="compared" element={<Compared ids={[1, 3]} />} />
+        <Route path="compared" element={<Compared />} />
         <Route path="addproduct" element={<AddProduct />} />
-        <Route path="dependend" element={<Dependent />} />
         <Route path="infinitive" element={<Infinited />} />
-        <Route path="yes" element={<Yes />} />
+        <Route
+          path="admin"
+          element={<AdminPanel user={{ logged, setLogged }} />}
+        />
       </Route>
     )
   );

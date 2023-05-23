@@ -1,12 +1,23 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { deleteCity, postNewCity, updateCity } from './api';
+import Modal from './Modal';
+import { deleteCity, postNewCity } from './api';
 import { useCitiesHookRQ } from './hooks/useCustomHookRQ';
 
 const RqListCities = () => {
   const [name, setName] = useState('');
   const [capital, setCapital] = useState('');
+  const [selected, setSelected] = useState(null);
+  let [isOpen, setIsOpen] = useState(false);
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModal() {
+    setIsOpen(true);
+  }
 
   const { data, isLoading, isError, error, refetch } =
     useCitiesHookRQ('citiesOnMount');
@@ -113,36 +124,33 @@ const RqListCities = () => {
     },
   });
 
-  const updateCityQuery = useMutation({
-    mutationFn: updateCity,
+  // const updateCityQuery = useMutation({
+  //   mutationFn: updateCity,
 
-    onMutate: async data => {
-      await queryClient.cancelQueries(['cities']);
-      console.log(data);
+  //   onMutate: async data => {
+  //     await queryClient.cancelQueries(['cities']);
 
-      const prevData = queryClient.getQueryData(['cities']);
+  //     const prevData = queryClient.getQueryData(['cities']);
 
-      queryClient.setQueryData(['cities'], oldDataValuesOnDevTools => {
-        console.log(oldDataValuesOnDevTools);
-        const updatedIndex = oldDataValuesOnDevTools.findIndex(
-          city => city.id === data.id
-        );
+  //     queryClient.setQueryData(['cities'], oldDataValuesOnDevTools => {
+  //       const updatedIndex = oldDataValuesOnDevTools.findIndex(
+  //         city => city.id === data.id
+  //       );
 
-        oldDataValuesOnDevTools.splice(updatedIndex, 1, data);
-        console.log(updatedIndex, oldDataValuesOnDevTools);
-      });
+  //       oldDataValuesOnDevTools.splice(updatedIndex, 1, data);
+  //     });
 
-      return {
-        prevData,
-      };
-    },
-    onError: (_error, _data, context) => {
-      queryClient.setQueryData(['cities'], context.prevData);
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries(['cities']);
-    },
-  });
+  //     return {
+  //       prevData,
+  //     };
+  //   },
+  //   onError: (_error, _data, context) => {
+  //     queryClient.setQueryData(['cities'], context.prevData);
+  //   },
+  //   onSettled: () => {
+  //     queryClient.invalidateQueries(['cities']);
+  //   },
+  // });
 
   // ============= EVENTS   ==============
 
@@ -158,10 +166,10 @@ const RqListCities = () => {
     deleteAddedCity.mutate(id);
   };
 
-  const handleUpdate = id => {
-    const city = { name: 'paris', capital: 'france', id };
-    updateCityQuery.mutate(city);
-  };
+  // const handleUpdate = id => {
+  //   const city = { name: 'paris', capital: 'france', id };
+  //   updateCityQuery.mutate(city);
+  // };
 
   return (
     <div className="p-4 bg-pink-300 mt-3 rounded-lg">
@@ -201,6 +209,12 @@ const RqListCities = () => {
       <button className="block w-full m-3 bg-blue-400 p-2" onClick={refetch}>
         Load Data
       </button>
+      <button
+        className="block w-full m-3 bg-blue-400 p-2"
+        onClick={() => queryClient.invalidateQueries(['cities'])}
+      >
+        Invalidate
+      </button>
 
       <ul className="grid grid-rows-[0fr] gap-[20px] transition-all duration-300">
         {data?.map(city => {
@@ -214,22 +228,28 @@ const RqListCities = () => {
               </Link>
               <div className="z-30 flex items-center justify-center">
                 <button
-                  onClick={() => handleDelete(city.id)}
-                  className="bg-red-300 px-4 mr-2 py-2 rounded-lg hover:bg-red-400"
+                  onClick={() => {
+                    openModal();
+                    setSelected(city);
+                  }}
+                  className="bg-yellow-300 px-4 mr-2 py-2 rounded-lg hover:bg-red-400"
                 >
-                  Delete
+                  Edit
                 </button>
                 <button
-                  onClick={() => handleUpdate(city.id)}
-                  className="bg-yellow-300 px-4 py-2 rounded-lg hover:bg-red-400"
+                  onClick={() => handleDelete(city.id)}
+                  className="bg-red-300 px-4  py-2 rounded-lg hover:bg-red-400"
                 >
-                  Update
+                  Delete
                 </button>
               </div>
             </li>
           );
         })}
       </ul>
+      {isOpen && (
+        <Modal isOpen={isOpen} closeModal={closeModal} item={selected} />
+      )}
     </div>
   );
 };

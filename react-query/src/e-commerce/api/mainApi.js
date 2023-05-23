@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { setTotalPages } from '../Pages/Infinited';
+import { setTotalPages } from '../pages/Infinited';
 
 const mainApi = axios.create({
   baseURL: 'http://localhost:3600/',
 });
 
 export const fetchAllProducts = async () => {
-  const { data } = await mainApi.get(`pre-products`);
+  const { data } = await mainApi.get(`products`);
   return data;
 };
 
@@ -58,28 +58,8 @@ export const fetchProductsByCategory = async ({ queryKey }) => {
   return data;
 };
 
-// const response = await mainApi.get(`/pre-products?_page=${pageNum}&_limit=4`);
+export const updateProductOnServer = async updatedProduct => {
+  const { id } = updatedProduct;
 
-// if (response) {
-//   const urlParams = new URLSearchParams(response.config.url.toString());
-//   const paramsString = 'q=URLUtils.searchParams&_topic=api';
-//   console.log(paramsString,response.config.url);
-//   const searchParams = new URLSearchParams(paramsString);
-//   console.log(searchParams.has('_topic')); // true
-
-//   const pageFromResponse = urlParams.get('_limit');
-//   console.log(pageFromResponse);
-
-//   console.log(`Data retrieved from page ${pageFromResponse}`);
-
-//   const aaa = new URLSearchParams(response.config.url);
-//   console.log(aaa.toString());
-//   console.log(aaa.has('_page'));
-//   console.log(urlParams.has('_page'));
-
-//   for (const p of aaa) {
-//     console.log(p);
-//   }
-// }
-
-//   const totalDataFound = response.headers['x-total-count'];
+  return await mainApi.patch('/products/' + id, updatedProduct);
+};

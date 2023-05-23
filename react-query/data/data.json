@@ -6,14 +6,9 @@
       "id": 1
     },
     {
-      "name": "tehran",
-      "capital": "iran",
+      "name": "normal",
+      "capital": "ishelyir?",
       "id": 2
-    },
-    {
-      "name": "paris",
-      "capital": "france",
-      "id": 3
     }
   ],
   "countries": [

@@ -5,6 +5,7 @@ export const useCitiesHookRQ = () => {
   return useQuery({
     queryKey: ['cities'],
     queryFn: fetchCities,
+    staleTime: 10 * 2 * 1000,
   });
 };
 

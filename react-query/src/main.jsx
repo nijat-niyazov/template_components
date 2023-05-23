@@ -4,9 +4,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './App';
+import Home from './e-commerce/Home';
 import { store } from './e-commerce/redux/store';
 import './index.css';
-import Home from './e-commerce/Home';
 
 const queryClient = new QueryClient();
 

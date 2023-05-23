@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import ToggleButton from './Toggle';
 
 const Navbar = () => {
   const [show, setshow] = useState(false);
@@ -9,8 +10,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-blue-900 p-2 text-gray-200 w-full flex md:items-center justify-between">
-      <Link onClick={() => setshow(false)} className="block" to="/products">
+    <nav className="bg-blue dark:bg-aqua p-2 text-gray-200 w-full flex md:items-center justify-between">
+      <Link onClick={() => setshow(false)} className="block" to="/">
         <img
           src="https://static.vecteezy.com/system/resources/thumbnails/006/298/276/small/gear-smart-eps-icon-digital-tech-business-logo-free-vector.jpg"
           alt=""
@@ -23,10 +24,10 @@ const Navbar = () => {
           show ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
         } absolute md:static top-full left-0  md:inline w-full md:w-auto transition-all duration-300`}
       >
-        <ul className="bg-blue-300 overflow-hidden md:bg-transparent flex md:items-start flex-col md:flex-row  md:mr-5 gap-2 ">
+        <ul className="bg-aqua overflow-hidden md:bg-transparent flex md:items-start flex-col md:flex-row  md:mr-5 gap-2 ">
           <li
             onClick={handleShowNav}
-            className="p-2 m-2 mb-0  font-bold  bg-amber-400 text-black hover:text-yellow-50 hover:bg-amber-500 transition-colors duration-300 rounded-md"
+            className="p-2 m-2 mb-0  font-bold  bg-yellow text-black hover:text-yellow-50 hover:bg-amber-500 transition-colors duration-300 rounded-md"
           >
             <Link className="block" to="/products">
               List
@@ -34,7 +35,7 @@ const Navbar = () => {
           </li>
           <li
             onClick={handleShowNav}
-            className="p-2 m-2 mb-0  font-bold  bg-amber-400 text-black hover:text-yellow-50 hover:bg-amber-500 transition-colors duration-300 rounded-md"
+            className="p-2 m-2 mb-0  font-bold  bg-yellow text-black hover:text-yellow-50 hover:bg-amber-500 transition-colors duration-300 rounded-md"
           >
             <Link className="block" to="/infinitive">
               Infititive Scrolled
@@ -42,7 +43,7 @@ const Navbar = () => {
           </li>
           <li
             onClick={handleShowNav}
-            className="p-2  m-2 mb-0  font-bold bg-amber-400 text-black hover:text-yellow-50 hover:bg-amber-500 transition-colors duration-300 rounded-md"
+            className="p-2  m-2 mb-0  font-bold bg-yellow text-black hover:text-yellow-50 hover:bg-amber-500 transition-colors duration-300 rounded-md"
           >
             <Link className="block" to="/paginated">
               Paginated
@@ -50,7 +51,7 @@ const Navbar = () => {
           </li>
           <li
             onClick={handleShowNav}
-            className="p-2  m-2 mb-0  font-bold  bg-amber-400 text-black hover:text-yellow-50 hover:bg-amber-500 transition-colors duration-300 rounded-md"
+            className="p-2  m-2 mb-0  font-bold  bg-yellow text-black hover:text-yellow-50 hover:bg-amber-500 transition-colors duration-300 rounded-md"
           >
             <Link className="block" to="/dependend">
               Dependend Products
@@ -58,7 +59,7 @@ const Navbar = () => {
           </li>
           <li
             onClick={handleShowNav}
-            className="p-2  m-2 mb-0  font-bold  bg-amber-400 text-black hover:text-yellow-50 hover:bg-amber-500 transition-colors duration-300 rounded-md"
+            className="p-2  m-2 mb-0  font-bold  bg-yellow text-black hover:text-yellow-50 hover:bg-amber-500 transition-colors duration-300 rounded-md"
           >
             <Link className="block" to="/compareselector">
               Compare Products
@@ -66,7 +67,7 @@ const Navbar = () => {
           </li>
           <li
             onClick={handleShowNav}
-            className="p-2 m-2 font-bold  bg-amber-400 text-black hover:text-yellow-50 hover:bg-amber-500 transition-colors duration-300 rounded-md"
+            className="p-2 m-2 font-bold  bg-yellow text-black hover:text-yellow-50 hover:bg-amber-500 transition-colors duration-300 rounded-md"
           >
             <Link className="block" to="/admin">
               Admin-Panel
@@ -74,6 +75,8 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
+
+      <ToggleButton />
 
       <button
         onClick={handleShowNav}
@@ -86,17 +89,17 @@ const Navbar = () => {
         <span
           className={`${
             show && 'rotate-45 translate-y-[300%] '
-          } bg-gray-300 h-1 w-8 transition-all duration-300`}
+          } bg-white h-1 w-8 transition-all duration-300`}
         ></span>
         <span
           className={`${
             show ? 'opacity-0 ' : 'opacity-100'
-          } bg-gray-300 h-1 w-8 transition-all duration-300`}
+          } bg-white h-1 w-8 transition-all duration-300`}
         ></span>
         <span
           className={`${
             show && '-rotate-45 -translate-y-[300%]  '
-          } bg-gray-300 h-1 w-8 transition-all duration-300`}
+          } bg-white h-1 w-8 transition-all duration-300`}
         ></span>
       </button>
     </nav>

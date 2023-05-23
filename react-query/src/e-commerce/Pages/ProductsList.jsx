@@ -1,18 +1,12 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { fetchAllProducts } from '../api/mainApi';
-import Product from './Product';
+import Product from '../components/Product';
 
-const ProductsList = () => {
-  const queryClient = useQueryClient();
-
+const ProductsList = ({ admin }) => {
   const { isLoading, isError, error, data } = useQuery({
     queryKey: ['allProducts'],
     queryFn: fetchAllProducts,
     staleTime: 6 * 60 * 1000,
-    initialData: () => {
-      const data = queryClient.getQueryData(['allProducts']);
-      console.log(data);
-    },
   });
 
   if (isLoading) {
@@ -25,10 +19,12 @@ const ProductsList = () => {
 
   return (
     <div>
-      <h2 className="text-center font-bold text-[50px]">All Products</h2>
+      <h2 className="text-center font-bold text-[50px] dark:text-blue-300">
+        All Products
+      </h2>
       <section className="grid gap-5 p-4 md:grid-cols-3">
         {data?.map(product => (
-          <Product key={product.id} product={product} />
+          <Product admin={admin} key={product.id} product={product} />
         ))}
       </section>
     </div>

@@ -2,7 +2,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { fetchProductsWithInfinitive } from '../api/mainApi';
-import Product from './Product';
+import Product from '../components/Product';
 
 let totalPages = 0;
 

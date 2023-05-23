@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { fetchProductsPerPage } from '../api/mainApi';
-import Product from './Product';
+import Product from '../components/Product';
 
 const Paginated = () => {
   const [pageNum, setPageNum] = useState(1);

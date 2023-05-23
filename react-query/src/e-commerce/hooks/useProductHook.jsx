@@ -12,6 +12,7 @@ const useProductHook = id => {
         .getQueryData(['products'])
         ?.pages?.flat(Infinity)
         .find(product => product.id === parseInt(id));
+        console.log(data); 
 
       return data ? data : undefined;
     },
