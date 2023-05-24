@@ -1,12 +1,17 @@
 import axios from 'axios';
 import { setTotalPages } from '../pages/Infinited';
 
-const mainApi = axios.create({
+export const mainApi = axios.create({
   baseURL: 'http://localhost:3600/',
 });
 
 export const fetchAllProducts = async () => {
   const { data } = await mainApi.get(`products`);
+  return data;
+};
+
+export const fetchProductsWithURL = async query => {
+  const { data } = await mainApi.get('products?q=' + query);
   return data;
 };
 
