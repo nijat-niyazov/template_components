@@ -16,8 +16,6 @@ import Infinited from './pages/Infinited';
 import Paginated from './pages/Paginated';
 import ProductDetails from './pages/ProductDetails';
 import ProductsList from './pages/ProductsList';
-import UrlSearch from './pages/UrlSearch';
-import Blogpage from './pages/BlogPage';
 
 const Home = () => {
   const [logged, setLogged] = useState(false);
@@ -38,8 +36,6 @@ const Home = () => {
         <Route path="compared" element={<Compared />} />
         <Route path="addproduct" element={<AddProduct />} />
         <Route path="infinitive" element={<Infinited />} />
-        <Route path="url" element={<UrlSearch />} />
-        <Route path="posts" element={<Blogpage />} />
         <Route
           path="admin"
           element={<AdminPanel user={{ logged, setLogged }} />}
