@@ -31,6 +31,8 @@ const Infinited = () => {
     refetchOnWindowFocus: false,
   });
 
+  // console.log(dataDebounced);
+
   const { ref, inView, entry } = useInView({
     threshold: 0.1,
     // triggerOnce: true,
@@ -72,6 +74,8 @@ const Infinited = () => {
               key={product.id}
               ref={ref}
               cart={'cart'}
+              category={category}
+              setCategory={setCategory}
             />
           ) : (
             <Product product={product} key={product.id} />

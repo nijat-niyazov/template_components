@@ -10,9 +10,26 @@ export const fetchAllProducts = async () => {
   return data;
 };
 
-export const fetchProductsWithURL = async query => {
-  const { data } = await mainApi.get('products?q=' + query);
-  return data;
+export const fetchProductsWithURL = async () => {
+  const url = new URLSearchParams(window.location.search);
+  const query = url.get('q');
+  const pageNum = url.get('_page');
+  const category = url.get('category');
+
+  const params = {
+    q: query,
+    _page: pageNum,
+    _limit: 4,
+    category: category,
+  };
+
+  !query && delete params.q;
+  query && delete params._page;
+  !pageNum && delete params._page;
+  !category && delete params.category;
+
+  const response = await mainApi.get('products?', { params });
+  return response.data;
 };
 
 export const fetchProduct = async ({ queryKey }) => {
