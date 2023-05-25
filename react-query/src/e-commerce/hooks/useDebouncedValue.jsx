@@ -5,12 +5,12 @@ const useDebouncedValue = (value ) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      console.log('finished');
+      // console.log('finished');
       setDebounced(value);
     }, 500);
 
     return () => {
-      console.log('cancelled');
+      // console.log('cancelled');
       clearTimeout(timer);
     };
   }, [value]);

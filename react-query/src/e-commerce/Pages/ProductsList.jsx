@@ -18,6 +18,8 @@ const ProductsList = ({ admin }) => {
   useEffect(() => {
     if (search) {
       searchParams.set('q', search);
+    } else {
+      searchParams.delete('q');
     }
     if (category) {
       searchParams.set('category', category);
@@ -33,8 +35,8 @@ const ProductsList = ({ admin }) => {
   const { data, isError, error, isLoading, isFetching } = useQuery({
     queryKey: ['productsForQuery', debounced, pageNum, category],
     queryFn: fetchProductsWithURL,
-    // staleTime: 6 * 60 * 1000,
-    refetchInterval: 2 * 1000,
+    staleTime: 6 * 60 * 1000,
+    // refetchInterval: 2 * 1000,
 
     refetchOnWindowFocus: false,
   });
