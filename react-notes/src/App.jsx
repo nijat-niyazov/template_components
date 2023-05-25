@@ -1,4 +1,6 @@
-import DatePick from './datePicker/DatePicker';
+import Debounced from './debounced/Debounced';
+import Router from './urlSearchParams/Router';
+import Route from './urlSearchParams/Router';
 
 function App() {
   return (
@@ -7,7 +9,7 @@ function App() {
       {/* <ReRender /> */}
       {/* <Card /> */}
       {/* <PaymentForm /> */}
-      <DatePick />
+      <Debounced />
     </>
   );
 }
