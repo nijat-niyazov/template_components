@@ -11,14 +11,16 @@ export default function Modal({ isOpen, closeModal, product }) {
 
   const queryClient = useQueryClient();
 
+  console.log(queryClient);
+
   const mutation = useMutation({
     mutationFn: updateProductOnServer,
     onMutate: async data => {
-      await queryClient.cancelQueries(['allProducts']);
+      await queryClient.cancelQueries(["productsForQuery","",1,""]);
 
-      const prevAllData = queryClient.getQueryData(['allProducts']);
+      const prevAllData = queryClient.getQueryData(["productsForQuery","",1,""]);
 
-      queryClient.setQueryData(['allProducts'], oldDataFromDevTools => {
+      queryClient.setQueryData(["productsForQuery","",1,""], oldDataFromDevTools => {
         // console.log(oldDataFromDevTools);
         const index = oldDataFromDevTools.findIndex(
           product => product.id === data.id
@@ -34,10 +36,10 @@ export default function Modal({ isOpen, closeModal, product }) {
     },
     onError: (_error, _sec, context) => {
       console.log('executed');
-      queryClient.setQueryData(['allProducts'], context.prevAllData);
+      queryClient.setQueryData(["productsForQuery","",1,""], context.prevAllData);
     },
     onSettled: () => {
-      queryClient.invalidateQueries(['allProducts']);
+      queryClient.invalidateQueries(["productsForQuery","",1,""]);
       closeModal();
     },
   });

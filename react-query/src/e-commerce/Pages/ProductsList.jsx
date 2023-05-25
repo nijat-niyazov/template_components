@@ -4,13 +4,16 @@ import { useSearchParams } from 'react-router-dom';
 import { fetchProductsWithURL } from '../api/mainApi';
 import Product from '../components/Product';
 import SearchInput from '../components/SearchInput';
+import useDebouncedValue from '../hooks/useDebouncedValue';
 
 const ProductsList = ({ admin }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [search, setSearch] = useState(searchParams.get('q') ?? '');
   const [pageNum, setPageNum] = useState(searchParams.get('_page') ?? 1);
   const [category, setCategory] = useState(searchParams.get('category') ?? '');
-  const [debounced, setDebounced] = useState(search || '');
+
+  const debounced = useDebouncedValue(search);
+  console.log(debounced);
 
   useEffect(() => {
     if (search) {
@@ -27,22 +30,12 @@ const ProductsList = ({ admin }) => {
     setSearchParams(searchParams);
   }, [search, category, pageNum]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebounced(search);
-    }, 500);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [search]);
-
   const { data, isError, error, isLoading, isFetching } = useQuery({
     queryKey: ['productsForQuery', debounced, pageNum, category],
     queryFn: fetchProductsWithURL,
-    staleTime: 6 * 60 * 1000,
+    // staleTime: 6 * 60 * 1000,
+    refetchInterval: 2 * 1000,
 
-    // staleTime: 5 * 60 * 1000,
     refetchOnWindowFocus: false,
   });
 
@@ -83,7 +76,7 @@ const ProductsList = ({ admin }) => {
           fragrances
         </button>
       </div>
-      {!search && (
+      {!debounced && (
         <section className="flex gap-3 m-auto w-1/5 mt-5">
           <button
             disabled={pageNum === 1}
