@@ -67,6 +67,20 @@ let savedData = JSON.parse(sessionStorage.getItem('values')) ?? null;
 const FormComponent = () => {
   const [show, setShow] = useState(false);
 
+  function formatPhoneNumber(input) {
+    // Remove all non-digit characters
+    let phoneNumber = input.value.replace(/\D/g, '');
+
+    // Format the phone number as "(+994 __) ___ __ __"
+    phoneNumber = phoneNumber.replace(
+      /(\d{3})(\d{2})(\d{3})(\d{2})(\d{2})/,
+      '(+994 $1) $2$3 $4 $5'
+    );
+
+    // Update the input value
+    input.value = phoneNumber;
+  }
+
   //   useEffect(() => {
   //      // Submit the form imperatively as an effect as soon as form values.token are 6 digits long
   //      if (values.token.length === 6) {
@@ -77,13 +91,28 @@ const FormComponent = () => {
   //  };
 
   return (
-    <div className="grid gap-5">
-      <header className="bg-purple-900 rounded-md text-center p-4 w-full whitespace-nowrap text-white ">
-        <span className="font-semibold">Try it free 7 days </span>
-        then $20/mo. thereafter
-      </header>
+    <div className="bg-[#d9d4da] p-1">
+      <section className="bg-[#f6f4f3] border-1  grid gap-5 p-4 rounded-lg my-10 mx-20">
+        <header className="grid gap-5">
+          <span className="text-xl text-[#e4aa05] font-bold border-b-[1px] border-gray-200 block pb-5">
+            Settings
+          </span>
 
-      <section className="bg-gray-400 p-6 rounded-md">
+          <div className="text-[13px] font-normal tracking-wide text-white text-center flex flex-col items-center">
+            <img
+              src="https://caspa.az/img/no-photo.jpg"
+              alt=""
+              className="rounded-full w-20 h-20 mb-5"
+            />
+            <button className="bg-[#e4aa05] p-2 w-full rounded-md">
+              Open Photo
+            </button>
+          </div>
+          <p className="text-black">
+            Render: <span> {counter++} </span>
+          </p>
+        </header>
+
         <Formik
           initialValues={savedData || initialValues}
           validationSchema={SignupSchema}
@@ -103,271 +132,250 @@ const FormComponent = () => {
             sessionStorage.setItem('values', JSON.stringify(formik.values));
 
             return (
-              <Form className="grid w-[80%] m-auto gap-10">
-                <p className="text-black">
-                  Render: <span> {counter++} </span>
-                </p>
+              <Form className="">
+                <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3   content-center items-start">
+                  {/* ================== Name ================== */}
 
-                {/* ================== Name ================== */}
-                <div className="">
-                  <label
-                    className="font-semibold block text-black -600 ml-2"
-                    htmlFor="name"
-                  >
-                    Name
-                  </label>
-                  <Field
-                    type="text"
-                    name="name"
-                    placeholder="Name"
-                    className="p-2  w-full bg-white text-black rounded-xl"
-                  />
-                  {formik.touched.name && formik.errors.name && (
-                    <Error message={formik.errors.name} />
-                  )}
-                </div>
+                  <div className="text-[13px] font-normal tracking-wide grid">
+                    <label className=" text-gray-400 mb-2" htmlFor="name">
+                      Name
+                    </label>
+                    <Field
+                      type="text"
+                      name="name"
+                      placeholder="Name"
+                      className="placeholder:text-gray-200 p-2 border-1 text-xs border-gray-400  w-full bg-white text-black rounded-md"
+                    />
+                    <Error
+                      message={formik.errors.name}
+                      show={formik.touched.name}
+                    />
+                  </div>
 
-                {/* ================== Email ================== */}
-                <div className="">
-                  <label
-                    className="font-semibold block text-black -600 ml-2"
-                    htmlFor="email"
-                  >
-                    Email
-                  </label>
-                  <Field name="email">
-                    {props => {
-                      const { meta, field, form } = props;
-                      return (
-                        <>
-                          <input
-                            {...props.field}
-                            type="email"
-                            placeholder="Your email"
-                            className="p-2 w-full bg-white text-black rounded-xl"
-                          />
+                  {/* ================== Email ================== */}
+                  <div className="text-[13px] font-normal tracking-wide  grid">
+                    <label className="text-gray-400 mb-2" htmlFor="email">
+                      E-mail:
+                    </label>
+                    <Field name="email">
+                      {props => {
+                        const { meta, field, form } = props;
+                        return (
+                          <>
+                            <input
+                              {...props.field}
+                              type="email"
+                              placeholder="Your email"
+                              className="placeholder:text-gray-200 p-2 w-full bg-white text-black rounded-md text-xs"
+                            />
+                            <Error message={meta.error} show={meta.touched} />
+                          </>
+                        );
+                      }}
+                    </Field>
+                  </div>
 
-                          {meta.touched && meta.error && (
-                            <Error message={meta.error} />
-                          )}
-                        </>
-                      );
-                    }}
-                  </Field>
-                </div>
-
-                {/* {formik.touched.email && formik.errors.email && (
+                  {/* {formik.touched.email && formik.errors.email && (
                 <Error message={formik.errors.email} />
                     )} */}
 
-                {/* ================== Password ================== */}
-                <div className="relative">
-                  <label
-                    className="font-semibold block text-black -600 ml-2"
-                    htmlFor="password"
-                  >
-                    Password
-                  </label>
-                  <Field
-                    type={!show ? 'password' : 'text'}
-                    name="password"
-                    placeholder="Password"
-                    className="p-2 w-full bg-white text-black rounded-xl"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShow(p => !p)}
-                    className="absolute right-2 top-8"
-                  >
-                    <EyeSvg show={show} />
-                  </button>
-                  {formik.touched.password && formik.errors.password && (
-                    <Error message={formik.errors.password} />
-                  )}
-                </div>
+                  {/* ================== Password ================== */}
 
-                {/* ================== Message ================== */}
-
-                <div className="">
-                  <label
-                    className="font-semibold block text-black -600 ml-2"
-                    htmlFor="message"
-                  >
-                    Your Message
-                  </label>
-                  <Field
-                    as="textarea"
-                    name="message"
-                    placeholder="Your message"
-                    className="p-2 w-full bg-white text-black rounded-xl resize-none"
-                  />
-                  {formik.touched.message && formik.errors.message && (
-                    <Error message={formik.errors.message} />
-                  )}
-                </div>
-
-                {/* ================== SocailLinks ================== */}
-
-                <div className="">
-                  <label
-                    className="font-semibold block text-black -600 ml-2"
-                    htmlFor="linkedn"
-                  >
-                    Linkedn
-                  </label>
-                  <Field
-                    type="text"
-                    name="socialLinks.linkedn"
-                    placeholder="Linkedn profile"
-                    className="p-2  w-full bg-white text-black rounded-xl"
-                  />
-                </div>
-                <div className="">
-                  <label
-                    className="font-semibold block text-black -600 ml-2"
-                    htmlFor="github"
-                  >
-                    Github
-                  </label>
-                  <Field
-                    type="text"
-                    name="socialLinks.github"
-                    placeholder="Github profile"
-                    className="p-2  w-full bg-white text-black rounded-xl"
-                  />
-                </div>
-
-                {/* ================== Phone Numbers Array ================== */}
-
-                <div className="grid gap-2">
-                  <div>
-                    <label
-                      className="font-semibold block text-black -600 ml-2"
-                      htmlFor="main-num"
-                    >
-                      Phone number
+                  <div className="relative text-[13px] font-normal tracking-wide  grid">
+                    <label className="text-gray-400 mb-2" htmlFor="password">
+                      Password
                     </label>
                     <Field
-                      type="text"
-                      id="main-num"
-                      name="phoneNums[0]"
-                      placeholder="Your number"
-                      className="p-2  w-full bg-white text-black rounded-xl"
+                      type={!show ? 'password' : 'text'}
+                      name="password"
+                      placeholder="Password"
+                      className="placeholder:text-gray-200 p-2 w-full bg-white text-black rounded-md   focus:outline-pink-400 "
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShow(p => !p)}
+                      className="absolute right-2 top-9"
+                    >
+                      <EyeSvg show={show} />
+                    </button>
+                    <Error
+                      message={formik.errors.password}
+                      show={formik.touched.password}
                     />
                   </div>
 
-                  <div>
-                    <label
-                      className="font-semibold block text-black -600 ml-2"
-                      htmlFor="second-phone"
-                    >
-                      Second Phone {!formik.errors.phoneNums && <Optional />}
+                  {/* ================== Message ================== */}
+
+                  <div className="text-[13px] font-normal tracking-wide grid">
+                    <label className="text-gray-400 mb-2" htmlFor="message">
+                      Your Message
+                    </label>
+                    <Field
+                      as="textarea"
+                      name="message"
+                      placeholder="Any thoughts?"
+                      // rows="6"
+                      className="p-2 w-full placeholder:text-gray-400 bg-white text-black rounded-md resize-none"
+                    />
+                    {formik.touched.message && formik.errors.message && (
+                      <Error message={formik.errors.message} />
+                    )}
+                  </div>
+
+                  {/* ================== SocailLinks ================== */}
+
+                  <div className="text-[13px] font-normal tracking-wide  grid">
+                    <label className="text-gray-400 mb-2" htmlFor="linkedn">
+                      Linkedn
                     </label>
                     <Field
                       type="text"
-                      id="second-phone"
-                      name="phoneNums[1]"
-                      placeholder="Optional"
-                      className="p-2  w-full bg-white text-black rounded-xl"
+                      name="socialLinks.linkedn"
+                      placeholder="Linkedn profile"
+                      className="placeholder:text-gray-200 p-2  bg-white text-black rounded-md"
                     />
                   </div>
-                </div>
+                  <div className="text-[13px] font-normal tracking-wide  grid">
+                    <label className="text-gray-400 mb-2" htmlFor="github">
+                      Github
+                    </label>
+                    <Field
+                      type="text"
+                      name="socialLinks.github"
+                      placeholder="Github profile"
+                      className="placeholder:text-gray-200 p-2 bg-white text-black rounded-md"
+                    />
+                  </div>
 
-                {/* ================== Knowledge Additional Array   ================ */}
-                <div>
-                  <label className="font-semibold block text-black -600 ml-2">
-                    List of Your Knowledge
-                  </label>
+                  {/* ================== Phone Numbers Array ================== */}
 
-                  <FieldArray name="knowledge">
-                    {fieldArrayProps => {
-                      const { push, remove, form, move } = fieldArrayProps;
-                      const { knowledge } = form.values;
-                      return (
-                        <div className="grid gap-2 py-4">
-                          {knowledge.map((topic, i) => (
-                            <div
-                              className="flex items-center text-black gap-1 relative"
-                              key={i}
-                            >
-                              <Field
+                  <div className="text-[13px] font-normal tracking-wide  grid">
+                    <div className="grid gap-1">
+                      <label className="text-gray-400" htmlFor="main-num">
+                        Phone number
+                      </label>
+                      <Field
+                        type="text"
+                        id="main-num"
+                        name="phoneNums[0]"
+                        placeholder="(+994 __) ___ __ __"
+                        onChange={(e)=>{
+                          formatPhoneNumber(e.target.value)
+                        }}
+                        className="placeholder:text-gray-200 p-2  bg-white text-black rounded-md"
+                      />
+                    </div>
+
+                    <div className="grid gap-1">
+                      <label className="text-gray-400" htmlFor="second-phone">
+                        Second Phone {!formik.errors.phoneNums && <Optional />}
+                      </label>
+                      <Field
+                        type="text"
+                        id="second-phone"
+                        name="phoneNums[1]"
+                        placeholder="Optional"
+                        className="placeholder:text-gray-200 p-2  w-full bg-white text-black rounded-md"
+                      />
+                    </div>
+                  </div>
+
+                  {/* ================== Knowledge Additional Array   ================ */}
+                  <div className="text-[13px]">
+                    <label className="text-gray-400">
+                      List of Your Knowledge
+                    </label>
+
+                    <FieldArray className="grid" name="knowledge">
+                      {fieldArrayProps => {
+                        const { push, remove, form, move } = fieldArrayProps;
+                        const { knowledge } = form.values;
+                        return (
+                          <div className="grid gap-2 py-4">
+                            {knowledge.map((_, i) => (
+                              <div
+                                className="flex items-center text-black gap-1 relative transition-colors duration-500"
                                 key={i}
-                                type="text"
-                                name={`knowledge[${i}]`}
-                                placeholder="Your knowledge"
-                                className="p-2  w-full bg-white rounded-md"
-                              />
-                              <button
-                                tabIndex={2}
-                                onClick={() => remove(i)}
-                                disabled={knowledge.length === 1}
-                                className="disabled:opacity-10 "
                               >
-                                <TrashSvg />
-                              </button>
-                              {i !== 0 && (
+                                <Field
+                                  key={i}
+                                  type="text"
+                                  name={`knowledge[${i}]`}
+                                  placeholder="Your knowledge"
+                                  className="placeholder:text-gray-200 p-2  w-full bg-white rounded-md"
+                                />
                                 <button
                                   tabIndex={2}
-                                  onClick={() => move(1, 0)}
-                                  className=" rounded-md bg-green-600"
+                                  onClick={() => remove(i)}
+                                  disabled={knowledge.length === 1}
+                                  className="disabled:opacity-10"
                                 >
-                                  <UpSvg />
+                                  <TrashSvg />
                                 </button>
-                              )}
+                                {i !== 0 && (
+                                  <button
+                                    tabIndex={2}
+                                    onClick={() => move(1, 0)}
+                                    className="rounded-md bg-green-600"
+                                  >
+                                    <UpSvg />
+                                  </button>
+                                )}
+                              </div>
+                            ))}
+
+                            <div className="flex justify-center mt-3">
+                              <button
+                                onClick={() => push('')} // we are adding with empty value because it will add input element because of map method and we can change it from empty value
+                                disabled={
+                                  knowledge.length > 3 ||
+                                  knowledge.at(-1).trim() === ''
+                                }
+                                type="button"
+                                className="opacity-80 duration-500 disabled:opacity-30"
+                              >
+                                <AddSvg />
+                              </button>
                             </div>
-                          ))}
-
-                          <div className="flex justify-center mt-3">
-                            <button
-                              onClick={() => push('')} // we are adding with empty value because it will add input element because of map method and we can change it from empty value
-                              disabled={
-                                knowledge.length > 3 ||
-                                knowledge.at(-1).trim() === ''
-                              }
-                              type="button"
-                              className="opacity-80 disabled:opacity-30"
-                            >
-                              <AddSvg />
-                            </button>
                           </div>
-                        </div>
-                      );
-                    }}
-                  </FieldArray>
-                </div>
+                        );
+                      }}
+                    </FieldArray>
+                  </div>
 
-                {/* ================== Parents Array of Objcets  ================== */}
+                  {/* ================== Parents Array of Objcets  ================== */}
 
-                <div className="text-black font-semibold">
-                  <label htmlFor="parents">
-                    Parents will participate in exam
-                  </label>
+                  <div className="text-black font-semibold">
+                    <label htmlFor="parents">
+                      Parents will participate in exam
+                    </label>
 
-                  <FieldArray name="parents">
-                    {fieldsArray => {
-                      const { form } = fieldsArray;
-                      const { parents: parentsArray } = form.values;
+                    <FieldArray name="parents">
+                      {fieldsArray => {
+                        const { form } = fieldsArray;
+                        const { parents: parentsArray } = form.values;
 
-                      return parentsArray.map((parent, i) => (
-                        <div key={i} className="grid gap-2">
-                          {Object.keys(parent).map((field, index) => (
-                            <Field
-                              key={index}
-                              className="p-2 w-full bg-white text-black rounded-xl"
-                              type="text"
-                              name={`parents[${i}.${field}]`}
-                              placeholder={`Parent ${field}`}
-                            />
-                          ))}
-                        </div>
-                      ));
-                    }}
-                  </FieldArray>
+                        return parentsArray.map((parent, i) => (
+                          <div key={i} className="grid gap-2">
+                            {Object.keys(parent).map((field, index) => (
+                              <Field
+                                key={index}
+                                className="p-2 w-full bg-white text-black rounded-xl"
+                                type="text"
+                                name={`parents[${i}.${field}]`}
+                                placeholder={`Parent ${field}`}
+                              />
+                            ))}
+                          </div>
+                        ));
+                      }}
+                    </FieldArray>
+                  </div>
                 </div>
 
                 <button
                   type="submit"
-                  className="bg-green-400 text-center text-xl font-semibold tracking-wide flex justify-center p-2 w-full rounded-xl text-black disabled:opacity-70 disabled:bg-gray-500"
+                  className="bg-green-400 mt-4 text-center text-xl font-semibold tracking-wide flex justify-center p-2 w-full rounded-l text-black disabled:opacity-70 disabled:bg-gray-500"
                   disabled={!formik.isValid || !formik.dirty}
                 >
                   {formik.isSubmitting ? <Spinner /> : 'Submit'}
