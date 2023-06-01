@@ -36,7 +36,7 @@ const useInterObserver = pageNum => {
     }
   }, [pageNum]);
 
-  return { products, pageNum, hasNextPage, isLoading, fetchedCount };
+  return { products, hasNextPage, isLoading, fetchedCount };
 };
 
 export default useInterObserver;
