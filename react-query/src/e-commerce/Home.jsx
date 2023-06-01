@@ -16,6 +16,7 @@ import Infinited from './pages/Infinited';
 import Paginated from './pages/Paginated';
 import ProductDetails from './pages/ProductDetails';
 import ProductsList from './pages/ProductsList';
+import InfinitedEffect from './pages/InfinitedEffect';
 
 const Home = () => {
   const [logged, setLogged] = useState(false);
@@ -36,6 +37,7 @@ const Home = () => {
         <Route path="compared" element={<Compared />} />
         <Route path="addproduct" element={<AddProduct />} />
         <Route path="infinitive" element={<Infinited />} />
+        <Route path="infinitiveffect" element={<InfinitedEffect />} />
         <Route
           path="admin"
           element={<AdminPanel user={{ logged, setLogged }} />}

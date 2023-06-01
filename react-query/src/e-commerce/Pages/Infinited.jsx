@@ -74,8 +74,6 @@ const Infinited = () => {
               key={product.id}
               ref={ref}
               cart={'cart'}
-              category={category}
-              setCategory={setCategory}
             />
           ) : (
             <Product product={product} key={product.id} />
