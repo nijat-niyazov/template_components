@@ -6,9 +6,79 @@
       "id": 1
     },
     {
-      "name": "another ban down",
+      "name": "yeni",
       "checked": false,
       "id": 2
+    },
+    {
+      "name": "tutsak?",
+      "checked": false,
+      "id": 3
+    },
+    {
+      "name": "yuregim",
+      "checked": false,
+      "id": 4
+    },
+    {
+      "name": "cixar",
+      "checked": false,
+      "id": 5
+    },
+    {
+      "name": "ne",
+      "checked": false,
+      "id": 6
+    },
+    {
+      "name": "is guc tap",
+      "checked": false,
+      "id": 7
+    },
+    {
+      "name": "bes",
+      "checked": false,
+      "id": 8
+    },
+    {
+      "name": "e",
+      "checked": false,
+      "id": 9
+    },
+    {
+      "name": "kidding?",
+      "checked": false,
+      "id": 10
+    },
+    {
+      "name": "neceki?",
+      "checked": false,
+      "id": 11
+    },
+    {
+      "name": "bess bu nedir?",
+      "checked": false,
+      "id": 12
+    },
+    {
+      "name": "yes",
+      "checked": false,
+      "id": 13
+    },
+    {
+      "name": "got it?",
+      "checked": false,
+      "id": 14
+    },
+    {
+      "name": "yes",
+      "checked": false,
+      "id": 15
+    },
+    {
+      "name": "tutsak yuyerim?",
+      "checked": false,
+      "id": 16
     }
   ]
 }
