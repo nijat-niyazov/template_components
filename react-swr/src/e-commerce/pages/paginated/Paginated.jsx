@@ -8,19 +8,128 @@ export const findTotalPages = num => (totalPages = num);
 const Paginated = () => {
   let [searchParams, setSearchParams] = useSearchParams();
   const [pageNum, setPageNum] = useState(+searchParams.get('page') || 1);
-  // const [pageNum, setPageNum] = useState(+searchParams.get('page') || 1);-
+  const [sorted, setSorted] = useState(searchParams.get('sorted') || false);
+
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [query, setQuery] = useState('');
+
+  const sortedBy = searchParams.get('sorted');
+  const brands = searchParams.getAll('brand');
+  const search = searchParams.get('q');
+  console.log(search === query, { search, query });
 
   useEffect(() => {
-    searchParams.set('page', pageNum);
+    searchParams.set('page', pageNum.toString());
+
+    if (query) {
+      console.log('if');
+      searchParams.set('q', query);
+    } else {
+      console.log('else');
+      searchParams.delete('q');
+    }
+
+    if (sorted) {
+      searchParams.set('sorted', 'id');
+    } else {
+      searchParams.delete('sorted');
+    }
+
+    if (selectedBrands.length !== 0) {
+      searchParams.delete('brand');
+      selectedBrands.forEach(brand => {
+        searchParams.append('brand', brand);
+      });
+    } else {
+      searchParams.delete('brand');
+    }
 
     setSearchParams(searchParams);
-  }, [pageNum]);
+  }, [pageNum, sorted, selectedBrands, query]);
+
+  // console.log(searchParams.toString());
+
+  const handleSort = () => {
+    setSorted(p => !p);
+  };
+
+  const handleResetFilters = () => {
+    setSearchParams({});
+  };
+
+  const handleCheckedBrand = e => {
+    const { name, value } = e.target;
+    // !selectedBrands.some(brand => brand[name])
+    //   ? setSelectedBrands(p => [...p, { [name]: value }])
+    //   : setSelectedBrands(selectedBrands.filter(each => each[name] !== value));
+
+    if (selectedBrands.includes(value)) {
+      setSelectedBrands(selectedBrands.filter(each => each !== value));
+    } else {
+      setSelectedBrands(p => [...p, value]);
+    }
+  };
 
   return (
     <div>
       <h2 className="text-center font-bold text-[50px]">Paginated</h2>
+      <button onClick={handleResetFilters}>Reset filters</button>
+      <button
+        onClick={handleSort}
+        className={`${
+          sorted ? 'bg-yellow' : 'bg-red'
+        } p-2 text-white m-auto flex items-center justify-center rounded-md`}
+      >
+        Ordered ⬇
+      </button>
 
-      <Page pageNum={pageNum} />
+      <aside>
+        <input
+          onChange={handleCheckedBrand}
+          type="checkbox"
+          id="apple"
+          name="apple"
+          value="Apple"
+        />
+        <label htmlFor="apple"> Apple</label>
+        <br />
+        <input
+          onChange={handleCheckedBrand}
+          type="checkbox"
+          id="samsung"
+          name="samsung"
+          value="Samsung"
+        />
+        <label htmlFor="samsung"> Samsung</label>
+        <br />
+        <input
+          onChange={handleCheckedBrand}
+          type="checkbox"
+          id="huawei"
+          name="huawei"
+          value="Huawei"
+        />
+        <label htmlFor="huawei">Huawei</label>
+        <br />
+      </aside>
+
+      <aside className="block text-center w-1/2 m-auto">
+        <label htmlFor="find">Find </label>
+        <input
+          type="text"
+          value={query}
+          placeholder="Find our item"
+          className="border-black border-2 rounded-md p-2"
+          onChange={e => setQuery(e.target.value)}
+        />
+      </aside>
+
+      <Page
+        pageNum={pageNum}
+        sorted={sortedBy ? sortedBy : sorted}
+        brands={brands}
+        query={search}
+      />
       {/* <div style={{ display: 'none' }}>
         <Page pageNum={pageNum + 1} /> */}
       {/* it's allowed to write like this because of cache. We don't display this UI but cache this query for better UX*/}

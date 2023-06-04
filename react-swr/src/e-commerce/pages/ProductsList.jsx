@@ -10,17 +10,12 @@ const ProductsList = ({ admin }) => {
   const [pageNum, setPageNum] = useState(1);
   const [category, setCategory] = useState('');
 
-  const list = []
-
-
   const {
     data: products,
     error,
     isLoading,
     isValidating,
   } = useSWR(cacheKey, fetchProducts);
-
-  console.log(products);
 
   if (isLoading) {
     return <h2>Loading...</h2>;
