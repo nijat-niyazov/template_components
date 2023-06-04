@@ -11,9 +11,9 @@ const ProductsList = ({ admin }) => {
   const [search, setSearch] = useState(searchParams.get('q') ?? '');
   const [pageNum, setPageNum] = useState(searchParams.get('_page') ?? 1);
   const [category, setCategory] = useState(searchParams.get('category') ?? '');
+  const [sorted, setSorted] = useState(searchParams.get('sorted') ?? false);
 
   const debounced = useDebouncedValue(search);
-  console.log(debounced);
 
   useEffect(() => {
     if (search) {
@@ -28,12 +28,17 @@ const ProductsList = ({ admin }) => {
       searchParams.set('_page', pageNum);
       if (search) searchParams.delete('_page');
     }
+    if (sorted) {
+      searchParams.set('sorted', 'id');
+    } else {
+      searchParams.delete('sorted');
+    }
 
     setSearchParams(searchParams);
-  }, [search, category, pageNum]);
+  }, [search, category, pageNum, sorted]);
 
   const { data, isError, error, isLoading, isFetching } = useQuery({
-    queryKey: ['productsForQuery', debounced, pageNum, category],
+    queryKey: ['productsForQuery', debounced, pageNum, category, sorted],
     queryFn: fetchProductsWithURL,
     staleTime: 6 * 60 * 1000,
     // refetchInterval: 2 * 1000,
@@ -54,6 +59,7 @@ const ProductsList = ({ admin }) => {
       <h2 className="text-center font-bold text-[50px] dark:text-blue-300">
         All Products
       </h2>
+      <button onClick={() => setSorted(p => !p)}>sort</button>
       <SearchInput search={search} setSearch={setSearch} />
 
       <div className="flex items-center w-1/2 m-auto mt-4 justify-between text-black ">

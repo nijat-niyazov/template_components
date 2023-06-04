@@ -12,19 +12,23 @@ export const fetchAllProducts = async () => {
 
 export const fetchProductsWithURL = async () => {
   const url = new URLSearchParams(window.location.search);
+  console.log(url.toString());
   const query = url.get('q');
   const pageNum = url.get('_page');
   const category = url.get('category');
+  const sorted = url.get('sorted');
 
   const params = {
     q: query,
     _page: pageNum,
+    _sort: sorted,
+    _order: 'desc',
     _limit: 4,
     category: category,
   };
 
   !query && delete params.q;
-  query && delete params._page;
+  !sorted && delete params._sort && delete params._order;
   !pageNum && delete params._page;
   !category && delete params.category;
 
