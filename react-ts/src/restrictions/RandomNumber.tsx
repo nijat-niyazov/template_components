@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 type RandomNumberType = { value: number };
 
-// * & means that it includes other too. e.g: PositiveNumber will  include RandomNumberType also RandomNumberProps
+// * - & means that it includes other too. e.g: PositiveNumber will  include RandomNumberType also RandomNumberProps
 
 type PosetiveNumber = RandomNumberType & {
   isPositive: boolean;

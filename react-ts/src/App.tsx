@@ -3,6 +3,8 @@ import toast from 'react-hot-toast';
 import Private from './auth/Private';
 import Profile from './auth/Profile';
 import List from './generics/List';
+import CustomComponent from './greet/CustomComponent';
+import Greet from './greet/Greet';
 import KeyValue from './keyValue/KeyValue';
 import RandomNumber from './restrictions/RandomNumber';
 import Toast from './templateLiteral/Toast';
@@ -20,6 +22,8 @@ function App() {
       <Toast position="bottom-left" />
       <button onClick={handleLogin}>Log {isLoggedIn ? 'out' : 'in'} </button>
       <Private isLoggedIn={isLoggedIn} component={Profile} />
+      <Greet name={'Nijat'} isLoggedIn={isLoggedIn} messageCount={12} />
+      <CustomComponent messageCount={12} name="Niki" />
       {/* <List
         items={['nijat', 'nazar', 'masti', 'qmeter']}
         onClick={item => console.log(item)}

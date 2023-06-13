@@ -14,12 +14,8 @@ type ResetAction = {
 };
 
 type ActionParams = UpdateAction | ResetAction;
-
-// if it's updated then payload number will be there, if not no need for payload.
-
-/*
- ! We can't use optinal because we can get undefined if optinal payload is not sent 
- */
+// ! We can't use optinal because we can get undefined if optinal payload is not sent
+// ? if it's updated then payload number will be there, if not no need for payload.
 
 const initialState = { count: 0 };
 

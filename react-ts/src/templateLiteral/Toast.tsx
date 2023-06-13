@@ -8,7 +8,7 @@ type PositionProps = {
   position: Exclude<`${VerticalPos}-${HorizontalPos}`, 'center-center'>;
 };
 
-// we excluding center-center from literal having that shape. Position can be only literals or center
+// * we excluding center-center union from literal having that shape. Position can be only literals or center
 
 const Toast: FC<PositionProps> = ({ position }) => {
   return <Toaster position={position} />;
